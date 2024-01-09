@@ -91,7 +91,7 @@ public class Player
         Console.WriteLine("---------------------");
         Console.WriteLine(
             $"LV : {level} ({exp}/{maxExp})\n" +
-            $"{name} (job) \n" +
+            $"{name} ({job}) \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
             $"생명력 : {hp} \n" +
@@ -110,6 +110,15 @@ public class Player
         }
         else { Console.WriteLine("방어구 : 없음"); }
         Console.WriteLine("---------------------\n");
+    }
+
+    public void printSimple()
+    {
+        Console.WriteLine(
+            "[내정보]\n" +
+            $"Lv.{level} {name} ({job})\n"+
+            $"HP {hp}/{playerConst.maxHp}\n"+
+            $"Atk : {atk} Def : {def}\n");
     }
 
     public void addItem(Item item)
@@ -147,6 +156,19 @@ public class Player
         }
         hp = playerConst.maxHp;
         Console.WriteLine($"체력을 회복했습니다. (소지금 : {gold}) G");
+    }
+
+    public void Attack(Monster enemy)
+    {
+        Console.WriteLine($"\n{name} 이(가) {enemy.name} 을(를) 공격합니다");
+
+        Console.Write($"(hp : {enemy.hp} -> ");
+        enemy.hp -= Convert.ToInt32(Math.Ceiling(atk)); ;  // 공격력 소수점 올림 후 체력에서 공격력 빼기
+        Console.WriteLine($"{enemy.hp} )");
+
+
+        Console.WriteLine("\nEnter키를 눌러주세요.");
+        Console.ReadLine();
     }
 
     public int getmaxExp()
