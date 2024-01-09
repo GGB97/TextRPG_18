@@ -35,7 +35,6 @@ public class Monster
 		{ 
 			player.hp = 0;
 		}
-
     }
 
 	public void printStat()

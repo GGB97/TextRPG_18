@@ -25,7 +25,7 @@ public class Player
         exp = 0;
         this.name = name;
         job = "용병";
-        atk = 20;
+        atk = 15;
         def = 5;
         hp = 100;
         gold = 1500;
@@ -173,8 +173,13 @@ public class Player
 
     public void Attack(Monster enemy)
     {
-        Console.WriteLine($"\n{name} 이(가) {enemy.name} 을(를) 공격합니다 (데미지 : {atk} )");
-        enemy.hp -= Convert.ToInt32(Math.Ceiling(atk)); ;  // 공격력 소수점 올림 후 체력에서 공격력 빼기
+        Random rand = new Random();
+        int dmg = 0;
+        int range = Convert.ToInt32(Math.Ceiling(atk * playerConst.dmgRange));  // ex)atk == 15 일때는 +- 2 
+        dmg = rand.Next((int)(atk - range), (int)(atk + range) + 1);
+
+        Console.WriteLine($"\n{name} 이(가) {enemy.name} 을(를) 공격합니다 (데미지 : {dmg} )");
+        enemy.hp -= dmg;  // 공격력 소수점 올림 후 체력에서 공격력 빼기
         if (enemy.hp <= 0)
         {
             enemy.hp = 0;   // 몬스터가 공격에 맞고 체력이 0 이하로 떨어졌다면 0으로 고정
