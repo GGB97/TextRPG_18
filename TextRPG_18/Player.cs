@@ -10,11 +10,13 @@ public class Player
     public string name { get; set;}
     string job;
     public int hp { get; set; }
+    public int maxhp { get; set; } 
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
+    
 
-    public Inventory inventory;
+public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
 
@@ -28,6 +30,7 @@ public class Player
         atk = 2;
         def = 5;
         hp = 100;
+        maxhp = 100;
         gold = 1500;
         maxExp = level * 100;
         inventory = new Inventory();
@@ -117,7 +120,7 @@ public class Player
         inventory.items.Add(item);
     }
 
-    public void Levelup()
+    public void Levelup()  
     {
         if(exp >= maxExp)
         {
@@ -134,6 +137,13 @@ public class Player
             Console.WriteLine("경험치가 부족합니다.");
         }
     }
+
+    public void Attack(Monster mon)
+    {
+        Random random = new Random();
+        mon.hp += (int)(atk * (random.NextDouble() * (0.1 - (-0.1)) + (-0.1))); //오차 범위 추가 (10퍼 내외 증감)
+    }
+
 
     public void Rest()
     {

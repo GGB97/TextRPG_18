@@ -18,9 +18,9 @@ public class Monster
         player.hp -= 5;
     }
 
-    public string GetLv()
+    public int GetLv()
     {
-        return level.ToString();
+        return level;
     }
 
     public string GetName()
