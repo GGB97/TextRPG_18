@@ -7,8 +7,9 @@ public class Dungeon
 	int rGold; // 보상 골드
     int rExp;  // 보상 경험치
 
-    // 몬스터 관리
+    // 출현 가능 몬스터 list
     List<Monster> monsters;
+    Monster[] enemies;
 	public Dungeon(int level)
 	{
         this.level = level;
@@ -31,10 +32,30 @@ public class Dungeon
             rExp = 40;
         }
 
-        monsters = new List<Monster>();
+        monsters = new List<Monster>(); // 출현 가능한 몬스터들 미리 넣어두기
         monsters.Add(new Monster("미니언", 2, 15));
         monsters.Add(new Monster("대포", 5, 25));
         monsters.Add(new Monster("공허충", 3, 10));
+        
+        Random rand = new Random();     
+        enemies = new Monster[rand.Next(1,5)];  // 랜덤으로 1~4 마리의 몬스터를 넣어 둘 수 있는 Monster[] 배열을 생성
+        for (int i = 0; i < enemies.Length; i++)    // 생성한 몬스터의 배열에 리스트에 있는 몬스터(프리팹 같은 역할)
+        {                                           // 을 랜덤으로 가져와서 할당 반복
+            enemies[i] = new Monster(monsters[rand.Next(0, monsters.Count)]);
+        }
+
+    }
+
+    public void Battle(Player player)
+    {
+        Console.Clear();
+        Console.WriteLine("Battle!! \n");
+
+        foreach(Monster mon in enemies)
+        {
+            mon.printStat();
+        }
+        Console.WriteLine();
     }
 
     public void Clear(Player player)

@@ -45,6 +45,6 @@ public class DungeonManager
     {
         Console.WriteLine($"난이도 {level} 던전에 입장합니다.\n");
         Dungeon dungeon = new Dungeon(level);
-        
+        dungeon.Battle(player);
     }
 }
