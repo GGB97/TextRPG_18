@@ -25,9 +25,9 @@ public class Player
         exp = 0;
         this.name = name;
         job = "용병";
-        atk = 20;
+        atk = 2;
         def = 5;
-        hp = 100;
+        hp = 5;
         gold = 1500;
         maxExp = level * 100;
         inventory = new Inventory();
@@ -50,6 +50,18 @@ public class Player
         inventory = new(playerData.inventory);
         eWeapon = new(playerData.eWeapon);
         eArmor = new(playerData.eArmor);
+    }
+    public Player(Player player)
+    {
+        this.level = player.level;
+        this.exp = player.exp;
+        this.maxExp = player.maxExp;
+        this.name = player.name;
+        this.job = player.job;
+        this.hp = player.hp;
+        this.gold = player.gold;
+        this.atk = player.atk;
+        this.def = player.def;
     }
 
     public void EquipManager()

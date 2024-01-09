@@ -87,6 +87,7 @@
                 else if (str == "3")
                 {
                     // 상점
+                    Console.Clear();
                     Console.WriteLine($"소지금 : {player.gold}");
                     shop.print();
 
@@ -94,7 +95,7 @@
                     {
                         Console.WriteLine("1. 아이템 구매");
                         Console.WriteLine("2. 아이템 판매");
-                        Console.WriteLine("3. 나가기");
+                        Console.WriteLine("0. 나가기");
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
                         if (str == "1")
@@ -109,7 +110,7 @@
                             shop.sell(player);
                             break;
                         }
-                        else if (str == "3")
+                        else if (str == "0")
                         {
                             break;
                         }
@@ -126,6 +127,7 @@
                 }
                 else if(str == "5")
                 {
+                    Console.Clear();
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다. (빈사상태 일 경우 1000G) ");
                     Console.WriteLine($"소지금 : {player.gold} G");
 

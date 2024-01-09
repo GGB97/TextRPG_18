@@ -2,10 +2,13 @@
 
 public class Dungeon
 {
+    bool is_Running = false;
     int level;  //던전 난이도
     public int rSpec; // 권장 방어력
     int rGold; // 보상 골드
     int rExp;  // 보상 경험치
+
+    Player startStat;  // 시작 상태 저장용 player
 
     // 출현 가능 몬스터 list
     List<Monster> monsters;
@@ -32,6 +35,8 @@ public class Dungeon
             rExp = 40;
         }
 
+        is_Running = false;
+
         monsters = new List<Monster>(); // 출현 가능한 몬스터들 미리 넣어두기
         monsters.Add(new Monster("미니언", 2, 15));
         monsters.Add(new Monster("대포", 5, 25));
@@ -49,8 +54,10 @@ public class Dungeon
     public void Battle(Player player)
     {
         string str; int input;
+        startStat = new Player(player); // player의 전투 시작 전 상태를 전투 시작 전에 저장
 
-        while (true)
+        is_Running = true;
+        while (is_Running)
         {
             Console.Clear();
             Console.WriteLine("Battle!! \n");
@@ -82,13 +89,22 @@ public class Dungeon
                             input--;    // 입력값이 1~3이니까 인덱스를 제대로 건드릴려면 -1
                             player.Attack(enemies[input]);
 
+                            // ----Player의 승리조건 검사
+                            // ----end
+
                             // Enemies 의 턴
                             Console.WriteLine("[적의 턴]");
                             foreach (var enemy in enemies)
                             {
-                                if(enemy.hp > 0)
+                                if (enemy.hp > 0)    // enemy의 체력이 0보다 크다면 (죽지 않았다면)
                                 {
-                                    enemy.Attack(player);   // enemy의 체력이 0보다 크다면 (죽지 않았다면)
+                                    enemy.Attack(player);
+                                    if (player.hp <= 0)  // player의 체력이 0이하라면 (죽었다면)
+                                    {
+                                        Fail(player);
+                                        is_Running = false; // 게임이 끝났으니 다음 루프 돌지 않게
+                                        break;
+                                    }
                                 }
                             }
                             Console.WriteLine("\nEnter키를 눌러주세요.");
@@ -126,7 +142,14 @@ public class Dungeon
 
     public void Fail(Player player)
     {
-        // 실패 시  패널티
+        // 실패 시
+        Console.WriteLine("--------------");
+        Console.WriteLine("You Lose..\n");
+        Console.WriteLine(
+            $"Lv. {player.getLevel()} {player.name}\n" +
+            $"HP {startStat.hp} -> {player.hp}"
+            );
+        Console.WriteLine("--------------");
     }
 
     public void printEnemies()

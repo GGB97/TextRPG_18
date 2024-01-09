@@ -31,6 +31,10 @@ public class Monster
 		// 공격
 		Console.WriteLine($"\n{name} 이(가) {player.name} 을(를) 공격합니다. (데미지 : {atk} )");
 		player.hp -= Convert.ToInt32(Math.Ceiling(atk)); ;  // 공격력 소수점 올림 후 체력에서 공격력 빼기
+		if (player.hp <= 0) 
+		{ 
+			player.hp = 0;
+		}
 
     }
 

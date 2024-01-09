@@ -21,6 +21,8 @@ public class Shop
     // shop에 넣어도 뭔가 깔끔하게 들어가지 않고 어거지로 넣는 느낌이라
     public void buy(Player player)
     {
+        Console.Clear();
+
         Console.WriteLine("[아이템 구매] --- (0. 나가기)");
         Console.WriteLine($"소지금 : {player.gold}");
         print();
@@ -64,6 +66,8 @@ public class Shop
 
     public void sell(Player player)
     {
+        Console.Clear();
+
         Console.WriteLine("[아이템 판매] --- (0. 나가기)");
         Console.WriteLine($"소지금 : {player.gold}");
         player.inventory.printGold();
@@ -86,6 +90,10 @@ public class Shop
                     Console.WriteLine($"{player.inventory.items[num].getName()} 이(가) 판매 되었습니다.");
                     Console.WriteLine($"소지금 : {player.gold} G");
                     player.inventory.items.RemoveAt(num);
+                    break;
+                }
+                else if (num == -1)
+                {
                     break;
                 }
             }

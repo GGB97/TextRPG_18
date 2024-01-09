@@ -25,6 +25,8 @@ public class Inventory
 
     public void print()
     {
+        Console.Clear();
+
         if (items != null)
         {
             Console.WriteLine("[아이템 목록]");
@@ -47,6 +49,8 @@ public class Inventory
 
     public void printNumbering()
     {
+        Console.Clear();
+
         if (items != null)
         {
             int num = 1;

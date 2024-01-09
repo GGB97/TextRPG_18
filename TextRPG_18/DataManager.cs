@@ -31,6 +31,9 @@ public class DataManager
         {
             Console.WriteLine("저장에 실패하였습니다.");
         }
+
+        Console.WriteLine("\nEnter키를 눌러주세요.");
+        Console.ReadLine();
     }
 
     public Player Load(string playerName)
