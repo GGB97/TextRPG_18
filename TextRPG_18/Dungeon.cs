@@ -7,6 +7,7 @@ public class Dungeon
     public int rSpec; // 권장 방어력
     int rGold; // 보상 골드
     int rExp;  // 보상 경험치
+    int killCnt = 0;   // 잡은 몬스터 수
 
     Player startStat;  // 시작 상태 저장용 player
 
@@ -36,6 +37,7 @@ public class Dungeon
         }
 
         is_Running = false;
+        killCnt = 0;
 
         monsters = new List<Monster>(); // 출현 가능한 몬스터들 미리 넣어두기
         monsters.Add(new Monster("미니언", 2, 15));
@@ -54,9 +56,11 @@ public class Dungeon
     public void Battle(Player player)
     {
         string str; int input;
-        startStat = new Player(player); // player의 전투 시작 전 상태를 전투 시작 전에 저장
 
+        startStat = new Player(player); // player의 전투 시작 전 상태를 전투 시작 전에 저장
+        killCnt = 0;
         is_Running = true;
+
         while (is_Running)
         {
             Console.Clear();
@@ -74,7 +78,8 @@ public class Dungeon
                 while (true)
                 {
                     Console.Clear();
-                    printEnemies();
+                    Console.WriteLine("Player's turn\n");
+                    printEnemies(true);
                     player.printSimple();
                     Console.WriteLine("대상을 선택해주세요. (0. 뒤로가기)");
 
@@ -98,7 +103,14 @@ public class Dungeon
                             {
                                 player.Attack(enemies[input]);
                                 // ----Player의 승리조건 검사
-
+                                if (enemies[input].hp == 0) // 공격을 마친 후 enemy가 죽어있다면 killCnt++
+                                    killCnt++; 
+                                if (killCnt == enemies.Length)  // 죽인 몬스터의 수가 총 몬스터의 수와 같다면 다 잡은 것.
+                                {
+                                    Clear(player);
+                                    is_Running = false;
+                                    break;
+                                }
                                 // ----end
                             }
 
@@ -147,7 +159,18 @@ public class Dungeon
 
     public void Clear(Player player)
     {
-        // 클리어 시 보상
+        // 클리어 시
+        Console.WriteLine("--------------");
+        Console.WriteLine("Victory!!!\n");
+        Console.WriteLine($"던전에서 몬스터 {killCnt}마리를 잡았습니다.\n");
+        Console.WriteLine(
+            $"Lv. {player.getLevel()} {player.name}\n" +
+            $"HP {startStat.hp} -> {player.hp}"
+            );
+        Console.WriteLine("--------------");
+
+        Console.WriteLine("\nEnter키를 눌러주세요.");
+        Console.ReadLine();
     }
 
     public void Fail(Player player)
@@ -167,6 +190,18 @@ public class Dungeon
         Console.WriteLine("[적 정보]");
         foreach (Monster enemy in enemies)
         {
+            enemy.printStat();    // 몬스터의 수만큼 몬스터 정보 출력
+        }
+        Console.WriteLine();
+    }
+    public void printEnemies(bool is_Numberring)
+    {
+        Console.WriteLine("[적 정보]");
+        int i = 1;
+        foreach (Monster enemy in enemies)
+        {
+            if (is_Numberring)
+                Console.Write($"{i++}. ");
             enemy.printStat();    // 몬스터의 수만큼 몬스터 정보 출력
         }
         Console.WriteLine();
