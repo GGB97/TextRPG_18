@@ -25,9 +25,9 @@ public class Player
         exp = 0;
         this.name = name;
         job = "용병";
-        atk = 2;
+        atk = 20;
         def = 5;
-        hp = 5;
+        hp = 100;
         gold = 1500;
         maxExp = level * 100;
         inventory = new Inventory();

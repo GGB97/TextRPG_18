@@ -12,7 +12,7 @@ public class DungeonManager
     public void Select(Player player)
     {
         string str;
-
+        Console.Clear();
         Console.WriteLine("[던전 선택] --- (0. 나가기)");
 
         while (true)

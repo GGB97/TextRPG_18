@@ -87,10 +87,20 @@ public class Dungeon
                         if (0 < input && input < enemies.Length + 1) // 만약 몬스터의 수가 3 이라면
                         {                                           // 1~3 을 입력해야 몬스터를 선택 한거라서
                             input--;    // 입력값이 1~3이니까 인덱스를 제대로 건드릴려면 -1
-                            player.Attack(enemies[input]);
 
-                            // ----Player의 승리조건 검사
-                            // ----end
+                            if (enemies[input].hp == 0)  // 대상이 이미 죽어있을 경우
+                            {
+                                Console.WriteLine("사망한 대상입니다.");
+                                Thread.Sleep(1000);
+                                break;
+                            }
+                            else
+                            {
+                                player.Attack(enemies[input]);
+                                // ----Player의 승리조건 검사
+
+                                // ----end
+                            }
 
                             // Enemies 의 턴
                             Console.WriteLine("[적의 턴]");
