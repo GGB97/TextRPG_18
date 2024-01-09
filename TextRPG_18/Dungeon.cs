@@ -83,9 +83,13 @@ public class Dungeon
                             player.Attack(enemies[input]);
 
                             // Enemies 의 턴
+                            Console.WriteLine("[적의 턴]");
                             foreach (var enemy in enemies)
                             {
-                                enemy.Attack(player);
+                                if(enemy.hp > 0)
+                                {
+                                    enemy.Attack(player);   // enemy의 체력이 0보다 크다면 (죽지 않았다면)
+                                }
                             }
                             Console.WriteLine("\nEnter키를 눌러주세요.");
                             Console.ReadLine();

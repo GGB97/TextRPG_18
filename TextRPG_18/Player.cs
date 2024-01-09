@@ -25,7 +25,7 @@ public class Player
         exp = 0;
         this.name = name;
         job = "용병";
-        atk = 2;
+        atk = 20;
         def = 5;
         hp = 100;
         gold = 1500;
@@ -88,7 +88,8 @@ public class Player
 
     public void printStatus()
     {
-        Console.WriteLine("---------------------");
+        Console.Clear();
+        Console.WriteLine("[내 정보]\n---------------------");
         Console.WriteLine(
             $"LV : {level} ({exp}/{maxExp})\n" +
             $"{name} ({job}) \n" +
@@ -160,12 +161,12 @@ public class Player
 
     public void Attack(Monster enemy)
     {
-        Console.WriteLine($"\n{name} 이(가) {enemy.name} 을(를) 공격합니다");
-
-        Console.Write($"(hp : {enemy.hp} -> ");
+        Console.WriteLine($"\n{name} 이(가) {enemy.name} 을(를) 공격합니다 (데미지 : {atk} )");
         enemy.hp -= Convert.ToInt32(Math.Ceiling(atk)); ;  // 공격력 소수점 올림 후 체력에서 공격력 빼기
-        Console.WriteLine($"{enemy.hp} )");
-
+        if (enemy.hp <= 0)
+        {
+            enemy.hp = 0;   // 몬스터가 공격에 맞고 체력이 0 이하로 떨어졌다면 0으로 고정
+        }
 
         Console.WriteLine("\nEnter키를 눌러주세요.");
         Console.ReadLine();

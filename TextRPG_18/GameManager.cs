@@ -52,7 +52,7 @@
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -80,7 +80,7 @@
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -115,7 +115,7 @@
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -147,7 +147,7 @@
                         }
                         else
                         {
-                            Console.WriteLine($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -162,10 +162,18 @@
                 }
                 else
                 {
-                    Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                    printError(str);
                 }
+
+                Console.Clear();
             }
 
+        }
+
+        void printError(string str)
+        {
+            Console.WriteLine($"{str} 은(는) 올바른 입력이 아닙니다.");
+            Thread.Sleep(1000);
         }
 
         static void Main(string[] args)
