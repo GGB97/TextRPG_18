@@ -43,8 +43,14 @@ public class DungeonManager
 
     public void Enter(Player player, int level)
     {
+
+        Console.Clear();
         Console.WriteLine($"난이도 {level} 던전에 입장합니다.\n");
         Dungeon dungeon = new Dungeon(level);
-        
+
+
     }
+
+    
+
 }

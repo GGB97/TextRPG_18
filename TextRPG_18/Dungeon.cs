@@ -8,7 +8,7 @@ public class Dungeon
     int rExp;  // 보상 경험치
 
     // 몬스터 관리
-    List<Monster> monsters;
+    public List<Monster> monsters;
 	public Dungeon(int level)
 	{
         this.level = level;
