@@ -27,7 +27,7 @@ public class Player
         exp = 0;
         this.name = name;
         job = "용병";
-        atk = 10;
+        atk = 2;
         def = 5;
         hp = 100;
         maxhp = 100;
@@ -138,7 +138,7 @@ public class Player
         }
     }
 
-    public void Attack(Monster mon)
+    public bool Attack(Monster mon)
     {
         Console.Clear();
         ConsoleManager.YellowColor("Battle!!");
@@ -181,6 +181,8 @@ public class Player
             }
         }
 
+        if (mon.hp <= 0) return true;
+        else return false;
     }
 
 
