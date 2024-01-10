@@ -14,6 +14,7 @@ public class DungeonManager
     {
         string str;
 
+        Console.Clear();
         Console.WriteLine("[던전 선택] --- (0. 나가기)");
 
         while (true)
