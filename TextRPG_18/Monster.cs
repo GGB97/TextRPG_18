@@ -36,6 +36,8 @@ public class Monster
 
         player.hp -= atk;
 
+
+
     }
 
     public int GetLv()
@@ -46,11 +48,5 @@ public class Monster
     public string GetName()
     {
         return name;
-    }
-
-    public bool IsDie()
-    {
-        if (hp <= 0) return true;
-        else return false;
     }
 }
