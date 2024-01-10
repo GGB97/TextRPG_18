@@ -9,11 +9,15 @@ public class Dungeon
     public int rSpec; // 권장 방어력
     int rGold; // 보상 골드
     int rExp;  // 보상 경험치
+    int FirstHP;
+    bool Isrun;// 종료조건
 
     int M_Turn;  //몬스터중 공격할 차례
 
     // 몬스터 관리
     List<Monster> monsters;
+    //등장하는 몬스터 수
+    int MonsterNum;
     //램덤으로 나타나는 몬스터
     List<Monster> MonsterRend;
     public Dungeon(int level)
@@ -47,6 +51,7 @@ public class Dungeon
 
     public void BattleSetting(Player player)//몬스터 설정
     {
+        FirstHP = player.hp;
         MonsterRend = new List<Monster>();
         RandomMobster(MonsterRend);
         Battle(player);
@@ -55,7 +60,7 @@ public class Dungeon
     public void Battle(Player player)
     {
         bool Out = false;
-        bool Isrun = false;
+        Isrun = false;
         M_Turn = 0;
 
         while (!Out)  //활동 선택
@@ -70,12 +75,6 @@ public class Dungeon
 
                 for (int i = 0; i < MonsterRend.Count; i++)
                 {
-                    if (MonsterRend[i].IsDie())  //죽었을경우
-                    {
-                        MonsterRend.RemoveAt(i); //해당 인덱스로 리스트에서 삭제
-
-
-                    }
 
                     Console.Write("[ Lv.");
                     ConsoleManager.RedColor(MonsterRend[i].GetLv().ToString());
@@ -127,10 +126,34 @@ public class Dungeon
 
             string Input = Console.ReadLine();
             if (Input == "0") Battle(player);
-            else if (Input == "1" && MonsterRend.Count >= 1) player.Attack(MonsterRend[0]);
-            else if (Input == "2" && MonsterRend.Count >= 2) player.Attack(MonsterRend[1]);
-            else if (Input == "3" && MonsterRend.Count >= 3) player.Attack(MonsterRend[2]);
-            else if (Input == "4" && MonsterRend.Count >= 4) player.Attack(MonsterRend[3]);
+            else if (Input == "1" && MonsterRend.Count >= 1)
+            {
+                if(player.Attack(MonsterRend[0]))
+                {
+                    MonsterRend.RemoveAt(0);
+                }
+            }
+            else if (Input == "2" && MonsterRend.Count >= 2)
+            {
+                if (player.Attack(MonsterRend[1]))
+                {
+                    MonsterRend.RemoveAt(1);
+                }
+            }
+            else if (Input == "3" && MonsterRend.Count >= 3)
+            {
+                if (player.Attack(MonsterRend[2]))
+                {
+                    MonsterRend.RemoveAt(2);
+                }
+            }
+            else if (Input == "4" && MonsterRend.Count >= 4)
+            {
+                if (player.Attack(MonsterRend[3]))
+                {
+                    MonsterRend.RemoveAt(3);
+                }
+            }
             else
             {
                 ConsoleManager.RedColor("잘못된 입력입니다 ");
@@ -138,7 +161,20 @@ public class Dungeon
 
             }
 
-            MonsterTurn(MonsterRend, player);
+            if (MonsterRend.Count == 0)  //몬스터가 모두 죽었다면
+            {
+                Isrun = true; //반복중지
+                Clear(player);
+            }
+
+            //몬스터 턴
+            if (MonsterRend.Count != 0) MonsterTurn(MonsterRend, player);
+
+            if (player.hp <= 0)
+            {
+                Isrun = true;
+                Fail(player);
+            }
 
         }
 
@@ -151,25 +187,19 @@ public class Dungeon
         Console.WriteLine();
         Console.WriteLine();
 
-        for (int i = 0; i < MonsterRend.Count; i++)
+        for (int ii = 0; ii < MonsterRend.Count; ii++)
         {
-            if (MonsterRend[i].IsDie())  //죽었을경우
-            {
-                MonsterRend.RemoveAt(i); //해당 인덱스로 리스트에서 삭제
-
-
-            }
-
-            Console.Write((i + 1).ToString() + ". [ Lv.");
-            ConsoleManager.RedColor(MonsterRend[i].GetLv().ToString());
-            Console.WriteLine(" " + MonsterRend[i].GetName() + " HP " + MonsterRend[i].hp.ToString() + " ]");
-
+            Console.Write((ii + 1).ToString() + ". [ Lv.");
+            ConsoleManager.RedColor(MonsterRend[ii].GetLv().ToString());
+            Console.WriteLine(" " + MonsterRend[ii].GetName() + " HP " + MonsterRend[ii].hp.ToString() + " ]");
         }
+
+
 
         Console.WriteLine();
 
         Console.WriteLine("[내 정보]");
-        Console.Write("3. Lv.");
+        Console.Write("Lv.");
         ConsoleManager.RedColor(player.getLevel().ToString());
         Console.WriteLine("   {0} ({1})", player.name, player.getJob());
         Console.Write("HP ");
@@ -183,7 +213,7 @@ public class Dungeon
     {
         //생성되는 몬스터 수
         Random rend = new Random();
-        int MonsterNum = rend.Next(2, 5);
+        MonsterNum = rend.Next(2, 5);
 
         //랜덤 몬스터 생성
 
@@ -213,8 +243,15 @@ public class Dungeon
         {
             //희소한 확률로 두명이 공격
 
-            MonsterRend[M_Turn++].attack(player);
-            MonsterRend[M_Turn++].attack(player);
+            if (M_Turn < MonsterRend.Count)
+            {
+                MonsterRend[M_Turn++].attack(player);
+            }
+
+            if (M_Turn < MonsterRend.Count)
+            {
+                MonsterRend[M_Turn++].attack(player);
+            }
 
             Console.WriteLine();
             ConsoleManager.RedColor("극악의 확률 발생!");
@@ -222,7 +259,6 @@ public class Dungeon
             ConsoleManager.RedColor("두명의 몬스터가 당신을 때렸습니다!");
             Console.WriteLine();
             Console.WriteLine();
-            MonsterRend[M_Turn++].attack(player);
         }
         else
         {
@@ -232,7 +268,7 @@ public class Dungeon
         bool Out = false;
         while (!Out)
         {
-            if (Console.ReadLine() == "0") //실질적으로 hp깍기
+            if (Console.ReadLine() == "0")
             {
                 Out = true;
             }
@@ -245,19 +281,76 @@ public class Dungeon
 
     }
 
-
-    public void GetOut()
-    {
-
-    }
-
     public void Clear(Player player)
     {
-        // 클리어 시 보상
+        Console.Clear();
+        ConsoleManager.YellowColor("Battle!! - Result");
+        Console.WriteLine();
+        Console.WriteLine();
+        ConsoleManager.GreenwColor("Victory");
+        Console.WriteLine();
+        Console.WriteLine();
+
+        Console.WriteLine("던전에서 몬스터 {0}마리를 잡았습니다.", MonsterNum);
+
+        Console.WriteLine();
+        Console.WriteLine("[내 정보]");
+        Console.WriteLine("Lv. {0}   {1}", player.getLevel(), player.name);
+        Console.Write("HP ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("{0} -> {1} ", FirstHP, player.hp);
+        Console.ResetColor();
+        Console.WriteLine();
+
+
+        Console.WriteLine("0. 다음");
+        bool Out = false;
+        while (!Out)
+        {
+            if (Console.ReadLine() == "0")
+            {
+                Out = true;
+            }
+            else
+            {
+                ConsoleManager.RedColor("잘못된 입력입니다 ");
+                Console.WriteLine();
+            }
+        }
     }
 
     public void Fail(Player player)
     {
-        // 실패 시  패널티
+        Console.Clear();
+        ConsoleManager.YellowColor("Battle!! - Result");
+        Console.WriteLine();
+        Console.WriteLine();
+        ConsoleManager.RedColor("You Lose");
+        Console.WriteLine();
+        Console.WriteLine();
+
+
+        Console.WriteLine("[내 정보]");
+        Console.WriteLine("Lv. {0}   {1}", player.getLevel(), player.name);
+        Console.Write("HP ");
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.WriteLine("{0} -> {1} ", FirstHP, 0);
+        Console.ResetColor();
+        Console.WriteLine();
+
+        Console.WriteLine("0. 다음");
+        bool Out = false;
+        while (!Out)
+        {
+            if (Console.ReadLine() == "0")
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                ConsoleManager.RedColor("잘못된 입력입니다 ");
+                Console.WriteLine();
+            }
+        }
     }
 }
