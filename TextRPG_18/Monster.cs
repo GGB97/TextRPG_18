@@ -15,7 +15,13 @@ public class Monster
 
     public void attack(Player player)
     {
-        player.hp -= 5;
+        ConsoleManager.YellowColor("Battle!!");
+        Console.WriteLine();
+        Console.WriteLine();
+
+        Console.WriteLine("Lv. {0} {1}의 공격!",level,name);
+        Console.WriteLine("{0} 을(를) 맞췄습니다 ",player.name);
+
     }
 
     public int GetLv()
@@ -28,4 +34,9 @@ public class Monster
         return name;
     }
 
+    public bool IsDie() 
+    {
+        if (hp <= 0) return true;
+        else return false;
+    }
 }
