@@ -1,4 +1,5 @@
 ﻿using System;
+using TextRPG;
 
 
 
@@ -28,7 +29,7 @@ public class DungeonManager
             if (str == "1" || str == "2" || str == "3")
             {
                 Enter(player, int.Parse(str));
-                break;
+                //break;
             }
             else if (str == "0")
             {
@@ -49,7 +50,7 @@ public class DungeonManager
         Dungeon dungeon = new Dungeon(level);
 
 
-        dungeon.Battle(player);
+        dungeon.BattleSetting(player);
     }
 
 
