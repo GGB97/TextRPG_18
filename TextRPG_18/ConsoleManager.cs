@@ -18,5 +18,13 @@ public class ConsoleManager
 
     }
 
+    static public void GreenwColor(string str)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Write(str);
+        Console.ResetColor();
+
+    }
+
 
 }
