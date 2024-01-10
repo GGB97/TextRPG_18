@@ -27,7 +27,7 @@ public class Player
         exp = 0;
         this.name = name;
         job = "용병";
-        atk = 2;
+        atk = 10;
         def = 5;
         hp = 100;
         maxhp = 100;
@@ -141,6 +141,8 @@ public class Player
     public void Attack(Monster mon)
     {
         Console.Clear();
+        ConsoleManager.YellowColor("Battle!!");
+        Console.WriteLine();
         Random random = new Random();
         //mon.hp
         int minusHP = (int)(atk * (random.NextDouble() * (1.1 - 0.9) + 0.9)); //오차 범위 추가 (10퍼 내외 증감)
