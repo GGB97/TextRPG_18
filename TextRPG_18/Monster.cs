@@ -8,7 +8,7 @@ public class Monster
     public int HP { get; set; }
     public int Atk { get; set; }
 
-    public bool IsDefeated { get; set; }
+    public bool IsDefeated;
     public Monster(string name, int level, int hp, int atk, bool isDefeated)
     {
         Name = name;

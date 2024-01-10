@@ -9,8 +9,8 @@ using static System.Net.Mime.MediaTypeNames;
 public class Dungeon
 {
     int level;  //던전 난이도
-	public int rSpec; // 권장 방어력
-	int rGold; // 보상 골드
+    public int rSpec; // 권장 방어력
+    int rGold; // 보상 골드
     int rExp;  // 보상 경험치
 
     List<Monster> monsters;
@@ -21,10 +21,10 @@ public class Dungeon
 
     public void DungeonTitle(Player player)
     {
-        
+
         Console.WriteLine("");
         monsters = new List<Monster>(); // 레벨, 체력, 공격력
-        monsters.Add(new Monster("미니언", 2, 10, 5,false));
+        monsters.Add(new Monster("미니언", 2, 10, 5, false));
         monsters.Add(new Monster("대포", 5, 25, 8, false));
         monsters.Add(new Monster("공허충", 3, 15, 9, false));
 
@@ -32,12 +32,12 @@ public class Dungeon
 
         int monsterNumber = random.Next(1, 5); // 몬스터 마릿수
 
-         // 랜덤으로 몬스터 고름
+        // 랜덤으로 몬스터 고름
 
         for (int i = 0; i < monsterNumber; i++) // 마릿수만큼 반복
         {
             Monster randomMonster = monsters[random.Next(monsters.Count)]; // 몬스터 랜덤으로 가져오기
-            pickmonster.Add(new Monster(randomMonster.Name, randomMonster.Level, randomMonster.HP, randomMonster.Atk,randomMonster.IsDefeated)); // 중복되는 몬스터도 있을수도 있기 때문에 pickmonster에 새롭게 넣어준다.
+            pickmonster.Add(new Monster(randomMonster.Name, randomMonster.Level, randomMonster.HP, randomMonster.Atk, randomMonster.IsDefeated)); // 중복되는 몬스터도 있을수도 있기 때문에 pickmonster에 새롭게 넣어준다.
         }
         Console.WriteLine($"{monsterNumber}마리의 몬스터가 출몰하였습니다.");
         Console.WriteLine("");
@@ -59,7 +59,7 @@ public class Dungeon
         Console.Write("원하시는 행동을 입력해 주세요 >>> ");
         Console.WriteLine("");
 
- 
+
         string str = Console.ReadLine();
 
         if (str == "1")
@@ -70,14 +70,14 @@ public class Dungeon
 
             PickBattle(player);
             //공격 
-                
+
         }
-        else 
+        else
         {
             Console.Write($"{str} 은(는) 잘못된 입력입니다.");
         }
-       
-        
+
+
     }
 
     //============인덱스 번호 입력해서 공격===================
@@ -85,6 +85,7 @@ public class Dungeon
     {
 
         Console.Clear();
+        Console.WriteLine("====================================");
         Console.WriteLine("Battle!!");
         Console.WriteLine("");
 
@@ -149,8 +150,8 @@ public class Dungeon
     //==============플레이어 공격===================
     public void PlayerAttack(Player player)
     {
-        
         Console.Clear();
+        Console.WriteLine("====================================");
         Console.WriteLine("Battle!!");
         Console.WriteLine("");
 
@@ -162,7 +163,7 @@ public class Dungeon
         pickmonster[idx - 1].HP -= damage;
 
         Console.WriteLine(player.name + "의 공격!");
-        Console.WriteLine($"Lv.{pickmonster[idx-1].Level} {pickmonster[idx - 1].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
+        Console.WriteLine($"Lv.{pickmonster[idx - 1].Level} {pickmonster[idx - 1].Name} 을(를) 맞췄습니다. [데미지 : {damage}]");
         Console.WriteLine("");
 
         if (pickmonster[idx - 1].HP > 0) // 몬스터 공격
@@ -171,11 +172,10 @@ public class Dungeon
             Console.WriteLine($"Lv.{pickmonster[idx - 1].Name}");
             Console.WriteLine($"HP {pickmonster[idx - 1].HP}");
             Console.WriteLine("");
-            Console.WriteLine("0.다음");
-            Console.WriteLine("행동을 입력하세요 >>>");
+
         }
 
-        if (pickmonster[idx - 1].HP <=0) // 체력이 다하면 처치
+        if (pickmonster[idx - 1].HP <= 0) // 체력이 다하면 처치
         {
             Console.WriteLine($"Lv.{pickmonster[idx - 1].Level} {pickmonster[idx - 1].Name}");
             Console.WriteLine($"HP 0 -> Daed");
@@ -216,16 +216,15 @@ public class Dungeon
                 // 클리어 처리
 
                 Console.WriteLine("행동을 입력하세요 >>>");
+                
             }
-
+            pickmonster.Clear();
+            return;
         }
 
-        string input = Console.ReadLine();
-
-        if (input == "0") 
-        {
-            MonsterAttack(player);
-        }
+        Thread.Sleep(700);
+        MonsterAttack(player);
+        
 
     }
 
@@ -234,16 +233,16 @@ public class Dungeon
     {
         Console.Clear();
 
+        Console.WriteLine("====================================");
         Console.WriteLine("Battle!!");
-        Console.Clear();
-
-        if(pickmonster[idx-1].HP > 0) // 처치 되기 전
+        Console.WriteLine("");
+        if (pickmonster[idx - 1].HP > 0) // 처치 되기 전
         {
             int beforeAttackHp = player.hp;
-            player.hp -= pickmonster[idx-1].Atk;
+            player.hp -= pickmonster[idx - 1].Atk;
 
-            Console.WriteLine($"{pickmonster[idx-1].Name}의 공격!");
-            Console.WriteLine($"{player.name} 을(를) 맞췄습니다. [데미지 : {pickmonster[idx-1].Atk}]");
+            Console.WriteLine($"{pickmonster[idx - 1].Name}의 공격!");
+            Console.WriteLine($"{player.name} 을(를) 맞췄습니다. [데미지 : {pickmonster[idx - 1].Atk}]");
             Console.WriteLine("");
 
             Console.WriteLine($"Lv.{player.GetLevel()} {player.name}");
@@ -251,11 +250,9 @@ public class Dungeon
             Console.WriteLine("");
 
             Console.WriteLine("");
-            Console.WriteLine("0.다음");
-            Console.WriteLine("행동을 입력하세요 >>>");
-        
 
-            if (player.hp <= pickmonster[idx-1].Atk) // 플레이어의 체력이 0이 될 경우
+
+            if (player.hp <= pickmonster[idx - 1].Atk) // 플레이어의 체력이 0이 될 경우
             {
                 Console.Clear();
                 Console.WriteLine("Battle!! - Result");
@@ -275,19 +272,18 @@ public class Dungeon
 
                 Console.WriteLine("행동을 입력하세요 >>>");
 
+                pickmonster.Clear();
+                return;
             }
-         
+            
+
         }
 
-        string input = Console.ReadLine();
-
-        if (input == "0") //플레이어의 피가 0보다 크다면 다시 공격
-        {
-            PlayerAttack(player);
-        }
+        Thread.Sleep(700);
+        PlayerAttack(player);
+        
 
     }
-
 
 
     public void DungeonPlayerStatus(Player player)
