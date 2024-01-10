@@ -4,7 +4,7 @@ using System.Numerics;
 
 public class Player
 {
-    int level;
+    int level {  get; set; }
     public int exp { get; set; }
     int maxExp;
     public string name { get; set;}
@@ -111,7 +111,7 @@ public class Player
         else { Console.WriteLine("방어구 : 없음"); }
         Console.WriteLine("---------------------\n");
     }
-
+    
     public void addItem(Item item)
     {
         inventory.items.Add(item);
@@ -160,5 +160,10 @@ public class Player
     public string getJob()
     {
         return job;
+    }
+
+    public int GetLevel()
+    {
+        return level;
     }
 }
