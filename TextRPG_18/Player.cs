@@ -7,16 +7,16 @@ public class Player
     int level;
     public int exp { get; set; }
     int maxExp;
-    public string name { get; set;}
+    public string name { get; set; }
     string job;
     public int hp { get; set; }
-    public int maxhp { get; set; } 
+    public int maxhp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
-    
 
-public Inventory inventory;
+
+    public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
 
@@ -120,9 +120,9 @@ public Inventory inventory;
         inventory.items.Add(item);
     }
 
-    public void Levelup()  
+    public void Levelup()
     {
-        if(exp >= maxExp)
+        if (exp >= maxExp)
         {
             exp -= maxExp;
             level++;
@@ -140,8 +140,45 @@ public Inventory inventory;
 
     public void Attack(Monster mon)
     {
+        Console.Clear();
         Random random = new Random();
-        mon.hp += (int)(atk * (random.NextDouble() * (0.1 - (-0.1)) + (-0.1))); //오차 범위 추가 (10퍼 내외 증감)
+        //mon.hp
+        int minusHP = (int)(atk * (random.NextDouble() * (1.1 - 0.9) + 0.9)); //오차 범위 추가 (10퍼 내외 증감)
+
+        Console.WriteLine();
+        Console.WriteLine("{0} 의 공격!", name);
+        Console.WriteLine("Lv. " + mon.GetLv().ToString() + mon.GetName() + " 을(를) 맞췄습니다.  [데미지 : {0}]", minusHP);
+        Console.WriteLine();
+        Console.WriteLine("Lv. " + mon.GetLv().ToString() + mon.GetName());
+
+        //string Input = Console.ReadLine();
+
+        if ((mon.hp - minusHP) <= 0) //죽었을 경우
+        {
+            Console.WriteLine("HP " + mon.hp.ToString() + " -> Dead");
+        }
+        else
+        {
+            Console.WriteLine("HP " + mon.hp.ToString() + " -> " + (mon.hp - minusHP));
+        }
+        Console.WriteLine();
+        Console.WriteLine("0. 다음");
+
+        bool Out = false;
+        while (!Out)
+        {
+            if (Console.ReadLine() == "0") //실질적으로 hp깍기
+            {
+                mon.hp -= minusHP;
+                Out = true;
+            }
+            else
+            {
+                ConsoleManager.RedColor("잘못된 입력입니다 ");
+                Console.WriteLine();
+            }
+        }
+
     }
 
 
