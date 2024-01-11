@@ -122,7 +122,20 @@
                 else if (str == "4")
                 {
                     // 던전
-                    dungeonManager.Select(player);
+                    if (player.hp >= 0)
+                    {
+                        dungeonManager.Select(player);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("====================================");
+                        Console.WriteLine("플레이어의 체력이 부족합니다.");
+                        Console.WriteLine("휴식 후 입장해 주세요.");
+                        Console.WriteLine("====================================");
+                        Console.WriteLine();
+                    }
+
                 }
                 else if(str == "5")
                 {
