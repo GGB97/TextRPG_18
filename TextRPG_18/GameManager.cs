@@ -30,15 +30,15 @@
 
                 Console.Write($"{player.name} : ");
                 string str = Console.ReadLine();
-                if (str == "1")
+                if (str == $"{(int)MenuType.STATUS}")
                 {
                     // 상태 보기
                     player.printStatus();
 
                     while (true)
                     {
-                        Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 레벨업");
+                        Console.WriteLine("0. 나가기");
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
 
@@ -46,7 +46,7 @@
                         {
                             player.Levelup();
                         }
-                        else if (str == "0")
+                        else if (str == $"{(int)MenuType.EXIT}")
                         {
                             break;
                         }
@@ -56,7 +56,7 @@
                         }
                     }
                 }
-                else if (str == "2")
+                else if (str == $"{(int)MenuType.INVENTORY}")
                 {
                     // 인벤토리
                     player.inventory.print();
@@ -64,7 +64,7 @@
                     while (true)
                     {
                         Console.WriteLine("1. 장착 관리");
-                        Console.WriteLine("2. 나가기");
+                        Console.WriteLine("0. 나가기");
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
 
@@ -74,7 +74,7 @@
                             player.EquipManager();
                             break;
                         }
-                        if (str == "2")
+                        if (str == $"{(int)MenuType.EXIT}")
                         {
                             break;
                         }
@@ -84,7 +84,7 @@
                         }
                     }
                 }
-                else if (str == "3")
+                else if (str == $"{(int)MenuType.STORE}")
                 {
                     // 상점
                     Console.Clear();
@@ -110,7 +110,7 @@
                             shop.sell(player);
                             break;
                         }
-                        else if (str == "0")
+                        else if (str == $"{(int)MenuType.EXIT}")
                         {
                             break;
                         }
@@ -120,12 +120,12 @@
                         }
                     }
                 }
-                else if (str == "4")
+                else if (str == $"{(int)MenuType.DUNGEON}")
                 {
                     // 던전
                     dungeonManager.Select(player);
                 }
-                else if(str == "5")
+                else if(str == $"{(int)MenuType.REST}")
                 {
                     Console.Clear();
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다. (빈사상태 일 경우 1000G) ");
@@ -143,7 +143,7 @@
                         {
                             player.Rest();
                         }
-                        else if(str == "0")
+                        else if(str == $"{(int)MenuType.EXIT}")
                         {
                             break;
                         }
@@ -153,11 +153,11 @@
                         }
                     }
                 }
-                else if (str == "9")
+                else if (str == $"{(int)MenuType.SAVE}")
                 {
                     DataManager.I.Save(player);
                 }
-                else if (str == "0")
+                else if (str == $"{(int)MenuType.EXIT}")
                 {
                     Console.WriteLine("게임을 종료합니다.");
                     break;

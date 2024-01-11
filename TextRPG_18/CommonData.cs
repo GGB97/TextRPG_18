@@ -1,4 +1,14 @@
 ﻿using System;
+enum MenuType
+{
+    STATUS = 1,
+    INVENTORY,
+    STORE,
+    DUNGEON,
+    REST,
+    SAVE = 9,
+    EXIT = 0
+}
 
 enum ItemType
 {
