@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using TextRPG;
+using TextRPG_18;
 using static System.Net.Mime.MediaTypeNames;
 
 public class Dungeon
@@ -288,7 +289,7 @@ public class Dungeon
 
     public void DungeonPlayerStatus(Player player)
     {
-        Console.WriteLine($"Lv.{player.GetLevel()} Chad ({player.getJob()})");
+        Console.WriteLine($"Lv.{player.GetLevel()} Chad ({player.job})");
         Console.WriteLine($"{player.hp} / 100");
     }
 

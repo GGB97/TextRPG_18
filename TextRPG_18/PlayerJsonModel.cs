@@ -49,7 +49,7 @@ public class PlayerJsonModel
         exp = player.exp;
         maxExp = player.getmaxExp();
         name = player.name;
-        job = player.getJob();
+        job = player.job;
         hp = player.hp;
         gold = player.gold;
         atk = player.atk;

@@ -8,11 +8,13 @@ public class Player
     public int exp { get; set; }
     int maxExp;
     public string name { get; set;}
-    string job;
+    public string job { get; set; }
     public int hp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
+
+    public int mp { get; set; }
 
     public Inventory inventory;
     public Weapon eWeapon;
@@ -91,7 +93,7 @@ public class Player
         Console.WriteLine("---------------------");
         Console.WriteLine(
             $"LV : {level} ({exp}/{maxExp})\n" +
-            $"{name} (job) \n" +
+            $"이름 : {name}  직업 : {job} \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
             $"생명력 : {hp} \n" +
@@ -111,7 +113,18 @@ public class Player
         else { Console.WriteLine("방어구 : 없음"); }
         Console.WriteLine("---------------------\n");
     }
-    
+
+    public void CreateCharacter() //!!!!!!!!!!캐릭터 생성!!!!!!!!!!!!
+    {
+        Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+        Console.WriteLine("원하시는 이름을 설정해주세요.");
+
+        string input = Console.ReadLine();
+        name = input;
+
+        Console.WriteLine($"환영합니다. {name}님의 캐릭터가 생성 되었습니다.");
+    }
+
     public void addItem(Item item)
     {
         inventory.items.Add(item);
@@ -157,10 +170,10 @@ public class Player
     {
         return level;
     }
-    public string getJob()
-    {
-        return job;
-    }
+    //public string getJob(string job)
+    //{
+    //    return job;
+    //}
 
     public int GetLevel()
     {
