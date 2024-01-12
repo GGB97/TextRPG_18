@@ -20,9 +20,11 @@ namespace TextRPG
 
         public void GameStart()
         {
-            player.CreateCharacter(); // !!!!-----캐릭터 생성---------!!!!!
+            player.CreateCharacter(); // 캐릭터 생성
 
-            job.choice(player);
+            Console.WriteLine("");
+
+            job.choice(player); // 직업 선택
 
             while (true)
             {

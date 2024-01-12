@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http.Headers;
 using System.Numerics;
+using TextRPG_18;
 
 public class Player
 {
@@ -8,12 +9,13 @@ public class Player
     public int exp { get; set; }
     public int maxExp;
     public string name { get; set;}
-    public string job;
+    public Job job;
     public int hp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
 
+    public int mp { get; set; }
 
 
     public Inventory inventory;
@@ -26,9 +28,9 @@ public class Player
         level = 1;
         exp = 0;
         this.name = name;
-        job = "용병";
-        atk = 2;
-        def = 5;
+        atk = 0;
+        def = 0;
+        mp = 0;
         hp = 100;
         gold = 1500;
         maxExp = level * 100;
@@ -37,13 +39,14 @@ public class Player
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 2, 50));
         inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 4, 100));
     }
+
     public Player(PlayerJsonModel playerData)
     {
         level = playerData.level;
         exp = playerData.exp;
         maxExp = playerData.maxExp;
         name = playerData.name;
-        job = playerData.job;
+        //job = playerData.job;
         hp = playerData.hp;
         gold = playerData.gold;
         atk = playerData.atk;
@@ -179,8 +182,8 @@ public class Player
     {
         return level;
     }
-    public string getJob()
-    {
-        return job;
-    }
+    //public string getJob()
+    //{
+    //    return job;
+    //}
 }

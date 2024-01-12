@@ -8,52 +8,57 @@ namespace TextRPG_18
 {
     public class JobManager
     {
+        Warrior warrior;
+        Mage mage;
+        Kinght kingth;
         public void choice(Player player)
         {
-
-            Console.WriteLine("원하는 직업을 선택해 주세요!");
-            Console.WriteLine("");
-            Console.WriteLine("1. 용기사");
-            Console.WriteLine("2. 마법사");
-            Console.WriteLine(">>> ");
-
-            int input;
-            if (int.TryParse(Console.ReadLine(), out input))
+            while(true)
             {
-                switch (input)
+                Console.WriteLine("원하는 직업을 선택해 주세요!");
+                Console.WriteLine("");
+                Console.WriteLine("1. 광전사");
+                Console.WriteLine("2. 용기사");
+                Console.WriteLine("3. 원소마법사");
+                Console.WriteLine(">>> ");
+
+                int input;
+                if (int.TryParse(Console.ReadLine(), out input))
                 {
-                    case 1:
-                        Warrior(player);
-                        Console.WriteLine($"{player.name}님의 직업은 {player.job} 입니다");
-                        break;
-                    case 2:
-                        Mage(player);
-                        Console.WriteLine($"{player.name}님의 직업은 {player.job} 입니다");
-                        break;
-                    default:
-                        Console.WriteLine("잘못된 선택입니다.");
-                        break;
+                    switch (input)
+                    {
+                        case 1:
+                            warrior = new Warrior("광전사", 100, 30, 15, 10, 0, 0); //hp,mp,atk,def
+                            warrior.Pick(player);
+                            Console.WriteLine($"{player.name}님의 직업은 {warrior.name} 입니다");
+                            break;
+                        case 2:
+                            kingth = new Kinght("용기사", 100, 30, 5, 13, 3, 0 );
+                            kingth.Pick(player);
+                            Console.WriteLine($"{player.name}님의 직업은 {kingth.name} 입니다");
+                            break;
+
+                        case 3:
+                            mage = new Mage("원소 마법사", 100, 50, 7, 7,0,3);
+                            mage.Pick(player);
+                            Console.WriteLine($"{player.name}님의 직업은 {mage.name} 입니다");
+                            break;
+                        default:
+                            Console.WriteLine("잘못된 선택입니다.");
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                Console.WriteLine("잘못된 선택입니다.");
-            }
+                
+                else
+                {
+                    Console.WriteLine("잘못된 선택입니다.");
+                }
+            } 
+
+            
         }
 
-        public void Warrior(Player player)
-        {
-            player.job = "용기사";
-            player.atk += 6; //기본 공격에 추가로 더함
-            player.def += 5;
-        }
-
-        public void Mage(Player player)
-        {
-            player.job = "마법사";
-            player.atk += 7; //기본 공격에 추가로 더함
-            player.def += 4;
-        }
+        
     }
 }
 
