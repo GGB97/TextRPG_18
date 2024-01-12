@@ -31,20 +31,20 @@ namespace TextRPG_18
                     switch (input)
                     {
                         case 1:
-                            warrior = new Warrior("광전사", 100, 30, 15, 10, 0, 0); //hp,mp,atk,def
+                            warrior = new Warrior("광전사", 100, 30, 15, 10, 15, 130); //hp,mp,atk,def
                             warrior.Pick(player);
                             Console.WriteLine($"{player.name}님의 직업은 {warrior.name} 입니다");
                             Out = true;
                             break;
                         case 2:
-                            kingth = new Kinght("용기사", 100, 30, 5, 13, 3, 0);
+                            kingth = new Kinght("용기사", 130, 30, 10, 5, 25, 160);
                             kingth.Pick(player);
                             Console.WriteLine($"{player.name}님의 직업은 {kingth.name} 입니다");
                             Out = true;
                             break;
 
                         case 3:
-                            mage = new Mage("원소 마법사", 100, 50, 7, 7, 0, 3);
+                            mage = new Mage("원소 마법사", 80, 60, 5, 3, 25, 160);
                             mage.Pick(player);
                             Console.WriteLine($"{player.name}님의 직업은 {mage.name} 입니다");
                             Out = true;
