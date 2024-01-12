@@ -13,6 +13,7 @@ public class Shop
         items.Add(new Weapon("청동 도끼", "어디선가 사용됐던거 같은 도끼", 4, 1500));
         items.Add(new Weapon("스파르타의 창", "스파르타의 전사들이 사용하던 창", 7, 5000));
         items.Add(new Weapon("영혼 포획의 장갑", "발더스 게이트에서 주워왔습니다", 10, 10000));
+        items.Add(new Consumption("회복 포션", "상처를 치료하는 포션", 70, 500, 0));
     }
 
     // 질문 : 아이템이 팔렸는지 확인하는 조건을 item클래스 자체에 bool값으로 판단하는게 나은지

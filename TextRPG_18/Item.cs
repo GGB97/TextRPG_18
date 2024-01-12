@@ -54,4 +54,30 @@ public class Item
     }
 }
 
+public class Consumption : Item
+{
+    int efficacy;
+    int reserves;
+
+
+    public Consumption(string name, string des, int efficacy, int cost, int reserves)
+    {
+        type = (int)ItemType.consumables;
+        this.name = name;
+        description = des;
+        this.efficacy = efficacy;
+        this.cost = cost;
+        this.reserves = reserves;
+    }
+    public Consumption(ItemJsonModel data)
+    {
+        type = data.type;
+        name = data.name;
+        description = data.description;
+        efficacy = (int)data.efficacy;
+        cost = data.cost;
+        reserves = data.reserves;
+    }
+}
+
 

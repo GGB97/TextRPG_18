@@ -20,6 +20,10 @@ public class Inventory
             {
                 items.Add(new Armor(item));
             }
+            else if (item.type != (int)ItemType.consumables)
+            {
+                items.Add(new Consumption(item));
+            }
         }
     }
 
@@ -50,14 +54,45 @@ public class Inventory
         if (items != null)
         {
             int num = 1;
-            Console.WriteLine("[아이템 목록]");
+            Console.WriteLine("[장비 아이템 목록]");
             Console.WriteLine("-----------------");
             foreach (Item item in items)
             {
+                int TypeCheck = item.getType();
+                if(TypeCheck == (int)ItemType.consumables)
+                {
+                    break;
+                }
                 Console.Write($"{num++}. ");
 
                 if (item.getEquip())
                     Console.Write("[E]");
+
+                item.print();
+                Console.WriteLine();
+            }
+            Console.WriteLine("-----------------");
+        }
+        else
+        {
+            Console.WriteLine("아이템이 없습니다.");
+        }
+    }
+    public void printNumbering_consume()
+    {
+        if (items != null)
+        {
+            int num = 1;
+            Console.WriteLine("[소비 아이템 목록]");
+            Console.WriteLine("-----------------");
+            foreach (Item item in items)
+            {
+                int TypeCheck = item.getType();
+                if (TypeCheck == (int)ItemType.Weapon || TypeCheck == (int)ItemType.Armor)
+                {
+                    break;
+                }
+                Console.Write($"{num++}. ");
 
                 item.print();
                 Console.WriteLine();
