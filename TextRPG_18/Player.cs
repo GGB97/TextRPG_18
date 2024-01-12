@@ -9,7 +9,7 @@ public class Player
     public int exp { get; set; }
     public int maxExp;
     public string name { get; set;}
-    public Job job;
+    public string job;
     public int hp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
@@ -22,6 +22,8 @@ public class Player
     public Weapon eWeapon;
     public Armor eArmor;
 
+    public Job SelectedClass1; //자식 클래스에 접근하기 위한 변수
+    public int type = 1;  //클래스 타입
 
     public Player(string name)
     {
@@ -98,7 +100,7 @@ public class Player
         Console.WriteLine("---------------------");
         Console.WriteLine(
             $"LV : {level} ({exp}/{maxExp})\n" +
-            $"{name} (job) \n" +
+            $"{name}   {job} \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
             $"생명력 : {hp} \n" +
