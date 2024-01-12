@@ -19,6 +19,7 @@ public class Player
     public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
+    public List<Quest> quests;
 
 
     public Player(string name)
@@ -36,6 +37,8 @@ public class Player
 
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 2, 50));
         inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 4, 100));
+
+        quests = new List<Quest>();
     }
     public Player(PlayerJsonModel playerData)
     {
