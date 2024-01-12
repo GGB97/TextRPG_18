@@ -19,6 +19,7 @@ public class Player
     public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
+    public List<Quest> quests;
 
 
     public Player(string name)
@@ -36,6 +37,8 @@ public class Player
 
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 2, 50));
         inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 4, 100));
+
+        quests = new List<Quest>();
     }
     public Player(PlayerJsonModel playerData)
     {
@@ -159,6 +162,26 @@ public class Player
         }
         hp = playerConst.maxHp;
         Console.WriteLine($"체력을 회복했습니다. (소지금 : {gold}) G");
+    }
+
+    public void PrintQuests()
+    {
+        Console.WriteLine("[진행중인 퀘스트 목록]");
+        Console.WriteLine("-------------");
+        if (quests.Count == 0)
+        {
+            Console.WriteLine("진행중인 퀘스트가 없습니다.");
+        }
+        else
+        {
+            int n = 1;
+            foreach (var q in quests)
+            {
+                Console.Write($"{n++}. ");
+                q.Print();
+            }
+        }
+        Console.WriteLine("-------------\n");
     }
 
     public int getmaxExp()
