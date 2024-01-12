@@ -51,7 +51,6 @@ namespace TextRPG_18
             player.criticalChance = this.criticalChance;
             player.criticalDamage = this.criticalDamage;
             //player.type = type();
- 
         }
 
         public virtual int type()
@@ -74,6 +73,10 @@ namespace TextRPG_18
         {
             return "DefaultName1";
         }
+        public virtual string GetName2()
+        {
+            return "DefaultName1";
+        }
     }
 
     public class Warrior : Job
@@ -87,7 +90,6 @@ namespace TextRPG_18
             
         }
 
-
         public override int type()
         {
             return 1;
@@ -100,12 +102,16 @@ namespace TextRPG_18
 
         public override void Skill_2(Player player)
         {
-
+         
         }
 
-        public virtual string GetName1()
+        public override string GetName1()
         {
-            return this.Skill_name1;
+            return Skill_name1;
+        }
+        public override string GetName2()
+        {
+            return Skill_name2;
         }
 
         public void Initialization()//초기화
@@ -138,7 +144,11 @@ namespace TextRPG_18
         }
         public override string GetName1()
         {
-            return this.Skill_name1;
+            return Skill_name1;
+        }
+        public override string GetName2()
+        {
+            return Skill_name2;
         }
     }
 
@@ -157,7 +167,10 @@ namespace TextRPG_18
 
         public override void skill_1(Monster[] mon, Player player)
         {
-
+            foreach (var item in mon) 
+            {
+                mon.
+            }
         }
 
         public override void Skill_2(Player player)
@@ -166,7 +179,11 @@ namespace TextRPG_18
         }
         public override string GetName1()
         {
-            return this.Skill_name1;
+            return Skill_name1;
+        }
+        public override string GetName2()
+        {
+            return Skill_name2;
         }
     }
 

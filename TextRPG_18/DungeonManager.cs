@@ -74,6 +74,7 @@ public class DungeonManager
                 Console.WriteLine("2. 도주");
 
                 Console.WriteLine("3."+ player.SelectedClass.GetName1());
+                Console.WriteLine("4." + player.SelectedClass.GetName2());
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 string userInput = Console.ReadLine();
 
@@ -82,6 +83,16 @@ public class DungeonManager
                     choice_attack_target(player, monstersInBattle, ref turn);
                 }
                 else if (userInput == "2")
+                {
+                    Console.WriteLine("성공적으로 도망쳤다!");
+                    break;
+                }
+                else if (userInput == "3")
+                {
+                    Console.WriteLine("성공적으로 도망쳤다!");
+                    break;
+                }
+                else if (userInput == "4")
                 {
                     Console.WriteLine("성공적으로 도망쳤다!");
                     break;
