@@ -15,6 +15,7 @@ public class Player
     public float atk { get; set; }
     public int def { get; set; }
     public int mp { get; set; }
+
     public float criticalChance { get; set; }
     public float criticalDamage { get; set; }
 
@@ -142,9 +143,14 @@ public class Player
     {
         Console.WriteLine($"\n[내 정보]");
         Console.WriteLine($"Lv.{level}  {name} ({job}) ");
+        Console.WriteLine();
         Console.WriteLine($"HP {hp} ");
+        Console.WriteLine($"MP {mp}");
         Console.WriteLine($"ATK {atk}");
         Console.WriteLine($"DEF {def}");
+        Console.WriteLine($"CRP {criticalChance}");
+        Console.WriteLine($"CRD {criticalDamage}");
+
         Console.WriteLine();
     }
 
@@ -181,7 +187,8 @@ public class Player
         {
             gold -= 500;
         }
-        hp = playerConst.maxHp;
+        hp = playermax.maxHp;
+        mp = playermax.maxmp;
         Console.WriteLine($"체력을 회복했습니다. (소지금 : {gold}) G");
     }
 
@@ -213,6 +220,22 @@ public class Player
     {
         return level;
     }
+
+    public int PlayerDamage()
+    {
+        Random random = new Random();
+
+        int a = (int)(atk + random.NextDouble() * 0.2 + 0.9);
+
+
+        return a;
+    }
+
+    public int PlaerDepance(int Damage)  //방어력 사용할수 있다면
+    {
+        return Damage - def;
+    }
+
     //public string getJob()
     //{
     //    return job;
