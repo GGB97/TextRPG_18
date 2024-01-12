@@ -1,22 +1,28 @@
-﻿namespace TextRPG
+﻿using TextRPG_18;
+
+namespace TextRPG
 {
     internal class GameManager
     {
         Player player;
         Shop shop;
         DungeonManager dungeonManager;
+        JobManager job;
 
         public GameManager(Player player)
         {
             this.player = player;
             shop = new Shop();
             dungeonManager = new DungeonManager();
+            
+            job = new JobManager();
         }
 
         public void GameStart()
         {
-            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-            Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
+            player.CreateCharacter(); // !!!!-----캐릭터 생성---------!!!!!
+
+            job.choice(player);
 
             while (true)
             {
