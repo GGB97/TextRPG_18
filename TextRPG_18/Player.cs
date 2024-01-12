@@ -166,45 +166,19 @@ public class Player
 
     public void PrintQuests()
     {
+        Console.WriteLine("[진행중인 퀘스트 목록]");
         Console.WriteLine("-------------");
         if (quests.Count == 0)
         {
-            Console.WriteLine("현재 수락한 퀘스트가 없습니다.");
-        }
-        else
-        {
-            foreach (var q in quests)
-            {
-                q.Print();
-            }
-        }
-        Console.WriteLine("-------------\n");
-    }
-    public void PrintQuests(bool complete)
-    {
-        int cnt = 0;
-        foreach(var q in quests)
-        {
-            if(q.isCompleted == complete)
-                cnt++;
-        }
-
-        Console.WriteLine("-------------");
-        if (cnt == 0)
-        {
-            string str = complete ? "완료" : "포기";
-            Console.WriteLine($"현재 {str}가능한 퀘스트가 없습니다.");
+            Console.WriteLine("진행중인 퀘스트가 없습니다.");
         }
         else
         {
             int n = 1;
             foreach (var q in quests)
             {
-                if (q.isCompleted == complete)
-                {
-                    Console.Write($"{n++}. ");
-                    q.Print();
-                }
+                Console.Write($"{n++}. ");
+                q.Print();
             }
         }
         Console.WriteLine("-------------\n");

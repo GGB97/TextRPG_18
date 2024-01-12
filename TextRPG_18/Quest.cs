@@ -48,14 +48,27 @@ public class Quest
         {
             player.exp += rExp;
             player.gold += rGold;
-            Console.WriteLine($"퀘스트 '{name}'이 완료되었습니다.");
+            Console.WriteLine($"\n퀘스트 '{name}'이 완료되었습니다.\n");
+            GameManager.PressEnter();
+        }
+        else
+        {
+            Console.WriteLine("\n퀘스트가 완료 가능한 상태가 아닙니다.\n");
+            GameManager.PressEnter();
         }
     }
 
     public void Accept(Player player)
     {
         player.quests.Add(this);
-        Console.WriteLine($"{name} 퀘스트가 수락 되었습니다.\n");
+        Console.WriteLine($"\n{name} 퀘스트가 수락 되었습니다.\n");
+        GameManager.PressEnter();
+    }
+
+    public void Abandon(Player player)
+    {
+        player.quests.Remove(this);
+        Console.WriteLine($"\n{this.name} 퀘스트가 포기 되었습니다.\n");
         GameManager.PressEnter();
     }
 
