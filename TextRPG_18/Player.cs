@@ -14,9 +14,9 @@ public class Player
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
-
     public int mp { get; set; }
-
+    public float criticalChance { get; set; }
+    public float criticalDamage { get; set; }
 
     public Inventory inventory;
     public Weapon eWeapon;
@@ -32,6 +32,8 @@ public class Player
         def = 0;
         mp = 0;
         hp = 100;
+        criticalChance = 0;
+        criticalDamage = 0;
         gold = 1500;
         maxExp = level * 100;
         inventory = new Inventory();
@@ -99,6 +101,7 @@ public class Player
             $"{name} (job) \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
+            $"마나 : {mp} \n"+
             $"생명력 : {hp} \n" +
             $"소지금 : {gold} G \n"
             );
