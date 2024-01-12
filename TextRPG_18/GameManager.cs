@@ -199,6 +199,8 @@
             GameManager gm = new GameManager(player);
             
             gm.GameStart();
+
+            ///test
         }
     }
 }
