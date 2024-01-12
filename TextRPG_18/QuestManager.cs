@@ -10,8 +10,10 @@ public class QuestManager
     {
         quests = new List<Quest>();
 
-        quests.Add(new Quest("고블린 사냥", "고블린 10마리 사냥", 1000, 50, "고블린", 10));
-        quests.Add(new Quest("퀘스트 완료 테스트", "수락시 바로 클리어 가능", 1000, 50, "고블린", 0, true));
+        quests.Add(new Quest("고블린 사냥", "고블린 10마리 사냥", 1000, 30, (int)MonsterType.Goblin, 10));
+        quests.Add(new Quest("오크 사냥", "오크 5마리 사냥", 1500, 50, (int)MonsterType.Orc, 5));
+        quests.Add(new Quest("퀘스트 진행도 테스트", "몬스터 1마리 사냥", 500, 10, (int)MonsterType.Monster, 1)); ;
+        quests.Add(new Quest("퀘스트 완료 테스트", "수락시 바로 클리어 가능", 1000, 50, (int)MonsterType.Monster, 0, true));
     }
 
     public void Enter(Player player)

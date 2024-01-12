@@ -7,14 +7,14 @@ public class Quest
     public string description { get; }
     // 클리어 조건
     public bool isCompleted { get; private set; }
-    public string requiredType { get; private set; }
+    public int requiredType { get; private set; }
     public int requiredCnt { get; private set; }
     public int killCnt { get; private set; }
     // 보상
     public int rGold { get; private set; }
     public int rExp { get; private set; }
 
-    public Quest(string name, string description, int rGold, int rExp, string requiredType, int requiredCnt, bool test = false)
+    public Quest(string name, string description, int rGold, int rExp, int requiredType, int requiredCnt, bool test = false)
     {
         this.name = name;
         this.description = description;
@@ -41,10 +41,16 @@ public class Quest
 
     public void Check(Monster mon)
     {
-        if(requiredType == mon.type && mon.hp == 0 && !this.isCompleted)
+        if (!this.isCompleted)
         {
-            killCnt++;
-            CheckComplete();
+            if (requiredType == mon.type || requiredType == (int)MonsterType.Monster) // 몬스터 타입이 일치하거나 모든 몬스터의 경우
+            {
+                if (mon.hp == 0)
+                {
+                    killCnt++;
+                    CheckComplete();
+                }
+            }
         }
     }
 
