@@ -101,8 +101,11 @@ public class Player
             $"{name} (job) \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
-            $"마나 : {mp} \n"+
             $"생명력 : {hp} \n" +
+            $"마나 : {mp} \n"+
+            $"치명타 확률 : { criticalChance } \n" +
+            $"치명타 피해 : { criticalDamage } \n" +
+            "\n"+
             $"소지금 : {gold} G \n"
             );
 
