@@ -171,11 +171,11 @@
         static void Main(string[] args)
         {
             Player player;
-            string playerName = "GGB";
+            string playerName = "용사";
             player = DataManager.I.Load(playerName);
             if (player == null)
             {
-                player = new Player("GGB");
+                player = new Player("용사");
             }
             GameManager gm = new GameManager(player);
             

@@ -4,15 +4,17 @@ using System.Numerics;
 
 public class Player
 {
-    int level;
+    public int level;
     public int exp { get; set; }
-    int maxExp;
+    public int maxExp;
     public string name { get; set;}
-    string job;
+    public string job;
     public int hp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
+
+
 
     public Inventory inventory;
     public Weapon eWeapon;
@@ -112,6 +114,16 @@ public class Player
         Console.WriteLine("---------------------\n");
     }
 
+    public void battel_DisplayPlayerInfo()
+    {
+        Console.WriteLine($"\n[내 정보]");
+        Console.WriteLine($"Lv.{level}  {name} ({job}) ");
+        Console.WriteLine($"HP {hp} ");
+        Console.WriteLine($"ATK {atk}");
+        Console.WriteLine($"DEF {def}");
+        Console.WriteLine();
+    }
+
     public void addItem(Item item)
     {
         inventory.items.Add(item);
@@ -126,7 +138,7 @@ public class Player
             maxExp = level * 100;
             atk += 0.5f;
             def += 1;
-            Console.WriteLine("레벨이 올랐습니다");
+            Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
             printStatus();
         }
         else

@@ -7,10 +7,9 @@ public class Dungeon
 	int rGold; // 보상 골드
     int rExp;  // 보상 경험치
 
-    // 몬스터 관리
-    List<Monster> monsters;
 	public Dungeon(int level)
 	{
+ 
         this.level = level;
 		if(level == 1)
 		{
@@ -30,12 +29,9 @@ public class Dungeon
             rGold = 2500;
             rExp = 40;
         }
-
-        monsters = new List<Monster>();
-        monsters.Add(new Monster("미니언", 2, 15));
-        monsters.Add(new Monster("대포", 5, 25));
-        monsters.Add(new Monster("공허충", 3, 10));
     }
+
+
 
     public void Clear(Player player)
     {
