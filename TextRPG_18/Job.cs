@@ -60,21 +60,26 @@ namespace TextRPG_18
         }
 
 
-        public void skill_1(Monster[] mon) //범위계
+        public virtual void skill_1(Monster[] mon, Player player) //범위계
         {
             
         }
 
-        public void Skill_2(Player player) //서포터
+        public virtual void Skill_2(Player player) //서포터
         {
 
+        }
+
+        public virtual string GetName1()
+        {
+            return "DefaultName1";
         }
     }
 
     public class Warrior : Job
     {
         public string Skill_name1 = "광 : 마나 10을 사용해 모든 몬스터에게 참격을 가합니다";
-        public string Skill_name2 = "굶주림 :자신의 피를 20% 깎고 기본 공격력을 20%증가합니다";
+        public string Skill_name2 = "굶주림 :자신의 피를 20% 깎고 기본 공격력을 20%증가합니다 (3턴동안)";
 
         public Warrior(string name, int hp, int mp, int atk, int def, float criticalChance, float criticalDamage) : base(name, hp, mp, atk, def, criticalChance, criticalDamage)
         {
@@ -88,14 +93,19 @@ namespace TextRPG_18
             return 1;
         }
 
-        public void skill_1(Monster[] mon, Player player)
+        public override void skill_1(Monster[] mon, Player player)
         {
             //player.
         }
 
-        public void Skill_2(Player player)
+        public override void Skill_2(Player player)
         {
 
+        }
+
+        public virtual string GetName1()
+        {
+            return this.Skill_name1;
         }
 
         public void Initialization()//초기화
@@ -107,8 +117,8 @@ namespace TextRPG_18
     }
     public class Kinght : Job  
     {
-        public string Skill_name1 = "";
-        public string Skill_name2 = "";
+        public string Skill_name1 = "격 : 마나 10을 이용해 모든 몬스터에게 용의 힘을 발산합니다 ";
+        public string Skill_name2 = "용기: 마나 10을 이용해 자신의 방어력을 30% 증가시킵니다";
         public Kinght(string name, int hp, int mp, int atk, int def, float criticalChance, float criticalDamage) : base(name, hp, mp, atk, def, criticalChance, criticalDamage)
         {
         }
@@ -117,20 +127,24 @@ namespace TextRPG_18
         {
             return 2;
         }
-        public void skill_1(Monster[] mon, Player player)
+        public override void skill_1(Monster[] mon, Player player)
         {
 
         }
 
-        public void Skill_2(Player player)
+        public override void Skill_2(Player player)
         {
 
+        }
+        public override string GetName1()
+        {
+            return this.Skill_name1;
         }
     }
 
     public class Mage : Job 
     {
-        public string Skill_name1 = "";
+        public string Skill_name1 = "화 : 마나 15를 이용해 적 모두에게 파이어 볼을";
         public string Skill_name2 = "";
         public Mage(string name, int hp, int mp, int atk, int def, float criticalChance, float criticalDamage) : base(name, hp, mp, atk, def, criticalChance, criticalDamage)
         {
@@ -141,14 +155,18 @@ namespace TextRPG_18
             return 3;
         }
 
-        public void skill_1(Monster[] mon, Player player)
+        public override void skill_1(Monster[] mon, Player player)
         {
 
         }
 
-        public void Skill_2(Player player)
+        public override void Skill_2(Player player)
         {
 
+        }
+        public override string GetName1()
+        {
+            return this.Skill_name1;
         }
     }
 

@@ -60,6 +60,8 @@ public class DungeonManager
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
 
 
+
+
             while (true)
         {
             if (turn == "player_choice")
@@ -71,7 +73,7 @@ public class DungeonManager
                 Console.WriteLine("1. 공격");
                 Console.WriteLine("2. 도주");
 
-                Console.WriteLine("3. " + ));
+                Console.WriteLine("3."+ player.SelectedClass.GetName1());
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 string userInput = Console.ReadLine();
 

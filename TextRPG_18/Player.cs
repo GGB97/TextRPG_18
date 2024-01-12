@@ -22,7 +22,7 @@ public class Player
     public Weapon eWeapon;
     public Armor eArmor;
 
-    public Job SelectedClass1; //자식 클래스에 접근하기 위한 변수
+    public Job SelectedClass { get; set; } //자식 클래스에 접근하기 위한 변수
     public int type = 1;  //클래스 타입
 
     public Player(string name)
