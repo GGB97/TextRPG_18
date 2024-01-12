@@ -32,6 +32,10 @@ public class Monster
             {
                 int damage = (atk - player.def);
                 player.hp -= damage;
+                if (player.hp <= 0)
+                {
+                    player.hp = 0;
+                }
                 Console.WriteLine($"[{name}의 턴!]");
                 Thread.Sleep(600);
                 Console.WriteLine($"{name}이(가) {player.name}을(를) 공격!");
