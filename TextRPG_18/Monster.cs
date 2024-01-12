@@ -3,7 +3,7 @@
 public class Monster
 {
 	public string name;
-    public string type;
+    public int type;
     public int level;
     public int hp;
     public int atk;
@@ -11,7 +11,7 @@ public class Monster
     public int exp;
     public string live = "live";
 
-	public Monster(string name, string type, int level, int hp, int atk, int gold, int exp)
+	public Monster(string name, int type, int level, int hp, int atk, int gold, int exp)
 	{
 		this.name = name;
 		this.type = type;

@@ -47,9 +47,9 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", "고블린", 2, 5, 12, 100, 50));
-        monsters.Add(new Monster("오크", "오크", 5, 6, 15, 150, 75));
-        monsters.Add(new Monster("리자드맨", "리자드맨", 7, 4, 20, 200, 100));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 5, 12, 100, 50));
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 6, 15, 150, 75));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 4, 20, 200, 100));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -183,6 +183,12 @@ public class DungeonManager
                     Console.WriteLine($"{selectedMonster.name}은(는) 쓰러졌다!\n");
                     selectedMonster.hp = 0;
                     selectedMonster.live = "dead";
+
+                    // 여기에 퀘스트 조건 검사
+                    foreach(var q in player.quests)
+                    {
+                        q.Check(selectedMonster);
+                    }
                 }
             }
         }
