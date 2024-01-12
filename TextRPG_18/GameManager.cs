@@ -5,14 +5,14 @@
         Player player;
         Shop shop;
         DungeonManager dungeonManager;
-        QusetManager qusetManager;
+        QuestManager qusetManager;
 
         public GameManager(Player player)
         {
             this.player = player;
             shop = new Shop();
             dungeonManager = new DungeonManager();
-            qusetManager = new QusetManager();
+            qusetManager = new QuestManager();
         }
 
         public void GameStart()

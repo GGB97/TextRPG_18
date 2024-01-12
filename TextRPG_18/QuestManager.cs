@@ -2,10 +2,11 @@
 using System.Numerics;
 using TextRPG;
 
-public class QusetManager
+public class QuestManager
 {
     List<Quest> quests;
-    public QusetManager()
+
+    public QuestManager()
     {
         quests = new List<Quest>();
 

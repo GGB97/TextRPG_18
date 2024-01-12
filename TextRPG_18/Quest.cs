@@ -26,10 +26,22 @@ public class Quest
         this.requiredCnt = requiredCnt;
         killCnt = 0;
     }
+    public Quest(Quest q)
+    {
+        this.name = q.name;
+        this.description = q.description;
+        this.rGold = q.rGold;
+        this.rExp = q.rExp;
+
+        isCompleted = q.isCompleted;
+        this.requiredType = q.requiredType;
+        this.requiredCnt = q.requiredCnt;
+        killCnt = q.killCnt;
+    }
 
     public void Check(Monster mon)
     {
-        if(requiredType == mon.type && mon.hp == 0)
+        if(requiredType == mon.type && mon.hp == 0 && !this.isCompleted)
         {
             killCnt++;
             CheckComplete();
@@ -60,7 +72,7 @@ public class Quest
 
     public void Accept(Player player)
     {
-        player.quests.Add(this);
+        player.quests.Add(new Quest(this));
         Console.WriteLine($"\n{name} 퀘스트가 수락 되었습니다.\n");
         GameManager.PressEnter();
     }
@@ -78,7 +90,7 @@ public class Quest
         {
             Console.ForegroundColor = ConsoleColor.Green;
         }
-        Console.WriteLine($"{name} | {description}");
+        Console.WriteLine($"{name} | {description} | {killCnt}/{requiredCnt}");
         Console.ForegroundColor = ConsoleColor.White;
     }
 }
