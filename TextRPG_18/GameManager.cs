@@ -5,12 +5,14 @@
         Player player;
         Shop shop;
         DungeonManager dungeonManager;
+        QusetManager qusetManager;
 
         public GameManager(Player player)
         {
             this.player = player;
             shop = new Shop();
             dungeonManager = new DungeonManager();
+            qusetManager = new QusetManager();
         }
 
         public void GameStart()
@@ -25,14 +27,14 @@
                 Console.WriteLine("3. 상점");
                 Console.WriteLine("4. 던전 입장");
                 Console.WriteLine("5. 휴식");
+                Console.WriteLine("6. 퀘스트");
                 Console.WriteLine("9. 저장");
-                Console.WriteLine("0. 종료");
+                Console.WriteLine("0. 종료\n");
 
                 Console.Write($"{player.name} : ");
                 string str = Console.ReadLine();
                 if (str == "1")
                 {
-                    // 상태 보기
                     player.printStatus();
 
                     while (true)
@@ -52,7 +54,7 @@
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -80,7 +82,7 @@
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -115,7 +117,7 @@
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -124,7 +126,7 @@
                     // 던전
                     dungeonManager.Select(player);
                 }
-                else if(str == "5")
+                else if (str == "5")
                 {
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다. (빈사상태 일 경우 1000G) ");
                     Console.WriteLine($"소지금 : {player.gold} G");
@@ -147,9 +149,13 @@
                         }
                         else
                         {
-                            Console.WriteLine($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
+                }
+                else if (str == "6")
+                {
+                    qusetManager.Enter(player);
                 }
                 else if (str == "9")
                 {
@@ -162,10 +168,23 @@
                 }
                 else
                 {
-                    Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                    printError(str);
                 }
-            }
 
+                Console.Clear();
+            }
+        }
+
+        public static void printError(string str)
+        {
+            Console.WriteLine($"{str} 은(는) 올바른 입력이 아닙니다.");
+            Thread.Sleep(1000);
+        }
+
+        public static void PressEnter()
+        {
+            Console.WriteLine("Enter키를 눌러주세요.");
+            Console.ReadLine();
         }
 
         static void Main(string[] args)

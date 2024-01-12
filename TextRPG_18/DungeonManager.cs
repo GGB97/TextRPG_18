@@ -183,6 +183,8 @@ public class DungeonManager
                     Console.WriteLine($"{selectedMonster.name}은(는) 쓰러졌다!\n");
                     selectedMonster.hp = 0;
                     selectedMonster.live = "dead";
+
+                    // 여기에 퀘스트 조건 검사
                 }
             }
         }

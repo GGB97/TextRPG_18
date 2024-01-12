@@ -1,4 +1,5 @@
 ﻿using System;
+using TextRPG;
 
 public class Quest
 {
@@ -51,8 +52,15 @@ public class Quest
         }
     }
 
+    public void Accept(Player player)
+    {
+        player.quests.Add(this);
+        Console.WriteLine($"{name} 퀘스트가 수락 되었습니다.\n");
+        GameManager.PressEnter();
+    }
+
     public void Print()
     {
-        Console.WriteLine($"{name} | 내용 :  {description}");
+        Console.WriteLine($"{name} | {description}");
     }
 }
