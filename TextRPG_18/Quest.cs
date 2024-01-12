@@ -14,14 +14,14 @@ public class Quest
     public int rGold { get; private set; }
     public int rExp { get; private set; }
 
-    public Quest(string name, string description, int rGold, int rExp, string requiredType, int requiredCnt)
+    public Quest(string name, string description, int rGold, int rExp, string requiredType, int requiredCnt, bool test)
     {
         this.name = name;
         this.description = description;
         this.rGold = rGold;
         this.rExp = rExp;
 
-        isCompleted = false;
+        isCompleted = test;
         this.requiredType = requiredType;
         this.requiredCnt = requiredCnt;
         killCnt = 0;
@@ -48,7 +48,7 @@ public class Quest
         {
             player.exp += rExp;
             player.gold += rGold;
-            Console.WriteLine($"\n퀘스트 '{name}'이 완료되었습니다.\n");
+            Console.WriteLine($"\n퀘스트 '{name}'이(가) 완료되었습니다.\n");
             GameManager.PressEnter();
         }
         else
@@ -74,6 +74,11 @@ public class Quest
 
     public void Print()
     {
+        if (isCompleted)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
         Console.WriteLine($"{name} | {description}");
+        Console.ForegroundColor = ConsoleColor.White;
     }
 }

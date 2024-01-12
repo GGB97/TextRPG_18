@@ -9,7 +9,8 @@ public class QusetManager
     {
         quests = new List<Quest>();
 
-        quests.Add(new Quest("고블린 사냥", "고블린 10마리 사냥", 1000, 50, "고블린", 10));
+        quests.Add(new Quest("고블린 사냥", "고블린 10마리 사냥", 1000, 50, "고블린", 10, false));
+        quests.Add(new Quest("퀘스트 완료 테스트", "수락시 바로 클리어 가능", 1000, 50, "고블린", 0, true));
     }
 
     public void Enter(Player player)
@@ -98,8 +99,6 @@ public class QusetManager
                     {
                         GameManager.printError(str);
                     }
-
-
                 }
             }
             else if (str == "0")
@@ -134,11 +133,11 @@ public class QusetManager
                     input--;    // 퀘스트 선택시
                     if (ca)
                     {
-                        quests[input].Complete(player);
+                        player.quests[input].Complete(player);
                     }
                     else
                     {
-                        quests[input].Abandon(player);
+                        player.quests[input].Abandon(player);
                     }
                     
                     break;
