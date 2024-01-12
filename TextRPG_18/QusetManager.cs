@@ -9,7 +9,7 @@ public class QusetManager
     {
         quests = new List<Quest>();
 
-        quests.Add(new Quest("고블린 사냥", "고블린 10마리 사냥", 1000, 50, "고블린", 10, false));
+        quests.Add(new Quest("고블린 사냥", "고블린 10마리 사냥", 1000, 50, "고블린", 10));
         quests.Add(new Quest("퀘스트 완료 테스트", "수락시 바로 클리어 가능", 1000, 50, "고블린", 0, true));
     }
 

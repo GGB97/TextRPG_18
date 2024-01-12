@@ -14,7 +14,7 @@ public class Quest
     public int rGold { get; private set; }
     public int rExp { get; private set; }
 
-    public Quest(string name, string description, int rGold, int rExp, string requiredType, int requiredCnt, bool test)
+    public Quest(string name, string description, int rGold, int rExp, string requiredType, int requiredCnt, bool test = false)
     {
         this.name = name;
         this.description = description;
