@@ -7,7 +7,7 @@ using TextRPG_18;
 
 public class DungeonManager
 {
-
+    List<Monster> monsters;
     public void Select(Player player)
     {
         string str;
@@ -52,29 +52,31 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 5, 12, 100, 50));
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 6, 15, 150, 75));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 4, 20, 200, 100));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 20, 12, 100, 50));
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 20, 15, 150, 75));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 20, 20, 200, 100));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
 
 
-
+        player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
 
             while (true)
         {
             if (turn == "player_choice")
             {
-                player.battel_DisplayPlayerInfo();
+                player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
 
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"[{player.name}의 턴!]");
+                Console.ResetColor();
 
+                Console.WriteLine("0. 도주");
                 Console.WriteLine("1. 공격");
-                Console.WriteLine("2. 도주");
-
-                Console.WriteLine("3."+ player.SelectedClass.GetName1());
-                Console.WriteLine("4." + player.SelectedClass.GetName2());
+                Console.WriteLine("3. "+ player.SelectedClass.GetName1());
+                Console.WriteLine("4. " + player.SelectedClass.GetName2());
+                Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 string userInput = Console.ReadLine();
 
@@ -82,20 +84,27 @@ public class DungeonManager
                 {
                     choice_attack_target(player, monstersInBattle, ref turn);
                 }
-                else if (userInput == "2")
+                else if (userInput == "0")
                 {
-                    Console.WriteLine("성공적으로 도망쳤다!");
                     break;
                 }
                 else if (userInput == "3")
                 {
-                    Console.WriteLine("성공적으로 도망쳤다!");
-                    break;
+                    MonsterList(monstersInBattle);
+
+                    player.SelectedClass.skill_1(monstersInBattle, player);
+                    MonsterList(monstersInBattle);
+                    MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
+                    EnemyTurn(monstersInBattle, player, ref turn);
                 }
                 else if (userInput == "4")
                 {
-                    Console.WriteLine("성공적으로 도망쳤다!");
-                    break;
+                    MonsterList(monstersInBattle);
+
+                    player.SelectedClass.Skill_2(player);
+                    MonsterList(monstersInBattle);
+                    MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
+                    EnemyTurn(monstersInBattle, player, ref turn);
                 }
                 else
                 {
@@ -114,7 +123,7 @@ public class DungeonManager
     public static List<Monster> battle_start(Player player, List<Monster> monsters)  //전투 시작시 몬스터 인스턴스 생성
     {
         Random random = new Random();
-        int numberOfMonsters = random.Next(1, 5); // 랜덤 숫자 생성
+        int numberOfMonsters = random.Next(2, 5); // 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
         Console.WriteLine($"앗! {numberOfMonsters}마리의 야생 몬스터가 출현했다!\n");
 
@@ -213,36 +222,11 @@ public class DungeonManager
             }
         }
 
-        bool allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
 
-        if (allMonstersDead)
-        {
-            turn = "battle_win";
-            battle_result(player, monstersInBattle, ref turn);
-        }
-        else
-        {
-            turn = "enemy_turn";
-        }
+        MonsterAllDie(monstersInBattle, player, ref turn);  //모든 몬스터가 죽었는지 확인
 
-        if (turn == "enemy_turn")
-        {
-            Console.WriteLine($"=====================================================");
-            Console.WriteLine("[적의 턴!]");
-            for (int i = 0; i < monstersInBattle.Count; i++)
-            {
-                monstersInBattle[i].attack(player, ref turn);
-                Console.WriteLine("");
-            }
-            if (turn == "enemy_turn")
-            {
-                turn = "player_choice";
-            }
-            else if (turn == "battle_defeat")
-            {
-                battle_result(player, monstersInBattle, ref turn);
-            }
-        }
+        EnemyTurn(monstersInBattle, player, ref turn); //몬스터 턴
+
 
         if (turn == "player_choice")
         {
@@ -349,4 +333,67 @@ public class DungeonManager
             }
         }
     }
+
+    public void MonsterList(List<Monster> monstersInBattle)
+    {
+        Console.WriteLine("\n[전투 중인 몬스터 목록]");
+
+        for (int i = 0; i < monstersInBattle.Count; i++)
+        {
+            if (monstersInBattle[i].live == "dead")
+            {
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} [사망] ATK: {monstersInBattle[i].atk}");
+                Console.ForegroundColor = ConsoleColor.White;
+                continue;
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp} ATK: {monstersInBattle[i].atk}");
+        }
+
+    }
+
+    static public void MonsterAllDie(List<Monster> monstersInBattle, Player player, ref string turn)
+    {
+        bool allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
+
+        if (allMonstersDead)
+        {
+            turn = "battle_win";
+            battle_result(player, monstersInBattle, ref turn);
+        }
+        else
+        {
+            turn = "enemy_turn";
+        }
+    }
+
+    static public void EnemyTurn(List<Monster> monstersInBattle, Player player, ref string turn)
+    {
+        if (turn == "enemy_turn")
+        {
+            Console.WriteLine($"=====================================================");
+            Console.WriteLine("[적의 턴!]");
+            for (int i = 0; i < monstersInBattle.Count; i++)
+            {
+                monstersInBattle[i].attack(player, ref turn);
+                Console.WriteLine("");
+
+            }
+
+            if (player.hp <= 0)
+            {
+                turn = "battle_defeat";
+            }
+            else if (turn == "enemy_turn")
+            {
+                turn = "player_choice";
+            }
+            else if (turn == "battle_defeat")
+            {
+                battle_result(player, monstersInBattle, ref turn);
+            }
+        }
+    }
+
 }
