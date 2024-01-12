@@ -36,7 +36,9 @@ public class Monster
                 {
                     player.hp = 0;
                 }
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"[{name}의 턴!]");
+                Console.ResetColor();
                 Thread.Sleep(600);
                 Console.WriteLine($"{name}이(가) {player.name}을(를) 공격!");
                 Thread.Sleep(600);
