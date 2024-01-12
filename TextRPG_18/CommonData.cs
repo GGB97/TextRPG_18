@@ -1,5 +1,14 @@
 ﻿using System;
 
+
+enum MonsterType
+{
+    Monster,
+    Goblin,
+    Orc,
+    LizardMan
+}
+
 enum ItemType
 {
     Weapon,

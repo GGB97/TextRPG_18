@@ -1,30 +1,24 @@
-﻿using TextRPG_18;
-
-namespace TextRPG
+﻿namespace TextRPG
 {
     internal class GameManager
     {
         Player player;
         Shop shop;
         DungeonManager dungeonManager;
-        JobManager job;
+        QuestManager qusetManager;
 
         public GameManager(Player player)
         {
             this.player = player;
             shop = new Shop();
             dungeonManager = new DungeonManager();
-            
-            job = new JobManager();
+            qusetManager = new QuestManager();
         }
 
         public void GameStart()
         {
-            player.CreateCharacter(); // 캐릭터 생성
-
-            Console.WriteLine("");
-
-            job.choice(player); // 직업 선택
+            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+            Console.WriteLine("이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.");
 
             while (true)
             {
@@ -33,14 +27,14 @@ namespace TextRPG
                 Console.WriteLine("3. 상점");
                 Console.WriteLine("4. 던전 입장");
                 Console.WriteLine("5. 휴식");
+                Console.WriteLine("6. 퀘스트");
                 Console.WriteLine("9. 저장");
-                Console.WriteLine("0. 종료");
+                Console.WriteLine("0. 종료\n");
 
                 Console.Write($"{player.name} : ");
                 string str = Console.ReadLine();
                 if (str == "1")
                 {
-                    // 상태 보기
                     player.printStatus();
 
                     while (true)
@@ -60,7 +54,7 @@ namespace TextRPG
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -88,7 +82,7 @@ namespace TextRPG
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -123,7 +117,7 @@ namespace TextRPG
                         }
                         else
                         {
-                            Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
                 }
@@ -132,7 +126,7 @@ namespace TextRPG
                     // 던전
                     dungeonManager.Select(player);
                 }
-                else if(str == "5")
+                else if (str == "5")
                 {
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다. (빈사상태 일 경우 1000G) ");
                     Console.WriteLine($"소지금 : {player.gold} G");
@@ -155,9 +149,13 @@ namespace TextRPG
                         }
                         else
                         {
-                            Console.WriteLine($"{str} 은(는) 잘못된 입력입니다.");
+                            printError(str);
                         }
                     }
+                }
+                else if (str == "6")
+                {
+                    qusetManager.Enter(player);
                 }
                 else if (str == "9")
                 {
@@ -170,10 +168,23 @@ namespace TextRPG
                 }
                 else
                 {
-                    Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                    printError(str);
                 }
-            }
 
+                Console.Clear();
+            }
+        }
+
+        public static void printError(string str)
+        {
+            Console.WriteLine($"{str} 은(는) 올바른 입력이 아닙니다.");
+            Thread.Sleep(1000);
+        }
+
+        public static void PressEnter()
+        {
+            Console.WriteLine("Enter키를 눌러주세요.");
+            Console.ReadLine();
         }
 
         static void Main(string[] args)
