@@ -22,6 +22,7 @@ struct playermax
     public static int maxmp;
     public static int atk;
     public static int dfs;
+    public static int CRP;
     public static int CRD;
 
 }

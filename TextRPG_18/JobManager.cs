@@ -32,7 +32,7 @@ namespace TextRPG_18
                     {
                         case 1:
                             player.job = "광전사";
-                            player.SelectedClass = new Warrior("광전사", 100, 30, 10, 10, 15, 130); //hp,mp,atk,def,치확,치피
+                            player.SelectedClass = new Warrior("광전사", 100, 30, 12, 10, 15, 130); //hp,mp,atk,def,치확,치피
                             warrior = (Warrior)player.SelectedClass;
                             warrior.Pick(player);
                             Console.WriteLine($"{player.name}님의 직업은 {warrior.name} 입니다");
@@ -40,7 +40,7 @@ namespace TextRPG_18
                             break;
                         case 2:
                             player.job = "용기사";
-                            player.SelectedClass = new Kinght("용기사", 130, 30, 15, 5, 25, 160);
+                            player.SelectedClass = new Kinght("용기사", 130, 30, 15, 7, 25, 160);
                             kingth = (Kinght)player.SelectedClass;
                             kingth.Pick(player);
                             Console.WriteLine($"{player.name}님의 직업은 {kingth.name} 입니다");
@@ -49,7 +49,7 @@ namespace TextRPG_18
 
                         case 3:
                             player.job = "원소 마법사";
-                            player.SelectedClass = new Mage("원소 마법사", 80, 60, 5, 3, 35, 170);
+                            player.SelectedClass = new Mage("원소 마법사", 90, 60, 7, 5, 40, 180);
                             mage = (Mage)player.SelectedClass;
                             mage.Pick(player);
                             Console.WriteLine($"{player.name}님의 직업은 {mage.name} 입니다");

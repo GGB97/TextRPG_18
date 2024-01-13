@@ -52,9 +52,9 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 20, 12, 100, 50));
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 20, 15, 150, 75));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 20, 20, 200, 100));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 20, 13, 100, 50));
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 20, 16, 150, 75));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 20, 22, 200, 100));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -86,6 +86,9 @@ public class DungeonManager
                 }
                 else if (userInput == "0")
                 {
+                    player.SelectedClass.turn = 3;
+                    player.SelectedClass.Initialization(player);  //스텟 초기화
+
                     break;
                 }
                 else if (userInput == "3")

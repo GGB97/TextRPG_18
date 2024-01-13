@@ -16,8 +16,8 @@ public class Player
     public int def { get; set; }
     public int mp { get; set; }
 
-    public float criticalChance { get; set; }
-    public float criticalDamage { get; set; }
+    public int criticalChance { get; set; }
+    public int criticalDamage { get; set; }
 
     public Inventory inventory;
     public Weapon eWeapon;
