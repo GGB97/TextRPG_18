@@ -133,7 +133,7 @@ namespace TextRPG_18
         public override void Skill_2(Player player)
         {
             int a = (int)(playermax.maxHp * 0.2);
-            int b = (int)(atk * 0.3);
+            int b = (int)(player.atk * 0.3);
 
             Console.WriteLine($"=====================================================");
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -157,7 +157,6 @@ namespace TextRPG_18
 
         public override bool Initialization(Player player)//초기화
         {
-            Console.WriteLine("실행되긴 하는거임?");
             if (turnfalse)
             {
                 if (turn >= 3)
@@ -188,12 +187,46 @@ namespace TextRPG_18
         }
         public override void skill_1(List<Monster> mon, Player player)
         {
+            player.mp -= 10;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n마나 10이 소비되었습니다.");
+            Console.WriteLine(player.name + " (이)가 거대한 용의 힘을 적에게 내립니다!");
+            Console.ResetColor();
+            Thread.Sleep(500);
+            Console.WriteLine($"=====================================================");
+            foreach (var item in mon)
+            {
 
+                Console.WriteLine($"\n{player.name} (이)가 {item.name}을(를) 공격!");
+                int minushp = player.PlayerDamage(); //치명타 계산
+                Console.WriteLine($"{item.name}은(는) {minushp}의 데미지를 입었다!\n");
+                Thread.Sleep(600);
+                item.hp -= minushp;
+
+                if (item.hp <= 0)
+                {
+                    item.hp = 0;
+                    item.live = "dead";
+                }
+
+
+            }
+            Console.WriteLine($"=====================================================");
         }
 
         public override void Skill_2(Player player)
         {
+            int b = (int)(player.def * 0.3);
 
+            Console.WriteLine($"=====================================================");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"\n마나 10이 소비되었습니다. ({player.mp} -> {player.mp - 10})");
+            Console.WriteLine($" {player.name} (이)의 의지가 강해집니다. 방어력이 30%증가합니다 ({player.def} -> {player.def + b})");
+            Console.ResetColor();
+
+            turnfalse = true;
+            player.hp -= 10;
+            player.def += b; //30% 증가
         }
         public override string GetName1()
         {
@@ -202,6 +235,22 @@ namespace TextRPG_18
         public override string GetName2()
         {
             return Skill_name2;
+        }
+
+        public override bool Initialization(Player player)//초기화
+        {
+            if (turnfalse)
+            {
+                if (turn >= 3)
+                {
+                    turnfalse = false;
+                    turn = 0;
+                    player.def = playermax.dfs; //다시 돌려놓기
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
         }
     }
 
