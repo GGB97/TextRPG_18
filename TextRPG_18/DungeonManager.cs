@@ -83,7 +83,6 @@ public class DungeonManager
                 if (userInput == "1")
                 {
                     choice_attack_target(player, monstersInBattle, ref turn);
-                    player.SelectedClass.turn++; 
                 }
                 else if (userInput == "0")
                 {
@@ -91,7 +90,6 @@ public class DungeonManager
                 }
                 else if (userInput == "3")
                 {
-                    player.SelectedClass.turn++;
                     MonsterList(monstersInBattle);
 
                     player.SelectedClass.skill_1(monstersInBattle, player);
@@ -101,7 +99,6 @@ public class DungeonManager
                 }
                 else if (userInput == "4")
                 {
-                    player.SelectedClass.turn++;
                     MonsterList(monstersInBattle);
 
                     player.SelectedClass.Skill_2(player);
@@ -259,6 +256,8 @@ public class DungeonManager
 
         if (turn == "battle_defeat")
         {
+            player.SelectedClass.turn = 3;
+            player.SelectedClass.Initialization(player);  //스텟 초기화
             Console.WriteLine("패배.\n");
             Console.WriteLine($"{player.name} 레벨 {player.level}");
             Console.WriteLine($"체력: {player.hp}");
@@ -280,6 +279,8 @@ public class DungeonManager
         }
         else if (turn == "battle_win")
         {
+            player.SelectedClass.turn = 3;
+            player.SelectedClass.Initialization(player);  //스텟 초기화
             Console.WriteLine("승리!\n");
 
             // Calculate total gold and exp from defeated monsters
@@ -372,6 +373,7 @@ public class DungeonManager
 
     static public void EnemyTurn(List<Monster> monstersInBattle, Player player, ref string turn)
     {
+        player.SelectedClass.turn++;
         if (turn == "enemy_turn")
         {
             Console.WriteLine($"=====================================================");
