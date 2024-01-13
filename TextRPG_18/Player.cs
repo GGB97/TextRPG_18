@@ -221,11 +221,24 @@ public class Player
         return level;
     }
 
-    public int PlayerDamage()
+    public int PlayerDamage() //공격력(치명타 계산까지)
     {
         Random random = new Random();
 
-        int a = (int)(atk + random.NextDouble() * 0.2 + 0.9);
+        int a = (int)atk;
+
+        if(random.Next(0,100) < criticalChance) //크리티컬 확률계산
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("치명타 발동!!");
+            Console.ResetColor();
+
+            //치명타
+            float b = (float)criticalDamage / 100;
+
+            a += (int)(atk * b);  
+        }
+
 
 
         return a;

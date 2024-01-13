@@ -17,7 +17,7 @@ namespace TextRPG_18
         public int def;
         public float criticalChance;
         public float criticalDamage;
-        public int turn =0;
+        public int turn = 0;
         public bool turnfalse = false;
 
         public string Skill_name1;
@@ -26,7 +26,7 @@ namespace TextRPG_18
 
         //회피율 (공통) , 기본 공격력 업 (전사) 치명타 확률(기사), 치명타 피해량(마법사) 
 
-        public Job(string name,  int hp, int mp, int atk, int def, float criticalChance, float criticalDamage)
+        public Job(string name, int hp, int mp, int atk, int def, float criticalChance, float criticalDamage)
         {
             this.name = name;
             this.hp = hp;
@@ -34,7 +34,7 @@ namespace TextRPG_18
             this.atk = atk;
             this.def = def;
             this.criticalChance = criticalChance;
-            this.criticalDamage = criticalDamage;   
+            this.criticalDamage = criticalDamage;
         }
 
         public void Pick(Player player) // 직업선택시 스택 적용
@@ -46,7 +46,7 @@ namespace TextRPG_18
             player.hp = this.hp;
             player.mp = this.mp;
             player.atk = this.atk;
-            player.def = this.def;    
+            player.def = this.def;
             player.criticalChance = this.criticalChance;
             player.criticalDamage = this.criticalDamage;
             //player.type = type();
@@ -60,7 +60,7 @@ namespace TextRPG_18
 
         public virtual void skill_1(List<Monster> mon, Player player) //범위계
         {
-            
+
         }
 
         public virtual void Skill_2(Player player) //서포터
@@ -80,7 +80,7 @@ namespace TextRPG_18
         public virtual bool Initialization(Player player)//초기화
         {
             return false;
-            
+
         }
 
     }
@@ -93,7 +93,7 @@ namespace TextRPG_18
         public Warrior(string name, int hp, int mp, int atk, int def, float criticalChance, float criticalDamage) : base(name, hp, mp, atk, def, criticalChance, criticalDamage)
         {
 
-            
+
         }
 
         public override int type()
@@ -110,13 +110,14 @@ namespace TextRPG_18
             Console.ResetColor();
             Thread.Sleep(500);
             Console.WriteLine($"=====================================================");
-            foreach (var item in mon) 
+            foreach (var item in mon)
             {
-                item.hp -= player.PlayerDamage();
 
                 Console.WriteLine($"\n{player.name} (이)가 {item.name}을(를) 공격!");
-                Console.WriteLine($"{item.name}은(는) -{player.atk}의 데미지를 입었다!\n");
+                int minushp = player.PlayerDamage(); //치명타 계산
+                Console.WriteLine($"{item.name}은(는) {minushp}의 데미지를 입었다!\n");
                 Thread.Sleep(600);
+                item.hp -= minushp;
 
                 if (item.hp <= 0)
                 {
@@ -131,14 +132,18 @@ namespace TextRPG_18
 
         public override void Skill_2(Player player)
         {
+            int a = (int)(playermax.maxHp * 0.2);
+            int b = (int)(atk * 0.3);
+
+            Console.WriteLine($"=====================================================");
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\n 전체 HP에서 20%이 감소되었습니다.");
-            Console.WriteLine($" {player.name} (이)가 피에 굶주림니다. 공격력이 30%증가합니다");
+            Console.WriteLine($"\n 전체 HP에서 20%이 감소되었습니다. ({player.hp} -> {player.hp - a})");
+            Console.WriteLine($" {player.name} (이)가 피에 굶주림니다. 공격력이 30%증가합니다 ({player.atk} -> {player.atk + b})");
             Console.ResetColor();
 
             turnfalse = true;
-            player.hp -= (int)(playermax.maxHp * 0.2); //20% 빠짐
-            player.atk += (int)(atk * 0.3); //30% 증가
+            player.hp -= a; //20% 빠짐
+            player.atk += b; //30% 증가
         }
 
         public override string GetName1()
@@ -152,6 +157,7 @@ namespace TextRPG_18
 
         public override bool Initialization(Player player)//초기화
         {
+            Console.WriteLine("실행되긴 하는거임?");
             if (turnfalse)
             {
                 if (turn >= 3)
@@ -168,7 +174,7 @@ namespace TextRPG_18
 
 
     }
-    public class Kinght : Job  
+    public class Kinght : Job
     {
         public string Skill_name1 = "격 : 마나 10을 이용해 모든 몬스터에게 용의 힘을 발산합니다 ";
         public string Skill_name2 = "용기: 마나 10을 이용해 자신의 방어력을 30% 증가시킵니다";
@@ -199,7 +205,7 @@ namespace TextRPG_18
         }
     }
 
-    public class Mage : Job 
+    public class Mage : Job
     {
         public string Skill_name1 = "화 : 마나 15를 이용해 적 모두에게 파이어 볼을";
         public string Skill_name2 = "욕망: 마나 15를 이용해 자신의 치명타 피해를 30% 증가합니다";
@@ -214,7 +220,7 @@ namespace TextRPG_18
 
         public override void skill_1(List<Monster> mon, Player player)
         {
-            foreach (var item in mon) 
+            foreach (var item in mon)
             {
                 //
             }

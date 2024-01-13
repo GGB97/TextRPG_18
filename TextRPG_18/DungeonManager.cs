@@ -60,7 +60,6 @@ public class DungeonManager
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
 
 
-        player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
 
             while (true)
         {
@@ -68,6 +67,7 @@ public class DungeonManager
             {
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
 
+                player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"[{player.name}의 턴!]");
                 Console.ResetColor();
@@ -83,6 +83,7 @@ public class DungeonManager
                 if (userInput == "1")
                 {
                     choice_attack_target(player, monstersInBattle, ref turn);
+                    player.SelectedClass.turn++; 
                 }
                 else if (userInput == "0")
                 {
@@ -90,6 +91,7 @@ public class DungeonManager
                 }
                 else if (userInput == "3")
                 {
+                    player.SelectedClass.turn++;
                     MonsterList(monstersInBattle);
 
                     player.SelectedClass.skill_1(monstersInBattle, player);
@@ -99,10 +101,10 @@ public class DungeonManager
                 }
                 else if (userInput == "4")
                 {
+                    player.SelectedClass.turn++;
                     MonsterList(monstersInBattle);
 
                     player.SelectedClass.Skill_2(player);
-                    MonsterList(monstersInBattle);
                     MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
                     EnemyTurn(monstersInBattle, player, ref turn);
                 }
@@ -199,8 +201,8 @@ public class DungeonManager
                 // Player attacks the selected monster
                 Console.WriteLine($"=====================================================");
                 Console.WriteLine($"\n{player.name}이(가) {selectedMonster.name}을(를) 공격!");
-                Thread.Sleep(600);
-                Console.WriteLine($"{selectedMonster.name}은(는) -{player.atk}의 데미지를 입었다!\n");
+                int CRatk = player.PlayerDamage();
+                Console.WriteLine($"{selectedMonster.name}은(는) -{CRatk}의 데미지를 입었다!\n");
                 Thread.Sleep(600);
 
                 // 몬스터 체력 감소
