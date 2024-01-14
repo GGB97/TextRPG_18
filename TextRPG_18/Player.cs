@@ -263,8 +263,12 @@ public class Player
         else { return false; }
     }
 
-    //public string getJob()
-    //{
-    //    return job;
-    //}
+    public void Recovery()
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine($"{name} (이)의 마나가 회복되었습니다. : {mp} -> {mp + MP_Recovery}");
+        Console.ResetColor();
+
+        mp += MP_Recovery;
+    }
 }

@@ -173,6 +173,7 @@ namespace TextRPG_18
             else return false;
         }
 
+        
 
     }
     public class Kinght : Job

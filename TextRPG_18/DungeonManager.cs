@@ -237,6 +237,8 @@ public class DungeonManager
 
         EnemyTurn(monstersInBattle, player, ref turn); //몬스터 턴
 
+        player.Recovery(); //마나 회복
+
 
         if (turn == "player_choice")
         {
