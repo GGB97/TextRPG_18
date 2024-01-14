@@ -19,6 +19,9 @@ public class Player
     public int criticalChance { get; set; }
     public int criticalDamage { get; set; }
 
+    public int Avoidance { get; set; } //회피율
+    public int MP_Recovery { get; set; } //마나 회복율
+
     public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
@@ -189,7 +192,7 @@ public class Player
         }
         hp = playermax.maxHp;
         mp = playermax.maxmp;
-        Console.WriteLine($"체력을 회복했습니다. (소지금 : {gold}) G");
+        Console.WriteLine($"체력과 마력을 회복했습니다. (소지금 : {gold}) G");
     }
 
     public void PrintQuests()
@@ -247,6 +250,17 @@ public class Player
     public int PlaerDepance(int Damage)  //방어력 사용할수 있다면
     {
         return Damage - def;
+    }
+
+    public bool Avoidance_percentage(int percentage)  //회피 확률계산
+    {
+        Random rend = new Random();
+
+        if (rend.Next(0, 100) < percentage)
+        {
+            return true;
+        }
+        else { return false; }
     }
 
     //public string getJob()

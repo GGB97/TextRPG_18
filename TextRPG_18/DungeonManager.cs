@@ -40,11 +40,11 @@ public class DungeonManager
         }
     }
 
-   /* public void Enter(Player player, int level)
-    {
-        Console.WriteLine($"난이도 {level} 던전에 입장합니다.\n");
-        Dungeon dungeon = new Dungeon(level);
-    } */
+    /* public void Enter(Player player, int level)
+     {
+         Console.WriteLine($"난이도 {level} 던전에 입장합니다.\n");
+         Dungeon dungeon = new Dungeon(level);
+     } */
 
     public void Enter_battle(Player player)
     {
@@ -52,16 +52,16 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 20, 13, 100, 50));
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 20, 16, 150, 75));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 20, 22, 200, 100));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 20, 13, 100, 50, 10));
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 20, 16, 150, 75, 5));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 20, 22, 200, 100, 15));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
 
 
 
-            while (true)
+        while (true)
         {
             if (turn == "player_choice")
             {
@@ -73,9 +73,9 @@ public class DungeonManager
                 Console.ResetColor();
 
                 Console.WriteLine("0. 도주");
-                Console.WriteLine("1. 공격");
-                Console.WriteLine("3. "+ player.SelectedClass.GetName1());
-                Console.WriteLine("4. " + player.SelectedClass.GetName2());
+                Console.WriteLine("1. 일반공격");
+                Console.WriteLine("2. " + player.SelectedClass.GetName1());
+                Console.WriteLine("3. " + player.SelectedClass.GetName2());
                 Console.WriteLine();
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 string userInput = Console.ReadLine();
@@ -91,7 +91,7 @@ public class DungeonManager
 
                     break;
                 }
-                else if (userInput == "3")
+                else if (userInput == "2")
                 {
                     MonsterList(monstersInBattle);
 
@@ -100,7 +100,7 @@ public class DungeonManager
                     MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
                     EnemyTurn(monstersInBattle, player, ref turn);
                 }
-                else if (userInput == "4")
+                else if (userInput == "3")
                 {
                     MonsterList(monstersInBattle);
 
@@ -137,7 +137,7 @@ public class DungeonManager
             Monster randomMonster = monsters[random.Next(monsters.Count)];
 
             // 인스턴스 생성
-            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level, randomMonster.hp, randomMonster.atk, randomMonster.gold, randomMonster.exp);
+            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level, randomMonster.hp, randomMonster.atk, randomMonster.gold, randomMonster.exp, randomMonster.Avoidance);
 
             // 리스트에 인스턴스 등록
             monstersInBattle.Add(monsterInstance);
@@ -201,12 +201,20 @@ public class DungeonManager
                 // Player attacks the selected monster
                 Console.WriteLine($"=====================================================");
                 Console.WriteLine($"\n{player.name}이(가) {selectedMonster.name}을(를) 공격!");
-                int CRatk = player.PlayerDamage();
-                Console.WriteLine($"{selectedMonster.name}은(는) -{CRatk}의 데미지를 입었다!\n");
-                Thread.Sleep(600);
+                if (Avoidance_percentage(monstersInBattle[selectedMonsterIndex - 1].Avoidance)) //회피 성공시
+                {
+                    Console.WriteLine($"{selectedMonster.name}을(를) 공격했으나 아무일도 일어나지 않았습니다.\n");
+                }
+                else //회피 실패시
+                {
+                    int CRatk = player.PlayerDamage();
+                    Console.WriteLine($"{selectedMonster.name}은(는) -{CRatk}의 데미지를 입었다!\n");
+                    Thread.Sleep(600);
 
-                // 몬스터 체력 감소
-                selectedMonster.hp -= (int)player.atk;
+                    // 몬스터 체력 감소
+                    selectedMonster.hp -= (int)player.atk;
+                }
+
 
                 // 몬스터 체력이 0이면 사망판정
                 if (selectedMonster.hp <= 0)
@@ -216,7 +224,7 @@ public class DungeonManager
                     selectedMonster.live = "dead";
 
                     // 여기에 퀘스트 조건 검사
-                    foreach(var q in player.quests)
+                    foreach (var q in player.quests)
                     {
                         q.Check(selectedMonster);
                     }
@@ -401,6 +409,17 @@ public class DungeonManager
                 battle_result(player, monstersInBattle, ref turn);
             }
         }
+    }
+
+    static public bool Avoidance_percentage(int percentage)  //회피 확률계산
+    {
+        Random rend = new Random();
+
+        if (rend.Next(0, 100) < percentage)
+        {
+            return true;
+        }
+        else { return false; }
     }
 
 }

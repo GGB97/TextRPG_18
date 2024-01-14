@@ -17,8 +17,14 @@ namespace TextRPG_18
         public int def;
         public int criticalChance;
         public int criticalDamage;
+        public int Avoidance;  //회피율
+        public int MP_Recovery;  //마나 회복율
+
+
         public int turn = 0;
         public bool turnfalse = false;
+
+
 
         public string Skill_name1;
         public string Skill_name2;
@@ -26,7 +32,7 @@ namespace TextRPG_18
 
         //회피율 (공통) , 기본 공격력 업 (전사) 치명타 확률(기사), 치명타 피해량(마법사) 
 
-        public Job(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage)
+        public Job(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery)
         {
             this.name = name;
             this.hp = hp;
@@ -35,6 +41,8 @@ namespace TextRPG_18
             this.def = def;
             this.criticalChance = criticalChance;
             this.criticalDamage = criticalDamage;
+            this.Avoidance = Avoidance;
+            this.MP_Recovery = MP_Recovery;
         }
 
         public void Pick(Player player) // 직업선택시 스택 적용
@@ -52,6 +60,8 @@ namespace TextRPG_18
             player.def = this.def;
             player.criticalChance = this.criticalChance;
             player.criticalDamage = this.criticalDamage;
+            player.Avoidance = Avoidance;
+            player.MP_Recovery = MP_Recovery;
         }
 
         public virtual void skill_1(List<Monster> mon, Player player) //범위계
@@ -86,7 +96,7 @@ namespace TextRPG_18
         public string Skill_name1 = "광 : 마나 10을 사용해 모든 몬스터에게 참격을 가합니다";
         public string Skill_name2 = "굶주림 :자신의 전체 피에서 20% 깎고 기본 공격력을 30%증가시킵니다 (3턴동안)";
 
-        public Warrior(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage) : base(name, hp, mp, atk, def, criticalChance, criticalDamage)
+        public Warrior(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery) : base(name, hp, mp, atk, def, criticalChance, criticalDamage, Avoidance, MP_Recovery)
         {
 
 
@@ -169,7 +179,7 @@ namespace TextRPG_18
     {
         public string Skill_name1 = "격 : 마나 10을 이용해 모든 몬스터에게 용의 힘을 발산합니다 ";
         public string Skill_name2 = "용기 : 마나 10을 이용해 자신의 방어력을 30% 증가시킵니다";
-        public Kinght(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage) : base(name, hp, mp, atk, def, criticalChance, criticalDamage)
+        public Kinght(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery) : base(name, hp, mp, atk, def, criticalChance, criticalDamage, Avoidance, MP_Recovery)
         {
         }
 
@@ -246,7 +256,7 @@ namespace TextRPG_18
     {
         public string Skill_name1 = "화 : 마나 15를 이용해 적 모두에게 불 원소를 날립니다";
         public string Skill_name2 = "욕망 : 마나 15를 사용해 자신의 치명타 확률을 10%, 치명타 피해를 30%, 증가합니다";
-        public Mage(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage) : base(name, hp, mp, atk, def, criticalChance, criticalDamage)
+        public Mage(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery) : base(name, hp, mp, atk, def, criticalChance, criticalDamage, Avoidance, MP_Recovery)
         {
         }
 
