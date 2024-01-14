@@ -1,4 +1,6 @@
-﻿namespace TextRPG
+﻿using System;
+
+namespace TextRPG
 {
     internal class GameManager
     {
@@ -61,22 +63,22 @@
                 else if (str == "2")
                 {
                     // 인벤토리
-                    player.inventory.print();
+   
 
                     while (true)
                     {
-                        Console.WriteLine("1. 장착 관리");
-                        Console.WriteLine("2. 나가기");
+                        player.inventory.print();
+                        Console.WriteLine("0. 나가기");
+                        Console.WriteLine("1. 장비 관리 / 아이템 사용");
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
 
                         if (str == "1")
                         {
-                            //장비 관리
-                            player.EquipManager();
-                            break;
+                            //아이템 사용 및 장비 관리
+                            player.Use_Item_Manager();
                         }
-                        if (str == "2")
+                        else if (str == "0")
                         {
                             break;
                         }
@@ -89,29 +91,26 @@
                 else if (str == "3")
                 {
                     // 상점
-                    Console.WriteLine($"소지금 : {player.gold}");
-                    shop.print();
-
                     while (true)
                     {
+                        shop.print();
+                        Console.Write($"소지 골드 : ");
+                        printGold(player);
+                        Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 아이템 구매");
                         Console.WriteLine("2. 아이템 판매");
-                        Console.WriteLine("3. 나가기");
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
                         if (str == "1")
                         {
                             // 아이템 구매
                             shop.buy(player);
-                            break;
                         }
                         else if (str == "2")
                         {
-                            // 아이템 판매
                             shop.sell(player);
-                            break;
                         }
-                        else if (str == "3")
+                        else if (str == "0")
                         {
                             break;
                         }
@@ -128,8 +127,9 @@
                 }
                 else if (str == "5")
                 {
-                    Console.WriteLine("500G를 내면 휴식을 할 수 있습니다. (빈사상태 일 경우 1000G) ");
-                    Console.WriteLine($"소지금 : {player.gold} G");
+                    Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
+                    Console.Write($"소지 골드 : ");
+                    printGold(player);
 
                     while (true)
                     {
@@ -185,6 +185,15 @@
         {
             Console.WriteLine("Enter키를 눌러주세요.");
             Console.ReadLine();
+        }
+
+        public static void printGold(Player player)  //골드를 노랗게 표시해서 프린트하는 메서드
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"{player.gold}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" G");
+
         }
 
         static void Main(string[] args)

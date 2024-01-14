@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
+using TextRPG;
 
 public class DungeonManager
 {
@@ -11,6 +13,7 @@ public class DungeonManager
         while (true)
         {
             Console.WriteLine("[던전 입장] --- (0. 나가기)");
+            Console.WriteLine($"현재 체력: {player.hp}\n");
             Console.WriteLine(
                 "1. 던전에 입장한다."
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
@@ -47,9 +50,12 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 5, 12, 100, 50));
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 6, 15, 150, 75));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 7, 4, 20, 200, 100));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 6, 12, 100, 50,false));
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 15, 15, 150, 75,false));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 8, 7, 20, 200, 100, false));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 6, 5, 10, 120, 70, true));
+        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 4, 4, 10, 50, 60, false));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 7, 12, 30, 150, 150, true));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -64,7 +70,8 @@ public class DungeonManager
                 Console.WriteLine($"[{player.name}의 턴!]");
 
                 Console.WriteLine("1. 공격");
-                Console.WriteLine("2. 도주");
+                Console.WriteLine("2. 아이템 사용");
+                Console.WriteLine("3. 도주");
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 string userInput = Console.ReadLine();
 
@@ -74,7 +81,12 @@ public class DungeonManager
                 }
                 else if (userInput == "2")
                 {
-                    Console.WriteLine("성공적으로 도망쳤다!");
+                    player.Use_Item_Manager();
+                }
+                else if (userInput == "3")
+                {
+                    Console.WriteLine("\n성공적으로 도망쳤다!");
+                    Console.WriteLine($"=====================================================\n");
                     break;
                 }
                 else
@@ -106,13 +118,13 @@ public class DungeonManager
             Monster randomMonster = monsters[random.Next(monsters.Count)];
 
             // 인스턴스 생성
-            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level, randomMonster.hp, randomMonster.atk, randomMonster.gold, randomMonster.exp);
+            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level, randomMonster.hp, randomMonster.atk, randomMonster.gold, randomMonster.exp, randomMonster.drop_potion);
 
             // 리스트에 인스턴스 등록
             monstersInBattle.Add(monsterInstance);
 
             // 몬스터 정보 표시
-            Console.WriteLine($"Lv.{monsterInstance.level} {monsterInstance.name} HP: {monsterInstance.hp}, ATK: {monsterInstance.atk}");
+            Console.WriteLine($"Lv.{monsterInstance.level} {monsterInstance.name} HP: {monsterInstance.hp}/{monstersInBattle[i].maxHp}, ATK: {monsterInstance.atk}");
         }
         return monstersInBattle; // 몬스터 인스턴스 리스트 반환
     }
@@ -125,13 +137,13 @@ public class DungeonManager
         {
             if (monstersInBattle[i].live == "dead")
             {
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} [사망] ATK: {monstersInBattle[i].atk}");
                 Console.ForegroundColor = ConsoleColor.White;
                 continue;
             }
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp} ATK: {monstersInBattle[i].atk}");
+            Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp}  ATK: {monstersInBattle[i].atk}");
         }
 
         Console.WriteLine("\n공격할 몬스터 선택 (숫자 입력) --- (0. 대기)");
@@ -144,7 +156,7 @@ public class DungeonManager
             {
                 if (selectedMonsterIndex == 0)
                 {
-                    Console.WriteLine($"{player.name}은(는) 대기했다!");
+                    Console.WriteLine($"{player.name}은(는) 대기했다!\n");
                     break;
                 }
 
@@ -170,9 +182,13 @@ public class DungeonManager
                 // Player attacks the selected monster
                 Console.WriteLine($"=====================================================");
                 Console.WriteLine($"\n{player.name}이(가) {selectedMonster.name}을(를) 공격!");
-                Thread.Sleep(600);
-                Console.WriteLine($"{selectedMonster.name}은(는) -{player.atk}의 데미지를 입었다!\n");
-                Thread.Sleep(600);
+                Thread.Sleep(500);
+                Console.Write($"{selectedMonster.name}은(는) ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"-{player.atk} ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"의 데미지를 입었다!\n");
+                Thread.Sleep(500);
 
                 // 몬스터 체력 감소
                 selectedMonster.hp -= (int)player.atk;
@@ -211,7 +227,7 @@ public class DungeonManager
             Console.WriteLine("[적의 턴!]");
             for (int i = 0; i < monstersInBattle.Count; i++)
             {
-                monstersInBattle[i].attack(player, ref turn);
+                monstersInBattle[i].attack(player, ref turn, monstersInBattle);
                 Console.WriteLine("");
             }
             if (turn == "enemy_turn")
@@ -235,13 +251,13 @@ public class DungeonManager
             {
                 if (monstersInBattle[i].live == "dead")
                 {
-                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine($" Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} [사망] ATK: {monstersInBattle[i].atk}");
                     Console.ForegroundColor = ConsoleColor.White;
                     continue;
                 }
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($" Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp} ATK: {monstersInBattle[i].atk}");
+                Console.WriteLine($" Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp} ATK: {monstersInBattle[i].atk}");
             }
         }
     }
@@ -264,6 +280,8 @@ public class DungeonManager
 
                 if (userInput == "0")
                 {
+                    player.hp = 1;
+                    Console.WriteLine($"\n=====================================================\n");
                     break;
                 }
                 else
@@ -276,9 +294,13 @@ public class DungeonManager
         {
             Console.WriteLine("승리!\n");
 
-            // Calculate total gold and exp from defeated monsters
-            int totalGold = monstersInBattle.Sum(monster => monster.gold);
-            int totalExp = monstersInBattle.Sum(monster => monster.exp);
+            //몬스터의 골드와 경험치 총합 계산 후 랜덤 보정
+
+            Random random = new Random();
+            int RandomGold = random.Next(0, 11); // 랜덤으로 10% 보정
+            int RandomExp = random.Next(0, 11);
+            int totalGold = monstersInBattle.Sum(monster => monster.gold) + (monstersInBattle.Sum(monster => monster.gold) * RandomGold)* 1/100;
+            int totalExp = monstersInBattle.Sum(monster => monster.exp) + (monstersInBattle.Sum(monster => monster.exp) * RandomExp) * 1/100;
 
             //승리했으므로 플레이어 골드 경험치 획득
 
@@ -290,8 +312,55 @@ public class DungeonManager
             Console.WriteLine($"경험치 획득!");
             Console.Write($" {player.exp}");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($" + {totalExp}\n\n");
+            Console.Write($" + {totalExp}\n");
             Console.ForegroundColor = ConsoleColor.White;
+
+            int potion_drop = 0;
+
+            foreach (Monster monseter in monstersInBattle)
+            {
+                if (monseter.drop_potion == true)
+                {
+                    potion_drop += 1;
+                }
+            }
+
+            for (int i = 0; i < potion_drop; i++)
+            {
+                int potion_luck = random.Next(0, 10);
+                if (potion_luck == 0)
+                {
+                }
+                else if (potion_luck <= 5) // 50%확률로 하급포션
+                {
+                    player.inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
+                    Console.Write($"전리품으로 ");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write($"하급 회복 포션");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($" 을(를) 획득!");
+                }
+                else if (potion_luck <= 8) // 30%확률로 중급 회복포션
+                {
+                    player.inventory.items.Add(new Consumption("중급 회복 포션", "체력을 적당히 회복할 수 있는 포션", 75, 500));
+                    Console.Write($"전리품으로 ");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write($"중급 회복 포션");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($" 을(를) 획득!");
+                }
+                else if (potion_luck <= 9) // 10%확률로 고급 회복포션
+                {
+                    player.inventory.items.Add(new Consumption("고급 회복 포션", "체력을 대폭 회복할 수 있는 포션", 120, 1500));
+                    Console.Write($"전리품으로 ");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.Write($"고급 회복 포션");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($" 을(를) 획득!");
+                }
+            }
+            Console.WriteLine($"");
+
 
             player.gold += totalGold;
             player.exp += totalExp;
@@ -299,7 +368,8 @@ public class DungeonManager
             Console.WriteLine($"이름: {player.name}");
             Console.WriteLine($"직업: {player.job}");
             Console.WriteLine($"체력: {player.hp}");
-            Console.WriteLine($"Gold: {player.gold}");
+            Console.WriteLine($"Gold: ");
+            GameManager.printGold(player);
 
             // 경험치 확인 후 레벨업
             if (player.exp >= player.maxExp)
@@ -320,6 +390,7 @@ public class DungeonManager
 
                 if (userInput == "0")
                 {
+
                     break;
                 }
                 else

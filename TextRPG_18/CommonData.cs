@@ -5,18 +5,20 @@ enum MonsterType
 {
     Monster,
     Goblin,
+    Goblin_Frist,
     Orc,
-    LizardMan
+    LizardMan,
+    Vampire_bat,
+    Troll
 }
 
 enum ItemType
 {
     Weapon,
     Armor,
-    consumables
+    Consumables
 }
 
 struct playerConst
 {
-    public const int maxHp = 100;
 }
