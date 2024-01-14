@@ -101,7 +101,7 @@ public class Monster
                         Console.WriteLine($"{name}의 광폭한 타격!");
                         Thread.Sleep(250);
                         Console.WriteLine($"{name}은(는) 미쳐 날뛰면서 자신과 {player.name}을(를) 공격했다!");
-                        Console.Write($"{name}은(는)");
+                        Console.Write($"{name}은(는) ");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write($"-{(int)self_damage}");
                         Console.ForegroundColor = ConsoleColor.White;

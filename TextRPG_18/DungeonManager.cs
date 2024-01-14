@@ -131,6 +131,8 @@ public class DungeonManager
 
     public static void choice_attack_target(Player player, List<Monster> monstersInBattle, ref string turn)
     {
+
+
         Console.WriteLine("\n[전투 중인 몬스터 목록]");
 
         for (int i = 0; i < monstersInBattle.Count; i++)
@@ -230,6 +232,16 @@ public class DungeonManager
                 monstersInBattle[i].attack(player, ref turn, monstersInBattle);
                 Console.WriteLine("");
             }
+            allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
+
+            if (allMonstersDead)    //마지막 남은 오크가 자해해서 죽을 경우를 체크 
+            {
+                turn = "battle_win";
+                battle_result(player, monstersInBattle, ref turn);
+                return;
+            }
+
+
             if (turn == "enemy_turn")
             {
                 turn = "player_choice";
@@ -312,7 +324,7 @@ public class DungeonManager
             Console.WriteLine($"경험치 획득!");
             Console.Write($" {player.exp}");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write($" + {totalExp}\n");
+            Console.WriteLine($" + {totalExp}\n");
             Console.ForegroundColor = ConsoleColor.White;
 
             int potion_drop = 0;
