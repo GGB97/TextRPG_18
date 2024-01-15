@@ -72,7 +72,6 @@ public class DungeonManager
             if (turn == "player_choice")
             {
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
-
                 player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
                 Console.WriteLine($"[{player.name}의 턴!]");
                 Console.WriteLine();
@@ -163,6 +162,7 @@ public class DungeonManager
     {
 
         Console.WriteLine("\n[전투 중인 몬스터 목록]");
+        
 
         for (int i = 0; i < monstersInBattle.Count; i++)
         {
@@ -176,8 +176,9 @@ public class DungeonManager
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp}  ATK: {monstersInBattle[i].atk}");
         }
-
-        Console.WriteLine("\n공격할 몬스터 선택 (숫자 입력) --- (0. 대기)");
+        Console.WriteLine("대기하기");
+        Console.WriteLine();
+        Console.WriteLine("\n공격할 몬스터 선택해 주세요)");
         Console.Write("선택을 입력하세요:");
         int selectedMonsterIndex;
 
@@ -187,7 +188,7 @@ public class DungeonManager
             {
                 if (selectedMonsterIndex == 0)
                 {
-                    Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+                    Console.WriteLine($"{player.name}은(는) 대기했습니다!\n");
                     break;
                 }
 
@@ -200,7 +201,7 @@ public class DungeonManager
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                Console.WriteLine("잘못된 입력입니다.");
             }
         }
 
