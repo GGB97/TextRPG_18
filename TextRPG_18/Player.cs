@@ -11,7 +11,7 @@ public class Player
     public int exp { get; set; }
     public int maxExp;
     public string name { get; set; }
-    
+
     public int hp { get; set; }
     //public int maxHp { get; set; }
     public int gold { get; set; }
@@ -30,7 +30,7 @@ public class Player
     public Armor eArmor;
     public QuestList quests;
 
-    
+
     public int type = 1;  //클래스 타입
 
     public Player(string name)
@@ -68,7 +68,7 @@ public class Player
         exp = playerData.exp;
         maxExp = playerData.maxExp;
         name = playerData.name;
-        
+
         hp = playerData.hp;
         playermax.maxHp = playerData.maxHp;
         gold = playerData.gold;
@@ -125,7 +125,7 @@ public class Player
                 num -= 1;
                 int checkType = inventory.items[num].getType();
 
-                if (checkType == (int)ItemType.Consumables) 
+                if (checkType == (int)ItemType.Consumables)
                 {
                     if (hp == playermax.maxHp)
                     {
@@ -139,7 +139,7 @@ public class Player
                     }
 
                 }
-                else if (checkType == (int)ItemType.Weapon || checkType == (int)ItemType.Armor) 
+                else if (checkType == (int)ItemType.Weapon || checkType == (int)ItemType.Armor)
                 {
                     if (inventory.items[num].getEquip()) // 아이템이 착용되어 있는지 확인
                     {
@@ -178,6 +178,7 @@ public class Player
             $"치명타 확률 : { criticalChance } \n" +
             $"치명타 피해 : { criticalDamage } \n" +
             "\n"+
+
             $"소지금 : {gold} G \n"
             );
 
@@ -195,7 +196,7 @@ public class Player
         Console.WriteLine("---------------------\n");
     }
 
-    
+
     public void battel_DisplayPlayerInfo()
     {
         Console.WriteLine($"\n[내 정보]");
@@ -222,7 +223,7 @@ public class Player
             exp -= maxExp;
             level++;
             maxExp = level * 100;
-            playermax.maxHp += 10 ;
+            playermax.maxHp += 10;
             atk += 2f;
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
@@ -307,7 +308,7 @@ public class Player
 
         int a = (int)atk;
 
-        if(random.Next(0,100) < criticalChance) //크리티컬 확률계산
+        if (random.Next(0, 100) < criticalChance) //크리티컬 확률계산
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write(" 치명타 발동!!\n");
@@ -316,7 +317,7 @@ public class Player
             //치명타
             float b = (float)criticalDamage / 100;
 
-            a += (int)(atk * b);  
+            a += (int)(atk * b);
         }
         return a;
     }
@@ -341,7 +342,7 @@ public class Player
     {
         Console.Write($"{name} (이)의 마나가 회복되었습니다. : ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{ mp}");
+        Console.Write($"{mp}");
         Console.ResetColor();
         Console.Write(" -> ");
         Console.ForegroundColor = ConsoleColor.Blue;
