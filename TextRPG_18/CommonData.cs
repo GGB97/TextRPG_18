@@ -16,7 +16,18 @@ enum ItemType
     consumables
 }
 
-struct playerConst
+struct playermax
 {
-    public const int maxHp = 100;
+    public static int maxHp;
+    public static int maxmp;
+    public static int atk;
+    public static int dfs;
+    public static int CRP;
+    public static int CRD;
+
 }
+
+//struct playerConst
+//{
+//    public const int maxHp = 100;
+//}

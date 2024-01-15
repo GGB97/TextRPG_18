@@ -8,7 +8,7 @@ public class PlayerJsonModel
     public int exp { get; set; }
     public int maxExp { get; set; }
     public string name { get; set; }
-    public string job { get; set; }
+    //public string job { get; set; }
     public int hp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
@@ -29,7 +29,7 @@ public class PlayerJsonModel
         exp = 0;
         maxExp = 0;
         name = null;
-        job = null;
+        //job = null;
         hp = 0;
         gold = 0;
         atk = 0;
@@ -49,7 +49,7 @@ public class PlayerJsonModel
         exp = player.exp;
         maxExp = player.getmaxExp();
         name = player.name;
-        job = player.getJob();
+        //job = player.getJob();
         hp = player.hp;
         gold = player.gold;
         atk = player.atk;

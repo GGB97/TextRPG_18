@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http.Headers;
 using System.Numerics;
+using TextRPG_18;
 
 public class Player
 {
@@ -13,24 +14,33 @@ public class Player
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
+    public int mp { get; set; }
 
+    public int criticalChance { get; set; }
+    public int criticalDamage { get; set; }
 
+    public int Avoidance { get; set; } //회피율
+    public int MP_Recovery { get; set; } //마나 회복율
 
     public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
     public List<Quest> quests;
 
+    public Job SelectedClass { get; set; } //자식 클래스에 접근하기 위한 변수
+    public int type = 1;  //클래스 타입
 
     public Player(string name)
     {
         level = 1;
         exp = 0;
         this.name = name;
-        job = "용병";
-        atk = 2;
-        def = 5;
+        atk = 0;
+        def = 0;
+        mp = 0;
         hp = 100;
+        criticalChance = 0;
+        criticalDamage = 0;
         gold = 1500;
         maxExp = level * 100;
         inventory = new Inventory();
@@ -40,13 +50,14 @@ public class Player
 
         quests = new List<Quest>();
     }
+
     public Player(PlayerJsonModel playerData)
     {
         level = playerData.level;
         exp = playerData.exp;
         maxExp = playerData.maxExp;
         name = playerData.name;
-        job = playerData.job;
+        //job = playerData.job;
         hp = playerData.hp;
         gold = playerData.gold;
         atk = playerData.atk;
@@ -96,10 +107,14 @@ public class Player
         Console.WriteLine("---------------------");
         Console.WriteLine(
             $"LV : {level} ({exp}/{maxExp})\n" +
-            $"{name} (job) \n" +
+            $"{name}   {job} \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
             $"생명력 : {hp} \n" +
+            $"마나 : {mp} \n"+
+            $"치명타 확률 : { criticalChance } \n" +
+            $"치명타 피해 : { criticalDamage } \n" +
+            "\n"+
             $"소지금 : {gold} G \n"
             );
 
@@ -117,13 +132,28 @@ public class Player
         Console.WriteLine("---------------------\n");
     }
 
+    public void CreateCharacter() //!!!!!!!!!!캐릭터 생성!!!!!!!!!!!!
+    {
+        Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+        Console.WriteLine("원하시는 이름을 설정해주세요.");
+
+        string input = Console.ReadLine();
+        name = input;
+
+        Console.WriteLine($"환영합니다. {name}님의 캐릭터가 생성 되었습니다.");
+    }
     public void battel_DisplayPlayerInfo()
     {
         Console.WriteLine($"\n[내 정보]");
         Console.WriteLine($"Lv.{level}  {name} ({job}) ");
+        Console.WriteLine();
         Console.WriteLine($"HP {hp} ");
+        Console.WriteLine($"MP {mp}");
         Console.WriteLine($"ATK {atk}");
         Console.WriteLine($"DEF {def}");
+        Console.WriteLine($"CRP {criticalChance}");
+        Console.WriteLine($"CRD {criticalDamage}");
+
         Console.WriteLine();
     }
 
@@ -160,8 +190,9 @@ public class Player
         {
             gold -= 500;
         }
-        hp = playerConst.maxHp;
-        Console.WriteLine($"체력을 회복했습니다. (소지금 : {gold}) G");
+        hp = playermax.maxHp;
+        mp = playermax.maxmp;
+        Console.WriteLine($"체력과 마력을 회복했습니다. (소지금 : {gold}) G");
     }
 
     public void PrintQuests()
@@ -192,8 +223,52 @@ public class Player
     {
         return level;
     }
-    public string getJob()
+
+    public int PlayerDamage() //공격력(치명타 계산까지)
     {
-        return job;
+        Random random = new Random();
+
+        int a = (int)atk;
+
+        if(random.Next(0,100) < criticalChance) //크리티컬 확률계산
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("치명타 발동!!");
+            Console.ResetColor();
+
+            //치명타
+            float b = (float)criticalDamage / 100;
+
+            a += (int)(atk * b);  
+        }
+
+
+
+        return a;
+    }
+
+    public int PlaerDepance(int Damage)  //방어력 사용할수 있다면
+    {
+        return Damage - def;
+    }
+
+    public bool Avoidance_percentage(int percentage)  //회피 확률계산
+    {
+        Random rend = new Random();
+
+        if (rend.Next(0, 100) < percentage)
+        {
+            return true;
+        }
+        else { return false; }
+    }
+
+    public void Recovery()
+    {
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine($"{name} (이)의 마나가 회복되었습니다. : {mp} -> {mp + MP_Recovery}");
+        Console.ResetColor();
+
+        mp += MP_Recovery;
     }
 }
