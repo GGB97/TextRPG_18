@@ -13,11 +13,12 @@ public class Player
     public string name { get; set; }
 
     public int hp { get; set; }
-    //public int maxHp { get; set; }
+    public int maxHp { get; set; }
+    public int mp { get; set; }
+    public int maxMp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
-    public int mp { get; set; }
 
     public int criticalChance { get; set; }
     public int criticalDamage { get; set; }
@@ -30,9 +31,6 @@ public class Player
     public Armor eArmor;
     public QuestList quests;
 
-
-    public int type = 1;  //클래스 타입
-
     public Player(string name)
     {
         level = 1;
@@ -41,10 +39,11 @@ public class Player
         atk = 5;
         def = 5;
         hp = 10;
-        playermax.maxHp = 150;
+        maxHp = 150;
         atk = 0;
         def = 0;
         mp = 0;
+        maxMp = 
         hp = 100;
         criticalChance = 0;
         criticalDamage = 0;
@@ -70,7 +69,9 @@ public class Player
         name = playerData.name;
 
         hp = playerData.hp;
-        playermax.maxHp = playerData.maxHp;
+        maxHp = playerData.maxHp;
+        mp = playerData.mp;
+        maxMp = playerData.maxMp;
         gold = playerData.gold;
         atk = playerData.atk;
         def = playerData.def;
@@ -129,7 +130,7 @@ public class Player
 
                 if (checkType == (int)ItemType.Consumables)
                 {
-                    if (hp == playermax.maxHp)
+                    if (hp == maxHp)
                     {
                         Console.WriteLine($"이미 체력이 최대치입니다.");
                         Console.WriteLine($"=====================================================\n");
@@ -175,7 +176,7 @@ public class Player
             $"{name}   {SelectedClass.name} \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
-            $"생명력 : {hp} / {playermax.maxHp} \n" +
+            $"생명력 : {hp} / {maxHp} \n" +
             $"마나 : {mp} \n"+
             $"치명타 확률 : { criticalChance } \n" +
             $"치명타 피해 : { criticalDamage } \n" +
@@ -203,7 +204,7 @@ public class Player
     {
         Console.WriteLine($"\n[내 정보]");
         Console.WriteLine($"Lv.{level}  {name} ({SelectedClass.name}) ");
-        Console.WriteLine($"HP {hp} / {playermax.maxHp}");
+        Console.WriteLine($"HP {hp} / {maxHp}");
         Console.WriteLine($"MP {mp}");
         Console.WriteLine($"ATK {atk}");
         Console.WriteLine($"DEF {def}");
@@ -225,11 +226,11 @@ public class Player
             exp -= maxExp;
             level++;
             maxExp = level * 100;
-            playermax.maxHp += 10;
+            maxHp += 10;
             atk += 2f;
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
-            hp = playermax.maxHp;
+            hp = maxHp;
             printStatus();
         }
         else
@@ -240,7 +241,7 @@ public class Player
 
     public void Rest()
     {
-        if (hp == playermax.maxHp)
+        if (hp == maxHp)
         {
             Console.WriteLine($"이미 체력이 최대치입니다.");
             Console.WriteLine($"=====================================================\n");
@@ -249,20 +250,20 @@ public class Player
         gold -= 500;
         Console.Write($"체력을 ");
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"{playermax.maxHp - hp}");
+        Console.Write($"{maxHp - hp}");
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine($" 회복했습니다.");
-        hp = playermax.maxHp;
+        hp = maxHp;
         Console.Write($"현재 HP : ");
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"{hp}\n");
         Console.ForegroundColor = ConsoleColor.White;
         Console.Write($"마력을 ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{playermax.maxMp - mp}");
+        Console.Write($"{maxMp - mp}");
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine($" 회복했습니다.");
-        mp = playermax.maxMp;
+        mp = maxMp;
 
         Console.Write($"골드 지불 :");
         Console.ForegroundColor = ConsoleColor.DarkYellow;

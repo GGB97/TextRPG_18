@@ -37,8 +37,6 @@ enum ItemType
 
 struct playermax
 {
-    public static int maxHp;
-    public static int maxMp;
     public static int atk;
     public static int dfs;
     public static int CRP;
