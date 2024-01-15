@@ -85,7 +85,7 @@ namespace TextRPG_18
 
     public class Warrior : Job
     {
-        public string Skill_name1 = "피의 광란 : 마나 25와 최대 체력의 45%를 소비해 광란의 참격을 가한다. (무작위 적에게 ATK*2의 피해. 대상을 처치했을 경우 1회 더 반복.)"; //모든 적에게 ATK 1.5배 데미지
+        public string Skill_name1 = "피의 광란 : 마나 25와 최대 체력의 45%를 소비해 광란의 참격을 가한다.\n(무작위 적에게 ATK*2의 피해. 대상을 처치했을 경우 1회 더 반복.)"; 
         public string Skill_name2 = "갈망 : 최대 체력의 30%를 소비해 기본 공격력을 50% 증가 시킨다. (3턴 지속)";
 
         public Warrior()
@@ -153,11 +153,11 @@ namespace TextRPG_18
                     int minushp = player.PlayerDamage(); //치명타 계산
                     Console.Write($"{mon[random_target].name}은(는) ");
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"{minushp * 150 / 100}");
+                    Console.Write($"{minushp * 2}");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($" 의 데미지를 입었다!\n");
                     Thread.Sleep(400);
-                    mon[random_target].hp -= minushp * 150 / 100;
+                    mon[random_target].hp -= minushp * 2;
 
                     if (mon[random_target].hp <= 0)
                     {
