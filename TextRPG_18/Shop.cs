@@ -28,7 +28,8 @@ public class Shop
         string str; int num;
         while (true)
         {
-            Console.WriteLine("[아이템 구매] --- (0. 나가기)");
+            Console.WriteLine("[아이템 구매]");
+            Console.WriteLine();
             Console.Write($"소지 골드 :");
             GameManager.printGold(player);
             print();
@@ -123,7 +124,7 @@ public class Shop
 
         Console.WriteLine("[상품 목록]");
         Console.WriteLine();
-        Console.WriteLine("-----------------");
+        Console.WriteLine("------------------------------------------");
         foreach (Item item in items)
         {
             Console.Write($"{num++}. ");
@@ -131,6 +132,6 @@ public class Shop
             Console.Write($" | {item.cost} G");
             Console.WriteLine();
         }
-        Console.WriteLine("-----------------");
+        Console.WriteLine("------------------------------------------");
     }
 }
