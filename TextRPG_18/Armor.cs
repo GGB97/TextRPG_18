@@ -36,12 +36,14 @@ public class Armor : Item
         }
 
         player.def += def;
+        playermax.dfs += def;
     }
     public override void unEquip(Player player)
     {
         base.unEquip(player);
         player.eArmor = null;
         player.def -= def;
+        playermax.dfs -= def;
     }
 
     public override void print()

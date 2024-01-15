@@ -11,10 +11,12 @@ public class Monster
     public int atk;
     public int gold;
     public int exp;
+
     public bool drop_potion;
+    public int Avoidance; //회피
     public string live = "live";
 
-    public Monster(string name, int type, int level, int hp, int atk, int gold, int exp, bool drop_potion)
+	public Monster(string name, int type, int level, int hp, int atk, int gold, int exp, int Avoidance,bool drop_potion)
 	{
 		this.name = name;
 		this.type = type;
@@ -25,6 +27,7 @@ public class Monster
         this.exp = exp;
         this.drop_potion = drop_potion;
         this.maxHp = hp;
+        this.Avoidance = Avoidance;
 	}
 
 
@@ -35,8 +38,13 @@ public class Monster
         {
             if (live == "live")
             {
+
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"[{name}의 턴!]");
-                Thread.Sleep(500);
+                Console.ResetColor();
+                Thread.Sleep(600);
+                Console.WriteLine($"{name}이(가) {player.name}을(를) 공격!");
+                Thread.Sleep(600);
 
                 Random random = new Random();
                 int Skill_Chance = random.Next(0, 10); //각 몬스터는 랜덤 확률로 고유 스킬을 사용한다.
@@ -44,7 +52,13 @@ public class Monster
                 int Damage_correction_1 = random.Next(0, 2);  // (0이면 데미지 - 보정, 1이면 데미지 + 보정)
                 int Damage_correction_2 = random.Next(0, 31); // 보정치 : +-30%
 
-                int damage = (atk - player.def);
+                if(player.Avoidance_percentage(player.Avoidance))  //회피 성공시
+                {
+                    Console.WriteLine($"{player.name}을(를) 공격했으나 아무일도 일어나지 않았습니다.\n");
+                }
+                else
+                {
+                    int damage = (atk - player.def);
 
                 if (Damage_correction_1 == 1)
                 {
@@ -320,6 +334,12 @@ public class Monster
                         turn = "battle_defeat";
                     }
                 }
+                }
+                
+                Thread.Sleep(600);
+
+
+                
             }
         }
     }
