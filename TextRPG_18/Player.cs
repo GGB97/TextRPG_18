@@ -323,8 +323,13 @@ public class Player
 
     public void Recovery()
     {
+        Console.Write($"{name} (이)의 마나가 회복되었습니다. : ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine($"{name} (이)의 마나가 회복되었습니다. : {mp} -> {mp + MP_Recovery}");
+        Console.Write($"{ mp}");
+        Console.ResetColor();
+        Console.Write(" -> ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine(mp + MP_Recovery);
         Console.ResetColor();
 
         mp += MP_Recovery;
