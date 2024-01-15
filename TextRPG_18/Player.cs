@@ -90,7 +90,6 @@ public class Player
 
         }
 
-
         criticalChance = playerData.criticalChance;
         criticalDamage = playerData.criticalDamage;
         Avoidance = playerData.Avoidance;
@@ -100,6 +99,11 @@ public class Player
         eWeapon = new(playerData.eWeapon);
         eArmor = new(playerData.eArmor);
         quests = new(playerData.quests);
+
+        playermax.atk = this.atk + eWeapon.getAtk();
+        playermax.dfs = this.def + eArmor.getDef();
+        playermax.CRP = SelectedClass.criticalChance;
+        playermax.CRD = SelectedClass.criticalDamage;
     }
 
     public void Use_Item_Manager()
