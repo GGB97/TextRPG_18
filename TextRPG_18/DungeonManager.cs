@@ -383,7 +383,7 @@ public class DungeonManager
             player.exp += totalExp;
 
             Console.WriteLine($"이름: {player.name}");
-            Console.WriteLine($"직업: {player.job}");
+            Console.WriteLine($"직업: {player.SelectedClass.name}");
             Console.WriteLine($"체력: {player.hp}");
             Console.WriteLine($"Gold: ");
             TextRPG.GameManager.printGold(player);

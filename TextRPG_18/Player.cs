@@ -10,7 +10,7 @@ public class Player
     public int exp { get; set; }
     public int maxExp;
     public string name { get; set; }
-    public string job;
+    
     public int hp { get; set; }
     public int maxHp { get; set; }
     public int gold { get; set; }
@@ -23,13 +23,13 @@ public class Player
 
     public int Avoidance { get; set; } //회피율
     public int MP_Recovery { get; set; } //마나 회복율
-
+    public Job SelectedClass { get; set; } //자식 클래스에 접근하기 위한 변수
     public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
     public List<Quest> quests;
 
-    public Job SelectedClass { get; set; } //자식 클래스에 접근하기 위한 변수
+    
     public int type = 1;  //클래스 타입
 
     public Player(string name)
@@ -37,7 +37,6 @@ public class Player
         level = 1;
         exp = 0;
         this.name = name;
-        job = "용병";
         atk = 5;
         def = 5;
         hp = 10;
@@ -148,7 +147,7 @@ public class Player
         Console.WriteLine("---------------------");
         Console.WriteLine(
             $"LV : {level} ({exp}/{maxExp})\n" +
-            $"{name}   {job} \n" +
+            $"{name}   {SelectedClass.name} \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
             $"생명력 : {hp} / {maxHp} \n" +
@@ -186,7 +185,7 @@ public class Player
     public void battel_DisplayPlayerInfo()
     {
         Console.WriteLine($"\n[내 정보]");
-        Console.WriteLine($"Lv.{level}  {name} ({job}) ");
+        Console.WriteLine($"Lv.{level}  {name} ({SelectedClass.name}) ");
         Console.WriteLine($"HP {hp} / {maxHp}");
         Console.WriteLine($"MP {mp}");
         Console.WriteLine($"ATK {atk}");

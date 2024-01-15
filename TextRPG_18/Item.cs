@@ -6,7 +6,6 @@ public class Item
     protected int type;
     protected string name;
     protected string description;
-    protected int efficacy;
     public int cost { get; set; }
 
     protected Item()
@@ -34,21 +33,21 @@ public class Item
 
     public virtual void useConsume(Player player)
     {
-        if (type == (int)ItemType.Consumables)
-        {
-            Console.WriteLine($"{name}을 사용했습니다.");
-            int cos = player.hp;
-            player.hp += efficacy;
-            if (player.hp >= player.maxHp)
-            {
-                player.hp = player.maxHp;
-                Console.WriteLine($"체력을 {player.maxHp - cos}회복했습니다.");
-            }
-            else
-            {
-                Console.WriteLine($"체력을 {player.hp - cos}회복했습니다.");
-            }
-        }
+        //if (type == (int)ItemType.Consumables)
+        //{
+        //    Console.WriteLine($"{name}을 사용했습니다.");
+        //    int cos = player.hp;
+        //    player.hp += efficacy;
+        //    if (player.hp >= player.maxHp)
+        //    {
+        //        player.hp = player.maxHp;
+        //        Console.WriteLine($"체력을 {player.maxHp - cos}회복했습니다.");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"체력을 {player.hp - cos}회복했습니다.");
+        //    }
+        //}
     }
 
     public virtual void print()
@@ -78,6 +77,7 @@ public class Item
 
 public class Consumption : Item
 {
+    protected int efficacy;
     public Consumption(string name, string des, int efficacy, int cost)
     {
         type = (int)ItemType.Consumables;
