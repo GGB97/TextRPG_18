@@ -38,6 +38,18 @@ public class Quest
         this.requiredCnt = q.requiredCnt;
         killCnt = q.killCnt;
     }
+    public Quest(QuestJsonModel q)
+    {
+        this.name = q.name;
+        this.description = q.description;
+        this.rGold = q.rGold;
+        this.rExp = q.rExp;
+
+        isCompleted = q.isCompleted;
+        this.requiredType = q.requiredType;
+        this.requiredCnt = q.requiredCnt;
+        killCnt = q.killCnt;
+    }
 
     public void Check(Monster mon)
     {

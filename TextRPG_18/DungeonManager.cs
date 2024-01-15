@@ -239,7 +239,7 @@ public class DungeonManager
                     selectedMonster.live = "dead";
 
                     // 여기에 퀘스트 조건 검사
-                    foreach (var q in player.quests)
+                    foreach (var q in player.quests.quests)
                     {
                         q.Check(selectedMonster);
                     }

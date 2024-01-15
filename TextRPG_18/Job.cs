@@ -9,7 +9,7 @@ namespace TextRPG_18
 {
     public class Job
     {
-
+        public JobType type;
         public string name;
         public int hp;
         public int mp;
@@ -32,17 +32,9 @@ namespace TextRPG_18
 
         //회피율 (공통) , 기본 공격력 업 (전사) 치명타 확률(기사), 치명타 피해량(마법사) 
 
-        public Job(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery)
+        public Job()
         {
-            this.name = name;
-            this.hp = hp;
-            this.mp = mp;
-            this.atk = atk;
-            this.def = def;
-            this.criticalChance = criticalChance;
-            this.criticalDamage = criticalDamage;
-            this.Avoidance = Avoidance;
-            this.MP_Recovery = MP_Recovery;
+
         }
 
         public void Pick(Player player) // 직업선택시 스택 적용
@@ -96,10 +88,18 @@ namespace TextRPG_18
         public string Skill_name1 = "광 : 마나 10을 사용해 모든 몬스터에게 참격을 가합니다";
         public string Skill_name2 = "굶주림 :자신의 전체 피에서 20% 깎고 기본 공격력을 30%증가시킵니다 (3턴동안)";
 
-        public Warrior(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery) : base(name, hp, mp, atk, def, criticalChance, criticalDamage, Avoidance, MP_Recovery)
+        public Warrior()
         {
-
-
+            this.type = JobType.Berserker;
+            this.name = "광전사";
+            this.hp = 100;
+            this.mp = 30;
+            this.atk = 12;
+            this.def = 10;
+            this.criticalChance = 15;
+            this.criticalDamage = 130;
+            this.Avoidance = 15;
+            this.MP_Recovery = 5;
         }
 
 
@@ -183,8 +183,18 @@ namespace TextRPG_18
     {
         public string Skill_name1 = "격 : 마나 10을 이용해 모든 몬스터에게 용의 힘을 발산합니다 ";
         public string Skill_name2 = "용기 : 마나 10을 이용해 자신의 방어력을 30% 증가시킵니다";
-        public Kinght(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery) : base(name, hp, mp, atk, def, criticalChance, criticalDamage, Avoidance, MP_Recovery)
+        public Kinght()
         {
+            this.type = JobType.DragonKnight;
+            this.name = "용기사";
+            this.hp = 130;
+            this.mp = 30;
+            this.atk = 15;
+            this.def = 7;
+            this.criticalChance = 25;
+            this.criticalDamage = 160;
+            this.Avoidance = 10;
+            this.MP_Recovery = 5;
         }
 
         public override void skill_1(List<Monster> mon, Player player)
@@ -263,8 +273,18 @@ namespace TextRPG_18
     {
         public string Skill_name1 = "화 : 마나 15를 이용해 적 모두에게 불 원소를 날립니다";
         public string Skill_name2 = "욕망 : 마나 15를 사용해 자신의 치명타 확률을 10%, 치명타 피해를 30%, 증가합니다";
-        public Mage(string name, int hp, int mp, int atk, int def, int criticalChance, int criticalDamage, int Avoidance, int MP_Recovery) : base(name, hp, mp, atk, def, criticalChance, criticalDamage, Avoidance, MP_Recovery)
+        public Mage()
         {
+            this.type = JobType.Mage;
+            this.name = "마법사";
+            this.hp = 90;
+            this.mp = 60;
+            this.atk = 7;
+            this.def = 5;
+            this.criticalChance = 40;
+            this.criticalDamage = 180;
+            this.Avoidance = 5;
+            this.MP_Recovery = 15;
         }
 
         public override void skill_1(List<Monster> mon, Player player)

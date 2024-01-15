@@ -21,6 +21,10 @@ public class InventoryJsonModel
             {
                 items.Add(new ArmorJsonModel((Armor)item));
             }
+            else if (item is Consumption)
+            {
+                items.Add(new ConsumptionJsonModel((Consumption)item));
+            }
         }
 	}
 
@@ -33,7 +37,6 @@ public class InventoryJsonModel
 
     public InventoryJsonModel Deserialize(string str)
     {
-       // 여기서 어떻게 weapon/armor로 나눠야하는가?
        return JsonConvert.DeserializeObject<InventoryJsonModel>(str);
     }
 }

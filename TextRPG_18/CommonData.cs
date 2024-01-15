@@ -1,5 +1,11 @@
 ﻿using System;
 
+public enum JobType
+{
+    Berserker,
+    DragonKnight,
+    Mage
+}
 enum MenuType
 {
     EXIT,
