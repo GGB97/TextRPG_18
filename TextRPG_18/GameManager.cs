@@ -108,9 +108,10 @@ namespace TextRPG
                         shop.print();
                         Console.Write($"소지 골드 : ");
                         printGold(player);
-                        Console.WriteLine("0. 나가기");
+                        Console.WriteLine();
                         Console.WriteLine("1. 아이템 구매");
                         Console.WriteLine("2. 아이템 판매");
+                        Console.WriteLine("0. 나가기");
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
                         if (str == "1")

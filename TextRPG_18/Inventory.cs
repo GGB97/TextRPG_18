@@ -32,7 +32,7 @@ public class Inventory
     {
         Console.WriteLine("[아이템 목록]");
         Console.WriteLine();
-        Console.WriteLine("-----------------");
+        Console.WriteLine("------------------------------------------");
         foreach (Item item in items)
         {
             if (item.getEquip())
@@ -41,7 +41,7 @@ public class Inventory
             item.print();
             Console.WriteLine();
         }
-        Console.WriteLine("-----------------");
+        Console.WriteLine("------------------------------------------");
         Console.WriteLine();
     }
 
@@ -51,7 +51,7 @@ public class Inventory
         {
             int num = 1;
             Console.WriteLine("[아이템 목록]");
-            Console.WriteLine("-----------------");
+            Console.WriteLine("------------------------------------------");
             foreach (Item item in items)
             {
                 Console.Write($"{num++}. ");
@@ -62,7 +62,7 @@ public class Inventory
                 item.print();
                 Console.WriteLine();
             }
-            Console.WriteLine("-----------------");
+            Console.WriteLine("------------------------------------------");
         }
         else
         {
@@ -74,7 +74,7 @@ public class Inventory
     public void printGold()
     {
             int num = 1;
-            Console.WriteLine("-----------------");
+            Console.WriteLine("------------------------------------------");
             foreach (Item item in items)
             {
                 Console.Write($"{num++}. ");
@@ -82,7 +82,7 @@ public class Inventory
                 Console.Write($" | {item.cost} G");
                 Console.WriteLine();
             }
-            Console.WriteLine("-----------------");
+            Console.WriteLine("------------------------------------------");
     }
 
 
