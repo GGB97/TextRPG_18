@@ -23,7 +23,7 @@ public class DungeonManager
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
                 //"2. 난이도 2 (방어력 10 이상 권장) \n" +
                 "3. 난이도 3 (방어력 20 이상 권장) \n"*/
-                );
+                
             Console.Write($"{player.name} : ");
             str = Console.ReadLine();
 

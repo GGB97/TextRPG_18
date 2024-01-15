@@ -26,8 +26,11 @@ namespace TextRPG
             player.CreateCharacter(); // !!!!-----캐릭터 생성---------!!!!!
 
             job.choice(player);
+
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine("원하는 행동을 입력해 주세요.");
                 Console.WriteLine("1. 상태 보기");
                 Console.WriteLine("2. 인벤토리");
                 Console.WriteLine("3. 상점");
@@ -41,7 +44,7 @@ namespace TextRPG
                 string str = Console.ReadLine();
                 if (str == "1")
                 {
-                    Console.WriteLine();
+                    Console.Clear();
                     player.printStatus();
 
                     while (true)
@@ -54,6 +57,7 @@ namespace TextRPG
 
                         if (str == "1")
                         {
+                            Console.Clear();
                             player.Levelup();
                         }
                         else if (str == "0")
@@ -69,10 +73,11 @@ namespace TextRPG
                 else if (str == "2")
                 {
                     // 인벤토리
-
+                    
                     Console.WriteLine();
                     while (true)
                     {
+                        Console.Clear();
                         player.inventory.print();
                         Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 장비 관리 / 아이템 사용");
@@ -83,6 +88,7 @@ namespace TextRPG
 
                         if (str == "1")
                         {
+                            Console.Clear();
                             //아이템 사용 및 장비 관리
                             player.Use_Item_Manager();
                         }

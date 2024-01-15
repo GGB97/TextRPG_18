@@ -85,6 +85,7 @@ public class Player
         string str; int num;
         while (true)
         {
+            Console.Clear();
             inventory.printNumbering();
             Console.WriteLine("[나가려면 0을 입력하세요.]");
             Console.WriteLine("장비 아이템을 선택하면 장착/해제, 소비 아이템을 선택하면 사용합니다.");
