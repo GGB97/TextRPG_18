@@ -27,7 +27,7 @@ public class Player
     public Inventory inventory;
     public Weapon eWeapon;
     public Armor eArmor;
-    public List<Quest> quests;
+    public QuestList quests;
 
     
     public int type = 1;  //클래스 타입
@@ -58,7 +58,7 @@ public class Player
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
 
-        quests = new List<Quest>();
+        quests = new QuestList();
     }
 
     public Player(PlayerJsonModel playerData)
@@ -67,16 +67,37 @@ public class Player
         exp = playerData.exp;
         maxExp = playerData.maxExp;
         name = playerData.name;
-        //job = playerData.job;
+        
         hp = playerData.hp;
         maxHp = playerData.maxHp;
         gold = playerData.gold;
         atk = playerData.atk;
         def = playerData.def;
 
+        switch (playerData.job)
+        {
+            case JobType.Berserker:
+                SelectedClass = new Warrior();
+                break;
+            case JobType.DragonKnight:
+                SelectedClass = new Kinght();
+                break;
+            case JobType.Mage:
+                SelectedClass = new Mage();
+                break;
+
+        }
+
+
+        criticalChance = playerData.criticalChance;
+        criticalDamage = playerData.criticalDamage;
+        Avoidance = playerData.Avoidance;
+        MP_Recovery = playerData.MP_Recovery;
+
         inventory = new(playerData.inventory);
         eWeapon = new(playerData.eWeapon);
         eArmor = new(playerData.eArmor);
+        quests = new(playerData.quests);
     }
 
     public void Use_Item_Manager()
@@ -261,14 +282,14 @@ public class Player
     {
         Console.WriteLine("[진행중인 퀘스트 목록]");
         Console.WriteLine("-------------");
-        if (quests.Count == 0)
+        if (quests.quests.Count == 0)
         {
             Console.WriteLine("진행중인 퀘스트가 없습니다.");
         }
         else
         {
             int n = 1;
-            foreach (var q in quests)
+            foreach (var q in quests.quests)
             {
                 Console.Write($"{n++}. ");
                 q.Print();

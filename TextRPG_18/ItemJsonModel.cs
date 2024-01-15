@@ -8,6 +8,4 @@ public class ItemJsonModel
     public string description { get; set; }
     public int cost { get; set; }
     public float stat { get; set; }
-    public int efficacy { get; set; }
-
 }

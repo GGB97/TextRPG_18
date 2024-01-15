@@ -136,11 +136,11 @@ public class QuestManager
                     input--;    // 퀘스트 선택시
                     if (ca)
                     {
-                        player.quests[input].Complete(player);
+                        player.quests.quests[input].Complete(player);
                     }
                     else
                     {
-                        player.quests[input].Abandon(player);
+                        player.quests.quests[input].Abandon(player);
                     }
                     
                     break;

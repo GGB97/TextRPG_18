@@ -21,7 +21,7 @@ public class Inventory
             {
                 items.Add(new Armor(item));
             }
-            else if (item.type != (int)ItemType.Consumables)
+            else if (item.type == (int)ItemType.Consumables)
             {
                 items.Add(new Consumption(item));
             }
