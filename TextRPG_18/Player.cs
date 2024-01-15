@@ -39,7 +39,6 @@ public class Player
         atk = 5;
         def = 5;
         hp = 10;
-        maxHp = 150;
         atk = 0;
         def = 0;
         mp = 0;
@@ -185,7 +184,6 @@ public class Player
             $"치명타 확률 : { criticalChance } \n" +
             $"치명타 피해 : { criticalDamage } \n" +
             "\n"+
-
             $"소지금 : {gold} G \n"
             );
 
@@ -209,7 +207,7 @@ public class Player
         Console.WriteLine($"\n[내 정보]");
         Console.WriteLine($"Lv.{level}  {name} ({SelectedClass.name}) ");
         Console.WriteLine($"HP {hp} / {maxHp}");
-        Console.WriteLine($"MP {mp}");
+        Console.WriteLine($"MP {mp} / {maxMp}");
         Console.WriteLine($"ATK {atk}");
         Console.WriteLine($"DEF {def}");
         Console.WriteLine($"CRP {criticalChance}");
@@ -230,7 +228,7 @@ public class Player
             exp -= maxExp;
             level++;
             maxExp = level * 100;
-            maxHp += 10;
+            maxHp += 5;
             atk += 2f;
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
@@ -351,17 +349,28 @@ public class Player
 
     public void Recovery()
     {
+        int save_mp = mp;
+        mp += MP_Recovery;
+        if (mp >= maxMp)
+        {
+            mp = maxMp;
+        }
+        Console.Write($"{name} (이)의 마나가 ");
         Console.WriteLine();
         Console.Write($"{name} (이)의 마나가 회복되었습니다. : ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{mp}");
+        Console.Write($"{mp - save_mp}");
+        Console.ResetColor();
+        Console.Write($" 회복되었습니다. : ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write($"{save_mp}");
         Console.ResetColor();
         Console.Write(" -> ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine(mp + MP_Recovery);
+        Console.WriteLine(mp);
         Console.ResetColor();
 
-        mp += MP_Recovery;
+
     }
 
 }
