@@ -88,7 +88,7 @@ namespace TextRPG_18
         int turn_reset = 0;
 
         public string Skill_name1 = "피의 광란 : 마나 15와 최대 체력의 45%를 소비해 광란의 참격을 가한다.\n   [무작위 적에게 ATK*2의 피해. 대상을 처치했을 경우 체력을 10% 회복하고 1회 더 반복. 체력이 10% 이하라면 시전 불가.]"; 
-        public string Skill_name2 = "갈망 : 최대 체력의 25%를 소비해 기본 공격력을 50% 증가 시킨다. (3턴 지속)\n   [이 스킬은 체력이 부족해도 시전할 수 있습니다.]";
+        public string Skill_name2 = "갈망 : 최대 체력의 25%를 소비해 기본 공격력을 50% 증가 시킨다. (3턴 지속)\n   [이 스킬은 체력이 부족해도 시전할 수 있다.]";
 
         public Warrior()
         {
@@ -365,15 +365,15 @@ namespace TextRPG_18
             Console.WriteLine($"=====================================================");
             foreach (var item in mon)
             {
-                Console.WriteLine($"\n{player.name} (이)의 힘이 {item.name}을(를) 공격!");
-                Thread.Sleep(350);
+                Console.WriteLine($"\n{player.name}은(는) 드래곤의 힘을 실은 창으로 {item.name}을(를) 공격!");
+                Thread.Sleep(250);
                 int minushp = player.PlayerDamage(); //치명타 계산
                 Console.Write($"{item.name}은(는) ");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write($"{minushp * 70 / 100}");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write($" 의 데미지를 입었다!\n");
-                Thread.Sleep(400);
+                Thread.Sleep(250);
                 item.hp -= minushp * 70 / 100;
 
                 if (item.hp <= 0)
@@ -399,7 +399,7 @@ namespace TextRPG_18
                         {
                             int minushp = player.PlayerDamage();
                             Console.WriteLine($"\n그리고 추가 공격!");
-                            Console.WriteLine($"{player.name} 이(가) 드래곤의 기백를 담은 창으로 {mon[random_target].name}을(를) 꿰뚫는다!");
+                            Console.WriteLine($"{player.name} 이(가) 드래곤의 진노를 담아 {mon[random_target].name}을(를) 꿰뚫는다!");
                             Thread.Sleep(600);
                             Console.Write($"{mon[random_target].name}은(는) ");
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -516,7 +516,7 @@ namespace TextRPG_18
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"→");
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.Write($" {playermax.dfs} \n");
+                    Console.Write($" {playermax.dfs} \n\n");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.ResetColor();
                     Thread.Sleep(300);
@@ -559,6 +559,7 @@ namespace TextRPG_18
                 Console.WriteLine("\n마나가 부족합니다.");
                 Console.WriteLine("시전 실패.");
                 Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+                player.Recovery();
                 return;
             }
             player.mp -= (500 - 250 * magic_cast);
@@ -569,12 +570,26 @@ namespace TextRPG_18
             Console.Write($" 을 소비했다!\n");
             Console.WriteLine(player.name + " 은(는) 거대한 운석의 폭풍을 소환했다!\n"); //
             Console.ResetColor();
+            Random random = new Random();
+
             for (int j = 0; j < 13; j++)
             {
+                int random_star = random.Next(0, 3);
+                if (random_star == 0)
+                {
+                    Console.Write($" ");
+                }
+                else if (random_star == 1)
+                {
+                    Console.Write($"");
+                }
+                else
+                {
+                    Console.Write($"  ");
+                }
                 for (int i = 0; i < 33; i++)
                 {
-                    Random random = new Random();
-                    int random_star = random.Next(0, 4);
+                    random_star = random.Next(0, 4);
                     if (random_star == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -638,6 +653,7 @@ namespace TextRPG_18
                 }
             }
             Console.WriteLine($"=====================================================");
+            player.Recovery();
         }
 
         public override void Skill_2(Player player)
@@ -647,6 +663,7 @@ namespace TextRPG_18
                 Console.WriteLine("\n마나가 부족합니다.");
                 Console.WriteLine("시전 실패.");
                 Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+                player.Recovery();
                 return;
             }
  
@@ -660,14 +677,14 @@ namespace TextRPG_18
             Console.Write($" {player.name} (은)는 마법의 주문을 영창했다! 치명타 확률이");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($" 50%, ");
-
+            magic_cast += 1;
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"치명타 피해가");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write($" {magic_cast*250}%");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($" 증가한다!");
-            if (magic_cast != 0)
+            if (turnfalse)
             {
                 Console.Write($"(지속시간 + 3턴)\n");
             }
@@ -675,7 +692,6 @@ namespace TextRPG_18
             {
                 Console.Write($"(3턴 지속)\n");
             }
-            magic_cast += 1;
             Console.ForegroundColor = ConsoleColor.White;
             Thread.Sleep(300);
             Console.Write($"현재 주문 영창 중첩 : ");
@@ -691,7 +707,8 @@ namespace TextRPG_18
             Console.Write($" {magic_cast*3 -turn} ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"턴\n");
-            if (player.mp > (500 - (250 * magic_cast))) 
+            player.Recovery();
+            if (player.mp >= (500 - (250 * magic_cast))) 
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write($"[대마법 시전 가능]");
@@ -704,6 +721,7 @@ namespace TextRPG_18
             //치명타 증가
             player.criticalChance += 50;
             player.criticalDamage *= 2;
+
         }
         public override string GetName1()
         {
@@ -720,7 +738,7 @@ namespace TextRPG_18
             {
                 if (turn >= magic_cast*3)
                 {
-                    Console.WriteLine($"주문 영창의 효과가 사라졌다.. 치명타 확률 :");
+                    Console.Write($"주문 영창의 효과가 사라졌다.. 치명타 확률 :");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write($" {player.criticalChance} ");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -736,7 +754,7 @@ namespace TextRPG_18
                     Console.Write($"→");
                     player.criticalDamage = playermax.CRD;
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write($" {player.criticalDamage} \n");
+                    Console.Write($" {player.criticalDamage} \n\n");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.ResetColor();
                     Thread.Sleep(300);

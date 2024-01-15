@@ -110,18 +110,25 @@ public class DungeonManager
                 }
                 else if (str == "2")
                 {
-                    MonsterList(monstersInBattle);
                     player.SelectedClass.skill_1(monstersInBattle, player);
-                    MonsterList(monstersInBattle);
                     MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
-                    EnemyTurn(monstersInBattle, player, ref turn);
+                    bool allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
+                    if (allMonstersDead == false)
+                    {
+                        EnemyTurn(monstersInBattle, player, ref turn);
+                        MonsterList(monstersInBattle);
+                    }
                 }
                 else if (str == "3")
                 {
-                    MonsterList(monstersInBattle);
                     player.SelectedClass.Skill_2(player);
                     MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
-                    EnemyTurn(monstersInBattle, player, ref turn);
+                    bool allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
+                    if (allMonstersDead == false)
+                    {
+                        EnemyTurn(monstersInBattle, player, ref turn);
+                        MonsterList(monstersInBattle);
+                    }
                 }
                 else
                 {
@@ -263,6 +270,7 @@ public class DungeonManager
         EnemyTurn(monstersInBattle, player, ref turn); //몬스터 턴
 
         player.Recovery(); //마나 회복
+        Thread.Sleep(500);
 
         if (turn == "player_choice")
         {
@@ -294,7 +302,7 @@ public class DungeonManager
 
         if (turn == "battle_defeat")
         {
-            player.SelectedClass.turn = 3;
+            player.SelectedClass.turn = 999;
             player.SelectedClass.Initialization(player);  //스텟 초기화
             Console.WriteLine("패배.\n");
             Console.WriteLine($"{player.name} 레벨 {player.level}");
@@ -307,8 +315,8 @@ public class DungeonManager
 
                 if (userInput == "0")
                 {
-                    Console.Clear();
                     player.hp = 1;
+                    Console.Clear();
                     Console.WriteLine($"\n=====================================================\n");
                     break;
                 }
@@ -320,7 +328,7 @@ public class DungeonManager
         }
         else if (turn == "battle_win")
         {
-            player.SelectedClass.turn = 3;
+            player.SelectedClass.turn = 999;
             player.SelectedClass.Initialization(player);  //스텟 초기화
             Console.WriteLine("승리!\n");
 
@@ -363,7 +371,7 @@ public class DungeonManager
                 }
                 else if (potion_luck <= 5) // 50%확률로 하급포션
                 {
-                    player.inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
+                    player.inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 30, 500));
                     Console.Write($"전리품으로 ");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write($"하급 회복 포션");
@@ -372,7 +380,7 @@ public class DungeonManager
                 }
                 else if (potion_luck <= 8) // 30%확률로 중급 회복포션
                 {
-                    player.inventory.items.Add(new Consumption("중급 회복 포션", "체력을 적당히 회복할 수 있는 포션", 75, 500));
+                    player.inventory.items.Add(new Consumption("중급 회복 포션", "체력을 적당히 회복할 수 있는 포션", 75, 700));
                     Console.Write($"전리품으로 ");
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write($"중급 회복 포션");
@@ -381,7 +389,7 @@ public class DungeonManager
                 }
                 else if (potion_luck <= 9) // 10%확률로 고급 회복포션
                 {
-                    player.inventory.items.Add(new Consumption("고급 회복 포션", "체력을 대폭 회복할 수 있는 포션", 120, 1500));
+                    player.inventory.items.Add(new Consumption("고급 회복 포션", "체력을 대폭 회복할 수 있는 포션", 120, 1000));
                     Console.Write($"전리품으로 ");
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write($"고급 회복 포션");
@@ -446,7 +454,7 @@ public class DungeonManager
                 continue;
             }
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp} ATK: {monstersInBattle[i].atk}");
+            Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp} ATK: {monstersInBattle[i].atk}");
         }
 
     }
