@@ -37,12 +37,14 @@ public class Weapon : Item
         }
 
         player.atk += atk;
+        playermax.atk += (int)atk;
     }
     public override void unEquip(Player player)
     {
         base.unEquip(player);
         player.eWeapon = null;
         player.atk -= atk;
+        playermax.atk -= (int)atk;
     }
 
     public override void print()

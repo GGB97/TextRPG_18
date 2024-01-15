@@ -12,9 +12,11 @@ public class Monster
     public int gold;
     public int exp;
     public bool drop_potion;
+    public int Avoidance;
     public string live = "live";
 
-    public Monster(string name, int type, int level, int hp, int atk, int gold, int exp, bool drop_potion)
+
+	public Monster(string name, int type, int level, int hp, int atk, int gold, int exp, bool drop_potion, int Avoidance)
 	{
 		this.name = name;
 		this.type = type;
@@ -25,6 +27,7 @@ public class Monster
         this.exp = exp;
         this.drop_potion = drop_potion;
         this.maxHp = hp;
+        this.Avoidance = Avoidance;
 	}
 
 
@@ -37,6 +40,7 @@ public class Monster
             {
                 Console.WriteLine($"[{name}의 턴!]");
                 Thread.Sleep(500);
+
 
                 Random random = new Random();
                 int Skill_Chance = random.Next(0, 10); //각 몬스터는 랜덤 확률로 고유 스킬을 사용한다.
@@ -295,22 +299,29 @@ public class Monster
 
                 if (Skill_Use_Check == false)
                 {
-                    player.hp -= damage;
-                    if (player.hp <= 0)
-                    {
-                        player.hp = 0;
-                    }
-
                     Console.WriteLine($"{name}이(가) {player.name}을(를) 공격!");
                     Thread.Sleep(500);
-                    Console.Write($"{player.name}은(는) {name}에게 ");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write($"-{damage}");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($" 의 데미지를 입었다! / 남은 HP: ");
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{player.hp}");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    if(player.Avoidance_percentage(player.Avoidance))  //회피 성공시
+                    {
+                        Console.WriteLine($"{player.name}은 공격을 회피했다!\n");
+                    }
+                    else
+                    {
+                        int damage = (atk - player.def);
+                        player.hp -= damage;
+                        if (player.hp <= 0)
+                        {
+                            player.hp = 0;
+                        }
+                        Console.Write($"{player.name}은(는) {name}에게 ");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"-{damage}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($" 의 데미지를 입었다! / 남은 HP: ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"{player.hp}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
 
                     Thread.Sleep(500);
 
