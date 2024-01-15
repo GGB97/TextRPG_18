@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.Json;
+using TextRPG;
 
 public class DataManager
 {
@@ -45,28 +46,39 @@ public class DataManager
     public string LoadAll()
     {
         string[] matchedFiles = Directory.GetFiles(saveDirectory, "SaveData_*");
-
-        string filName; int n = 1;
-        foreach (string file in matchedFiles)
+        string filName; int n;
+        while (true)
         {
-            Console.Write($"{n++}. ");
-            filName = Path.GetFileName(file); // "SaveData_**.json" 을 잘라서 **부분만 나오게 수정할 예정
-            Console.WriteLine($"{filName}");
+            Console.Clear();
+            n = 1;
+            foreach (string file in matchedFiles)
+            {
+                Console.Write($"{n++}. ");
+                filName = Path.GetFileName(file); // "SaveData_**.json" 을 잘라서 **부분만 나오게 수정할 예정
+                Console.WriteLine($"{filName}");
+            }
+            Console.WriteLine("0. 캐릭터 생성");
+
+            Console.WriteLine("불러올 파일을 선택하세요.");
+            Console.WriteLine();
+            Console.Write("YOU : ");
+            string str = Console.ReadLine();
+            int input;
+            int.TryParse(str, out input);
+
+            if (0 < input && input < matchedFiles.Length + 1)
+            {
+                return Path.GetFileName(matchedFiles[--input]);
+            }
+            else if (input == 0)
+            {
+                return null;
+            }
+            else
+            {
+                GameManager.printError("str");
+            }
         }
-        Console.WriteLine("0. 캐릭터 생성");
-
-        Console.WriteLine("불러올 파일을 선택하세요.");
-        Console.WriteLine();
-        string str = Console.ReadLine();
-        int input;
-        int.TryParse(str, out input);
-
-        if(input == 0)
-        {
-            return null;
-        }
-
-        return Path.GetFileName(matchedFiles[--input]);
     }
 
     public Player Load(string saveData)
