@@ -51,10 +51,12 @@ public class Shop
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write($"소지 골드 :");
                         GameManager.printGold(player);
+                        Console.WriteLine();
                     }
                     else
                     {
                         Console.WriteLine("소지금이 부족합니다!!");
+                        Console.WriteLine();
                     }
                 }
                 else if (num == -1)
@@ -65,6 +67,7 @@ public class Shop
             else
             {
                 Console.WriteLine("잘못된 입력입니다.");
+                Console.WriteLine();
             }
         }
     }
@@ -98,6 +101,7 @@ public class Shop
                         Console.Write($"소지 골드 :");
                         GameManager.printGold(player);
                         player.inventory.items.RemoveAt(num);
+                        Console.WriteLine() ;
                     }
                     else if (num == -1)
                     {
@@ -107,6 +111,7 @@ public class Shop
                 else
                 {
                     Console.WriteLine($"'{str}'은(는) 잘못된 입력입니다.");
+                    Console.WriteLine();
                 }
             
         }

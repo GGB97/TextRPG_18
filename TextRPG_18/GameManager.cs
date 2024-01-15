@@ -108,6 +108,7 @@ namespace TextRPG
                     Console.WriteLine();
                     while (true)
                     {
+                        Console.Clear();
                         shop.print();
                         Console.Write($"소지 골드 : ");
                         printGold(player);
@@ -118,11 +119,13 @@ namespace TextRPG
                         str = Console.ReadLine();
                         if (str == "1")
                         {
+                            Console.Clear();
                             // 아이템 구매
                             shop.buy(player);
                         }
                         else if (str == "2")
                         {
+                            Console.Clear();
                             shop.sell(player);
                         }
                         else if (str == "0")
