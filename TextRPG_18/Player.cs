@@ -13,7 +13,6 @@ public class Player
     public string name { get; set; }
 
     public int hp { get; set; }
-    public int maxHp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
@@ -41,7 +40,6 @@ public class Player
         atk = 5;
         def = 5;
         hp = 10;
-        maxHp = 150;
         atk = 0;
         def = 0;
         mp = 0;
@@ -70,7 +68,6 @@ public class Player
         name = playerData.name;
 
         hp = playerData.hp;
-        maxHp = playerData.maxHp;
         gold = playerData.gold;
         atk = playerData.atk;
         def = playerData.def;
@@ -127,7 +124,7 @@ public class Player
 
                 if (checkType == (int)ItemType.Consumables)
                 {
-                    if (hp == maxHp)
+                    if (hp == playermax.maxHp)
                     {
                         Console.WriteLine($"이미 체력이 최대치입니다.");
                         Console.WriteLine($"=====================================================\n");
@@ -173,8 +170,8 @@ public class Player
             $"{name}   {SelectedClass.name} \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
-            $"생명력 : {hp} / {maxHp} \n" +
-            $"마나 : {mp} \n" +
+            $"생명력 : {hp} / {playermax.maxHp} \n" +
+            $"마나 : {mp} / {playermax.maxMp}\n" +
             $"치명타 확률 : {criticalChance} \n" +
             $"치명타 피해 : {criticalDamage} \n" +
             "\n" +
@@ -200,8 +197,8 @@ public class Player
     {
         Console.WriteLine($"\n[내 정보]");
         Console.WriteLine($"Lv.{level}  {name} ({SelectedClass.name}) ");
-        Console.WriteLine($"HP {hp} / {maxHp}");
-        Console.WriteLine($"MP {mp}");
+        Console.WriteLine($"HP {hp} / {playermax.maxHp}");
+        Console.WriteLine($"MP {mp} / {playermax.maxMp}");
         Console.WriteLine($"ATK {atk}");
         Console.WriteLine($"DEF {def}");
         Console.WriteLine($"CRP {criticalChance}");
@@ -222,7 +219,7 @@ public class Player
             exp -= maxExp;
             level++;
             maxExp = level * 100;
-            playermax.maxHp += 10;
+            playermax.maxHp += 5;
             atk += 2f;
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
@@ -337,16 +334,26 @@ public class Player
 
     public void Recovery()
     {
-        Console.Write($"{name} (이)의 마나가 회복되었습니다. : ");
+        int save_mp = mp;
+        mp += MP_Recovery;
+        if (mp >= playermax.maxMp)
+        {
+            mp = playermax.maxMp;
+        }
+        Console.Write($"{name} (이)의 마나가 ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{mp}");
+        Console.Write($"{mp - save_mp}");
+        Console.ResetColor();
+        Console.Write($" 회복되었습니다. : ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write($"{save_mp}");
         Console.ResetColor();
         Console.Write(" -> ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine(mp + MP_Recovery);
+        Console.WriteLine(mp);
         Console.ResetColor();
 
-        mp += MP_Recovery;
+
     }
 
 }

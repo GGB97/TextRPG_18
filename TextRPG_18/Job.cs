@@ -85,7 +85,7 @@ namespace TextRPG_18
 
     public class Warrior : Job
     {
-        public string Skill_name1 = "피의 광란 : 마나 25와 최대 체력의 45%를 소비해 강력한 참격을 가한다. (무작위 적에게 3번의 ATK*1.5배 피해)"; //모든 적에게 ATK 1.5배 데미지
+        public string Skill_name1 = "피의 광란 : 마나 25와 최대 체력의 45%를 소비해 광란의 참격을 가한다. (무작위 적에게 ATK*2의 피해. 대상을 처치했을 경우 1회 더 반복.)"; //모든 적에게 ATK 1.5배 데미지
         public string Skill_name2 = "갈망 : 최대 체력의 30%를 소비해 기본 공격력을 50% 증가 시킨다. (3턴 지속)";
 
         public Warrior()
@@ -97,7 +97,7 @@ namespace TextRPG_18
             this.atk = 30;
             this.def = 15;
             this.criticalChance = 25;
-            this.criticalDamage = 175;
+            this.criticalDamage = 150;
             this.Avoidance = 25;
             this.MP_Recovery = 5;
         }
@@ -106,7 +106,7 @@ namespace TextRPG_18
         public override void skill_1(List<Monster> mon, Player player)
         {
             int save_hp = player.hp;
-            player.hp -= playermax.maxHp * 45/100;
+            player.hp -= playermax.maxHp * 45 / 100;
             if (player.hp <= 0)
             {
                 player.hp = 1;
@@ -128,33 +128,76 @@ namespace TextRPG_18
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write($" {player.hp} \n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(player.name + " (이)가 거대한 대검을 휘둘러 참격을 발한다!");
+            Console.WriteLine(player.name + " (이)가 대검을 휘둘러 광란의 참격을 발한다!");
             Console.ResetColor();
             Thread.Sleep(500);
             Console.WriteLine($"=====================================================");
-            foreach (var item in mon)
+            int n = 1;
+            for (int i = 0; i < n; i++)
             {
                 Random random = new Random();
                 int random_target = random.Next(0, mon.Count);
-
-                Console.WriteLine($"\n{player.name} (이)의 참격이 {item.name}을(를) 공격!");
-                Thread.Sleep(700);
-                int minushp = player.PlayerDamage(); //치명타 계산
-                Console.Write($"{mon[random_target].name}은(는) ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write($"{minushp*150/100}");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write($" 의 데미지를 입었다!\n");
-                Thread.Sleep(400);
-                mon[random_target].hp -= minushp*150/100;
-
-                if (item.hp <= 0)
+                if (mon[random_target].live == "live")
                 {
-                    item.hp = 0;
-                    item.live = "dead";
+                    if (n>=2)
+                    {
+                        Console.Write($"적을 처치하는데 성공! ");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"피의 광란");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($" 을(를) 재시전 한다!");
+                    }
+                    Console.WriteLine($"\n{player.name} (이)의 참격이 {mon[random_target].name}을(를) 공격!");
+                    Thread.Sleep(700);
+                    int minushp = player.PlayerDamage(); //치명타 계산
+                    Console.Write($"{mon[random_target].name}은(는) ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{minushp * 150 / 100}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($" 의 데미지를 입었다!\n");
+                    Thread.Sleep(400);
+                    mon[random_target].hp -= minushp * 150 / 100;
+
+                    if (mon[random_target].hp <= 0)
+                    {
+                        Console.Write($"{mon[random_target].name}은(는) 쓰러졌다!");
+                        mon[random_target].hp = 0;
+                        mon[random_target].live = "dead";
+                        save_hp = player.hp;
+                        player.hp += player.hp * 10 / 100;
+
+                        if (player.hp >= playermax.maxHp)
+                        {
+                            player.hp = playermax.maxHp;
+                        }
+                        Console.Write($"\n{player.name}은(는) 최대 체력의 ");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("10%");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($" 를 회복했다! :");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($" {save_hp} ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($"→");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($" {player.hp} \n");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Thread.Sleep(300);
+                        n += 1;
+                    }
+                    else
+                    {
+                        
+                    }
                 }
-
-
+                else
+                {
+                    n += 1;
+                    if (n >= 7)
+                    {
+                        break;
+                    }
+                }
             }
             Console.WriteLine($"=====================================================");
         }
@@ -240,13 +283,13 @@ namespace TextRPG_18
             else return false;
         }
 
-        
+
 
     }
     public class Kinght : Job
     {
 
-        
+
         public string Skill_name1 = "드래곤 스트라이크 : 마나 30을 소비해 드래곤의 힘으로 속공한다. (모든 적에게 ATK*0.7 피해)";
         public string Skill_name2 = "불굴 : 마나 25를 소비해 체력을 즉시 10% 회복하고, 자신의 방어력을 50% 증가시킨다. (3턴 지속)";
         public Kinght()
@@ -434,13 +477,13 @@ namespace TextRPG_18
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"\n마나 15가 소비되었습니다. ({player.mp} -> {player.mp - 15})");
             Console.WriteLine($" {player.name} (이)의 의지가 강해집니다. 치명타가 강해집니다 : " +
-                $"({player.criticalChance},{player.criticalDamage}) -> ({player.criticalChance +10},{player.criticalDamage+30})");
+                $"({player.criticalChance},{player.criticalDamage}) -> ({player.criticalChance + 10},{player.criticalDamage + 30})");
             Console.ResetColor();
 
             turnfalse = true;
             player.mp -= 15;
             //치명타 증가
-            player.criticalChance += 10; 
+            player.criticalChance += 10;
             player.criticalDamage += 30;
         }
         public override string GetName1()
