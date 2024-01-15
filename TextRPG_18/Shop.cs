@@ -33,6 +33,7 @@ public class Shop
             Console.Write($"소지 골드 :");
             GameManager.printGold(player);
             print();
+            Console.WriteLine();
             Console.Write($"{player.name} : ");
             str = Console.ReadLine();
 
@@ -122,8 +123,6 @@ public class Shop
     {
         int num = 1;
 
-        Console.WriteLine("[상품 목록]");
-        Console.WriteLine();
         Console.WriteLine("------------------------------------------");
         foreach (Item item in items)
         {
