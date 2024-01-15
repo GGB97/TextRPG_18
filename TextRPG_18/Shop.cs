@@ -115,6 +115,9 @@ public class Shop
     public void print()
     {
         int num = 1;
+
+        Console.WriteLine("[상품 목록]");
+        Console.WriteLine();
         Console.WriteLine("-----------------");
         foreach (Item item in items)
         {

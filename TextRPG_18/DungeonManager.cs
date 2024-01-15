@@ -14,14 +14,17 @@ public class DungeonManager
 
         while (true)
         {
-            Console.WriteLine("[던전 입장] --- (0. 나가기)");
-            Console.WriteLine($"현재 체력: {player.hp}\n");
+            Console.WriteLine("[던전 입장] \n");
+            Console.WriteLine($"현재 체력: {player.hp}");
             Console.WriteLine(
-                "1. 던전에 입장한다."
+                "1. 던전 입장 \n" +
+                "2. 나가기");
+            Console.WriteLine();
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
                 //"2. 난이도 2 (방어력 10 이상 권장) \n" +
                 "3. 난이도 3 (방어력 20 이상 권장) \n"*/
-                );
+
+                
             Console.Write($"{player.name} : ");
             str = Console.ReadLine();
 
@@ -70,11 +73,9 @@ public class DungeonManager
             if (turn == "player_choice")
             {
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
-
                 player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
-                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"[{player.name}의 턴!]");
-                Console.ResetColor();
+                Console.WriteLine();
                 Console.WriteLine("0. 도주");
                 Console.WriteLine("1. 일반공격");
                 Console.WriteLine("2. " + player.SelectedClass.GetName1());
@@ -82,7 +83,7 @@ public class DungeonManager
                 Console.WriteLine("4. 아이템 사용");
                 Console.WriteLine();
 
-                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write($"{player.name} :");
                 string userInput = Console.ReadLine();
 
                 if (userInput == "1")
@@ -93,8 +94,10 @@ public class DungeonManager
                 {
                     player.SelectedClass.turn = 3;
                     player.SelectedClass.Initialization(player);  //스텟 초기화
+                    Thread.Sleep(250);
                     Console.WriteLine("\n성공적으로 도망쳤다!");
-                    Console.WriteLine($"=====================================================\n");
+                    Thread.Sleep(500);
+                    Console.Clear();
                     break;
                 }
                 else if (userInput == "4")
@@ -160,6 +163,7 @@ public class DungeonManager
     {
 
         Console.WriteLine("\n[전투 중인 몬스터 목록]");
+        
 
         for (int i = 0; i < monstersInBattle.Count; i++)
         {
@@ -173,9 +177,11 @@ public class DungeonManager
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp}  ATK: {monstersInBattle[i].atk}");
         }
-
-        Console.WriteLine("\n공격할 몬스터 선택 (숫자 입력) --- (0. 대기)");
-        Console.Write("선택을 입력하세요:");
+        Console.WriteLine("0. 대기하기");
+        Console.WriteLine();
+        Console.WriteLine("\n공격할 몬스터 선택해 주세요)");
+        Console.WriteLine();
+        Console.Write($"{player.name} :");
         int selectedMonsterIndex;
 
         while (true)
@@ -184,7 +190,7 @@ public class DungeonManager
             {
                 if (selectedMonsterIndex == 0)
                 {
-                    Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+                    Console.WriteLine($"{player.name}은(는) 대기했습니다!\n");
                     break;
                 }
 
@@ -197,7 +203,7 @@ public class DungeonManager
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                Console.WriteLine("잘못된 입력입니다.");
             }
         }
 

@@ -106,6 +106,7 @@ public class Player
         string str; int num;
         while (true)
         {
+            Console.Clear();
             inventory.printNumbering();
             Console.WriteLine("[나가려면 0을 입력하세요.]");
             Console.WriteLine("장비 아이템을 선택하면 장착/해제, 소비 아이템을 선택하면 사용합니다.");
@@ -314,7 +315,7 @@ public class Player
 
         if(random.Next(0,100) < criticalChance) //크리티컬 확률계산
         {
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("치명타 발동!!");
             Console.ResetColor();
 
@@ -344,8 +345,13 @@ public class Player
 
     public void Recovery()
     {
+        Console.Write($"{name} (이)의 마나가 회복되었습니다. : ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine($"{name} (이)의 마나가 회복되었습니다. : {mp} -> {mp + MP_Recovery}");
+        Console.Write($"{ mp}");
+        Console.ResetColor();
+        Console.Write(" -> ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.WriteLine(mp + MP_Recovery);
         Console.ResetColor();
 
         mp += MP_Recovery;
