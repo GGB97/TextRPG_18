@@ -39,8 +39,8 @@ namespace TextRPG_18
 
         public void Pick(Player player) // 직업선택시 스택 적용
         {
-            playermax.maxHp = hp;
-            playermax.maxMp = mp;
+            player.maxHp = hp;
+            player.maxMp = mp;
             playermax.atk = atk;
             playermax.dfs = def;
             playermax.CRD = criticalDamage;
@@ -92,6 +92,7 @@ namespace TextRPG_18
         {
             this.type = JobType.Berserker;
             this.name = "광전사";
+
             this.hp = 150;
             this.mp = 50;
             this.atk = 30;
@@ -106,7 +107,7 @@ namespace TextRPG_18
         public override void skill_1(List<Monster> mon, Player player)
         {
             int save_hp = player.hp;
-            player.hp -= playermax.maxHp * 45 / 100;
+            player.hp -= player.maxHp * 45/100;
             if (player.hp <= 0)
             {
                 player.hp = 1;
@@ -166,9 +167,9 @@ namespace TextRPG_18
                         save_hp = player.hp;
                         player.hp += player.hp * 10 / 100;
 
-                        if (player.hp >= playermax.maxHp)
+                        if (player.hp >= player.maxHp)
                         {
-                            player.hp = playermax.maxHp;
+                            player.hp = player.maxHp;
                         }
                         Console.Write($"\n{player.name}은(는) 최대 체력의 ");
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -207,7 +208,7 @@ namespace TextRPG_18
             //int a = (int)(playermax.maxHp * 0.2);
             int b = (int)(player.atk * 0.5);
             int save_hp = player.hp;
-            player.hp -= playermax.maxHp * 30 / 100;
+            player.hp -= player.maxHp * 30 / 100;
             if (player.hp <= 0)
             {
                 player.hp = 1;
@@ -349,9 +350,9 @@ namespace TextRPG_18
             int b = (int)(player.def * 0.5);
             int save_hp = player.hp;
             player.hp += player.hp * 10 / 100;
-            if (player.hp >= playermax.maxHp)
+            if (player.hp >= player.maxHp)
             {
-                player.hp = playermax.maxHp;
+                player.hp = player.maxHp;
             }
 
             Console.WriteLine($"=====================================================");

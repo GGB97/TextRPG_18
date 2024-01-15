@@ -145,7 +145,9 @@ namespace TextRPG
                 else if (str == $"{(int)MenuType.REST}")
                 {
                     Console.Clear();
+                    Console.WriteLine("[휴식하기]");
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
+                    Console.WriteLine();
                     Console.Write($"소지 골드 : ");
                     printGold(player);
 
@@ -153,11 +155,11 @@ namespace TextRPG
                     {
                         Console.WriteLine("1. 휴식하기");
                         Console.WriteLine("0. 나가기");
-
+                        Console.WriteLine();
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine() ;
-
-                        if(str == "1")
+                        Console.WriteLine();
+                        if (str == "1")
                         {
                             player.Rest();
                         }

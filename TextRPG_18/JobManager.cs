@@ -25,7 +25,7 @@ namespace TextRPG_18
                 Console.WriteLine("1. 광전사");
                 Console.WriteLine("2. 용기사");
                 Console.WriteLine("3. 원소 마법사");
-                Console.WriteLine(">>> ");
+                Console.WriteLine($"{player.name} : ");
 
                 int input;
                 if (int.TryParse(Console.ReadLine(), out input))

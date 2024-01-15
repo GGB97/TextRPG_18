@@ -297,7 +297,7 @@ public class DungeonManager
             Console.WriteLine("패배.\n");
             Console.WriteLine($"{player.name} 레벨 {player.level}");
             Console.WriteLine($"체력: {player.hp}");
-            Console.WriteLine("\n던전 입구로 돌아가려면 0을 입력하세요.");
+            Console.WriteLine("\n던전 입구로 돌아가려면 0을 입력해주세요.");
 
             while (true)
             {

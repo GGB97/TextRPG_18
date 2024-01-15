@@ -22,6 +22,7 @@ public class QuestManager
         while (true)
         {
             Console.Clear();
+            Console.WriteLine("[퀘스트]");
             Console.WriteLine("퀘스트를 수락/완료 할 수 있습니다.\n");
 
             player.PrintQuests();
@@ -162,7 +163,7 @@ public class QuestManager
     public void PrintQuests()
     {
         Console.WriteLine("[수락 가능한 퀘스트 목록]");
-        Console.WriteLine("-------------");
+        Console.WriteLine("-------------------------------------");
         if (quests.Count == 0)
         {
             Console.WriteLine("수락 가능한 퀘스트가 없습니다.");
@@ -176,6 +177,6 @@ public class QuestManager
                 q.Print();
             }
         }
-        Console.WriteLine("-------------\n");
+        Console.WriteLine("-------------------------------------\n");
     }
 }

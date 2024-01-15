@@ -34,7 +34,7 @@ public class Consumption : Item
     {
         if (type == (int)ItemType.Consumables)
         {
-            if (player.hp == playermax.maxHp)
+            if (player.hp == player.maxHp)
             {
                 Console.WriteLine($"이미 체력이 최대치입니다.");
                 Console.WriteLine($"=====================================================\n");
@@ -43,12 +43,12 @@ public class Consumption : Item
             Console.WriteLine($"{name}을 사용했습니다.");
             int cos = player.hp;
             player.hp += efficacy;
-            if (player.hp >= playermax.maxHp)
+            if (player.hp >= player.maxHp)
             {
-                player.hp = playermax.maxHp;
+                player.hp = player.maxHp;
                 Console.Write($"체력을 ");
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"{playermax.maxHp - cos}");
+                Console.Write($"{player.maxHp - cos}");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine($" 회복했습니다.");
                 Console.Write($"현재 HP : ");
