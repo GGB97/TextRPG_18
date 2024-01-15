@@ -194,16 +194,7 @@ public class Player
         Console.WriteLine("---------------------\n");
     }
 
-    public void CreateCharacter() //!!!!!!!!!!캐릭터 생성!!!!!!!!!!!!
-    {
-        Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-        Console.WriteLine("원하시는 이름을 설정해주세요.");
-
-        string input = Console.ReadLine();
-        name = input;
-
-        Console.WriteLine($"환영합니다. {name}님의 캐릭터가 생성 되었습니다.");
-    }
+    
     public void battel_DisplayPlayerInfo()
     {
         Console.WriteLine($"\n[내 정보]");

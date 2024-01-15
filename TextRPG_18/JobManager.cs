@@ -8,6 +8,7 @@ namespace TextRPG_18
 {
     public class JobManager
     {
+        public static JobManager I = new();
         Warrior warrior;
         Mage mage;
         Kinght kingth;
@@ -65,16 +66,8 @@ namespace TextRPG_18
                 {
                     Console.WriteLine("잘못된 선택입니다.");
                 }
-
-
             }
-
-
-
-
         }
-
-
     }
 }
 
