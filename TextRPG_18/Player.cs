@@ -275,6 +275,7 @@ public class Player
     {
         Console.WriteLine("[진행중인 퀘스트 목록]");
         Console.WriteLine("-------------------------------------\n");
+        Console.WriteLine();
         if (quests.quests.Count == 0)
         {
             Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -290,6 +291,8 @@ public class Player
                 q.Print();
             }
         }
+        Console.WriteLine();
+        Console.WriteLine();
         Console.WriteLine("-------------------------------------\n");
     }
 
