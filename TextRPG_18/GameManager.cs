@@ -230,11 +230,15 @@ namespace TextRPG
         static void Main(string[] args)
         {
             Player player;
-            string playerName = "asd";
-            player = DataManager.I.Load(playerName);
-            if (player == null)
+            string playerName = DataManager.I.LoadAll();
+            Console.WriteLine(playerName);
+            if (playerName == null)
             {
                 player = CreateCharacter();
+            }
+            else
+            {
+                player = DataManager.I.Load(playerName);
             }
             GameManager gm = new GameManager(player);
             
