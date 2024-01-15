@@ -53,7 +53,7 @@ public class Player
         inventory = new Inventory();
 
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 2, 50));
-        inventory.items.Add(new Weapon("녹슨 갑옷", "오래된 갑옷", 4, 100));
+        inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 4, 100));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
