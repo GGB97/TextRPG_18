@@ -230,7 +230,10 @@ public class DungeonManager
             for (int i = 0; i < monstersInBattle.Count; i++)
             {
                 monstersInBattle[i].attack(player, ref turn, monstersInBattle);
-                Console.WriteLine("");
+                if (monstersInBattle[i].live == "live")
+                {
+                    Console.WriteLine("");
+                }
             }
             allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
 

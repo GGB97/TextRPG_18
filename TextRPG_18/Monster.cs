@@ -231,7 +231,7 @@ public class Monster
                         }
                     }
                 }
-                else if (type == (int)MonsterType.Troll)  // 트롤은 높은 확률로 체력을 회복하고 아무것도 안함 (최대 체력을 돌파한다) (트롤은 atk가 제일 높다)
+                else if (type == (int)MonsterType.Troll)  // 트롤은 높은 확률로 체력을 회복하고 아무것도 안함 (최대 체력을 돌파한다) (트롤은 atk가 제일 높다. 맞으면 아픔)
                 {
                     if (Skill_Chance <= 7)
                     {
