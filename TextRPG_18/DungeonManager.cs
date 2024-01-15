@@ -18,7 +18,7 @@ public class DungeonManager
             Console.WriteLine($"현재 체력 : {player.hp}");
             Console.WriteLine(
                 "1. 던전 입장 \n" +
-                "2. 나가기");
+                "0. 나가기");
             Console.WriteLine();
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
                 //"2. 난이도 2 (방어력 10 이상 권장) \n" +
@@ -78,7 +78,6 @@ public class DungeonManager
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
                 player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
                 Console.WriteLine($"[{player.name}의 턴!]");
-                Console.WriteLine();
                 Console.WriteLine("0. 도주");
                 Console.WriteLine("1. 일반공격");
                 Console.WriteLine("2. " + player.SelectedClass.GetName1());
