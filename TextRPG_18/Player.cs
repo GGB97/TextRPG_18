@@ -294,7 +294,7 @@ public class Player
         if(random.Next(0,100) < criticalChance) //크리티컬 확률계산
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("치명타 발동!!");
+            Console.Write(" 치명타 발동!!\n");
             Console.ResetColor();
 
             //치명타
