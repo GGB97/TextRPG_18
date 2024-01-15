@@ -97,7 +97,7 @@ public class DungeonManager
                     player.SelectedClass.turn = 3;
                     player.SelectedClass.Initialization(player);  //스텟 초기화
                     Thread.Sleep(500);
-                    Console.WriteLine("\n성공적으로 도망습니다!");
+                    Console.WriteLine("\n성공적으로 도망쳤습니다!");
                     Thread.Sleep(500);
                     Console.Clear();
                     break;
@@ -141,7 +141,7 @@ public class DungeonManager
         Random random = new Random();
         int numberOfMonsters = random.Next(2, 5); // 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
-        Console.WriteLine($"앗! {numberOfMonsters}마리의 야생 몬스터가 출현했다!!\n");
+        Console.WriteLine($"{numberOfMonsters}마리의 몬스터가 출현했습니다\n");
 
         List<Monster> monstersInBattle = new List<Monster>();
 
@@ -193,7 +193,7 @@ public class DungeonManager
             {
                 if (selectedMonsterIndex == 0)
                 {
-                    Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+                    Console.WriteLine($"{player.name}이(가) 대기합니다.\n");
                     break;
                 }
 
