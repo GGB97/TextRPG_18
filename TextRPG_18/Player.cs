@@ -175,7 +175,7 @@ public class Player
     public void CreateCharacter() //!!!!!!!!!!캐릭터 생성!!!!!!!!!!!!
     {
         Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-        Console.WriteLine("원하시는 이름을 설정해주세요.");
+        Console.Write("원하시는 이름을 설정해주세요. : ");
 
         string input = Console.ReadLine();
         name = input;

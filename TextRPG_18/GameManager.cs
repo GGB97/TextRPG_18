@@ -26,8 +26,12 @@ namespace TextRPG
             player.CreateCharacter(); // !!!!-----캐릭터 생성---------!!!!!
 
             job.choice(player);
+            
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine("원하는 메뉴를 선택할 수 있습니다.");
+                Console.WriteLine("");
                 Console.WriteLine("1. 상태 보기");
                 Console.WriteLine("2. 인벤토리");
                 Console.WriteLine("3. 상점");
@@ -41,6 +45,7 @@ namespace TextRPG
                 string str = Console.ReadLine();
                 if (str == "1")
                 {
+                    Console.Clear();
                     player.printStatus();
 
                     while (true)
@@ -66,8 +71,9 @@ namespace TextRPG
                 }
                 else if (str == "2")
                 {
+                    Console.Clear();
                     // 인벤토리
-   
+
 
                     while (true)
                     {
@@ -94,6 +100,7 @@ namespace TextRPG
                 }
                 else if (str == "3")
                 {
+                    Console.Clear();
                     // 상점
                     while (true)
                     {
@@ -126,11 +133,13 @@ namespace TextRPG
                 }
                 else if (str == "4")
                 {
+                    Console.Clear();
                     // 던전
                     dungeonManager.Select(player);
                 }
                 else if (str == "5")
                 {
+                    Console.Clear();
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
                     Console.Write($"소지 골드 : ");
                     printGold(player);
@@ -159,6 +168,7 @@ namespace TextRPG
                 }
                 else if (str == "6")
                 {
+                    Console.Clear();
                     qusetManager.Enter(player);
                 }
                 else if (str == "9")
