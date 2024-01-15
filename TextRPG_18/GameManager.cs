@@ -41,12 +41,14 @@ namespace TextRPG
                 string str = Console.ReadLine();
                 if (str == "1")
                 {
+                    Console.WriteLine();
                     player.printStatus();
 
                     while (true)
                     {
                         Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 레벨업");
+                        Console.WriteLine();
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
 
@@ -67,13 +69,15 @@ namespace TextRPG
                 else if (str == "2")
                 {
                     // 인벤토리
-   
 
+                    Console.WriteLine();
                     while (true)
                     {
                         player.inventory.print();
                         Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 장비 관리 / 아이템 사용");
+                        Console.WriteLine();
+
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
 
@@ -95,6 +99,7 @@ namespace TextRPG
                 else if (str == "3")
                 {
                     // 상점
+                    Console.WriteLine();
                     while (true)
                     {
                         shop.print();
@@ -127,10 +132,12 @@ namespace TextRPG
                 else if (str == "4")
                 {
                     // 던전
+                    Console.WriteLine();
                     dungeonManager.Select(player);
                 }
                 else if (str == "5")
                 {
+                    Console.WriteLine();
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
                     Console.Write($"소지 골드 : ");
                     printGold(player);
@@ -159,10 +166,12 @@ namespace TextRPG
                 }
                 else if (str == "6")
                 {
+                    Console.WriteLine();
                     qusetManager.Enter(player);
                 }
                 else if (str == "9")
                 {
+                    Console.WriteLine();
                     DataManager.I.Save(player);
                 }
                 else if (str == "0")

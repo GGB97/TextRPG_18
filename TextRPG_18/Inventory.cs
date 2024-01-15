@@ -30,24 +30,19 @@ public class Inventory
 
     public void print()
     {
-        if (items != null)
+        Console.WriteLine("[아이템 목록]");
+        Console.WriteLine();
+        Console.WriteLine("-----------------");
+        foreach (Item item in items)
         {
-            Console.WriteLine("[아이템 목록]");
-            Console.WriteLine("-----------------");
-            foreach (Item item in items)
-            {
-                if (item.getEquip())
-                    Console.Write("[E]");
+            if (item.getEquip())
+                Console.Write("[E]");
 
-                item.print();
-                Console.WriteLine();
-            }
-            Console.WriteLine("-----------------");
+            item.print();
+            Console.WriteLine();
         }
-        else
-        {
-            Console.WriteLine("아이템이 없습니다.");
-        }
+        Console.WriteLine("-----------------");
+        Console.WriteLine();
     }
 
     public void printNumbering()
