@@ -193,10 +193,14 @@ namespace TextRPG_18
                 }
                 else
                 {
-                    n += 1;
-                    if (n >= 7)
+                    bool allMonstersDead = mon.All(monster => monster.live == "dead");
+                    if (allMonstersDead)
                     {
                         break;
+                    }
+                    else
+                    {
+                        n += 1;
                     }
                 }
             }

@@ -129,7 +129,7 @@ public class Player
 
                 if (checkType == (int)ItemType.Consumables)
                 {
-                    if (hp == playermax.maxHp)
+                    if (hp == maxHp)
                     {
                         Console.WriteLine($"이미 체력이 최대치입니다.");
                         Console.WriteLine($"=====================================================\n");
@@ -202,8 +202,8 @@ public class Player
     {
         Console.WriteLine($"\n[내 정보]");
         Console.WriteLine($"Lv.{level}  {name} ({SelectedClass.name}) ");
-        Console.WriteLine($"HP {hp} / {playermax.maxHp}");
-        Console.WriteLine($"MP {mp} / {playermax.maxMp}");
+        Console.WriteLine($"HP {hp} / {maxHp}");
+        Console.WriteLine($"MP {mp} / {maxMp}");
         Console.WriteLine($"ATK {atk}");
         Console.WriteLine($"DEF {def}");
         Console.WriteLine($"CRP {criticalChance}");
