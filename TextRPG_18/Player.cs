@@ -53,7 +53,7 @@ public class Player
         inventory = new Inventory();
 
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 2, 50));
-        inventory.items.Add(new Weapon("녹슨 갑옷", "오래된 갑옷", 4, 100));
+        inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 4, 100));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
@@ -307,7 +307,7 @@ public class Player
         if(random.Next(0,100) < criticalChance) //크리티컬 확률계산
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("치명타 발동!!");
+            Console.Write(" 치명타 발동!!\n");
             Console.ResetColor();
 
             //치명타
