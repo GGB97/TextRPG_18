@@ -141,7 +141,7 @@ public class DungeonManager
         Random random = new Random();
         int numberOfMonsters = random.Next(2, 5); // 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
-        Console.WriteLine($"앗! {numberOfMonsters}마리의 야생 몬스터가 출현했습니다!!\n");
+        Console.WriteLine($"앗! {numberOfMonsters}마리의 야생 몬스터가 출현했다!!\n");
 
         List<Monster> monstersInBattle = new List<Monster>();
 
@@ -182,7 +182,7 @@ public class DungeonManager
         }
         Console.WriteLine("0 대기하기");
         Console.WriteLine();
-        Console.WriteLine("\n공격할 몬스터 선택해 주세요");
+        Console.WriteLine("\n공격할 몬스터 선택해 주세요.");
         Console.WriteLine();
         Console.Write($"{player.name} :");
         int selectedMonsterIndex;
@@ -193,13 +193,13 @@ public class DungeonManager
             {
                 if (selectedMonsterIndex == 0)
                 {
-                    Console.WriteLine($"{player.name}은(는) 대기했습니다!\n");
+                    Console.WriteLine($"{player.name}은(는) 대기했다!\n");
                     break;
                 }
 
                 if (monstersInBattle[selectedMonsterIndex - 1].live == "dead")
                 {
-                    Console.WriteLine("선택한 몬스터는 이미 죽었습니다. 다시 선택해주세요.");
+                    Console.WriteLine("선택한 몬스터는 이미 죽었습니다.");
                     continue;
                 }
                 break;
@@ -222,7 +222,7 @@ public class DungeonManager
                 Thread.Sleep(500);
                 if (Avoidance_percentage(monstersInBattle[selectedMonsterIndex - 1].Avoidance)) //회피 성공시
                 {
-                    Console.WriteLine($"{selectedMonster.name}은(는) 공격을 피했습니다!\n");
+                    Console.WriteLine($"{selectedMonster.name}은(는) 공격을 피했다!\n");
                 }
                 else //회피 실패시
                 {
@@ -231,7 +231,7 @@ public class DungeonManager
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"-{CRatk}");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($" 의 데미지를 입었습니다!\n");
+                    Console.Write($" 의 데미지를 입었다!\n");
 
                     Thread.Sleep(500);
 
@@ -243,7 +243,7 @@ public class DungeonManager
                 // 몬스터 체력이 0이면 사망판정
                 if (selectedMonster.hp <= 0)
                 {
-                    Console.WriteLine($"{selectedMonster.name}은(는) 쓰러졌습니다!\n");
+                    Console.WriteLine($"{selectedMonster.name}은(는) 쓰러졌다!\n");
                     selectedMonster.hp = 0;
                     selectedMonster.live = "dead";
 
@@ -320,7 +320,7 @@ public class DungeonManager
         {
             player.SelectedClass.turn = 3;
             player.SelectedClass.Initialization(player);  //스텟 초기화
-            Console.WriteLine("승리하셨습니다!\n");
+            Console.WriteLine("승리!\n");
 
             //몬스터의 골드와 경험치 총합 계산 후 랜덤 보정
 

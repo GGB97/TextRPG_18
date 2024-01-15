@@ -134,4 +134,21 @@ public class Shop
         }
         Console.WriteLine("------------------------------------------");
     }
+
+    public void print2()
+    {
+        int num = 1;
+
+        Console.WriteLine("[상품 목록]");
+        Console.WriteLine();
+        Console.WriteLine("------------------------------------------");
+        foreach (Item item in items)
+        {
+            Console.Write("- ");
+            item.print();
+            Console.Write($" | {item.cost} G");
+            Console.WriteLine();
+        }
+        Console.WriteLine("------------------------------------------");
+    }
 }
