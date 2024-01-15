@@ -39,7 +39,7 @@ namespace TextRPG
 
                 Console.Write($"{player.name} : ");
                 string str = Console.ReadLine();
-                if (str == "1")
+                if (str == MenuType.EXIT.ToString())
                 {
                     player.printStatus();
 
@@ -64,10 +64,10 @@ namespace TextRPG
                         }
                     }
                 }
-                else if (str == "2")
+                else if (str == MenuType.INVEN.ToString())
                 {
                     // 인벤토리
-   
+
 
                     while (true)
                     {
@@ -92,7 +92,7 @@ namespace TextRPG
                         }
                     }
                 }
-                else if (str == "3")
+                else if (str == MenuType.STORE.ToString())
                 {
                     // 상점
                     while (true)
@@ -124,12 +124,12 @@ namespace TextRPG
                         }
                     }
                 }
-                else if (str == "4")
+                else if (str == MenuType.DUNGUEON.ToString())
                 {
                     // 던전
                     dungeonManager.Select(player);
                 }
-                else if (str == "5")
+                else if (str == MenuType.REST.ToString())
                 {
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
                     Console.Write($"소지 골드 : ");
@@ -157,15 +157,15 @@ namespace TextRPG
                         }
                     }
                 }
-                else if (str == "6")
+                else if (str == MenuType.QUEST.ToString())
                 {
                     qusetManager.Enter(player);
                 }
-                else if (str == "9")
+                else if (str == MenuType.SAVE.ToString())
                 {
                     DataManager.I.Save(player);
                 }
-                else if (str == "0")
+                else if (str == MenuType.EXIT.ToString())
                 {
                     Console.WriteLine("게임을 종료합니다.");
                     break;
