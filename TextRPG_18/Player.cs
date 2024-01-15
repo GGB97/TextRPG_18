@@ -273,10 +273,12 @@ public class Player
     public void PrintQuests()
     {
         Console.WriteLine("[진행중인 퀘스트 목록]");
-        Console.WriteLine("-------------");
+        Console.WriteLine("-------------------------------------\n");
         if (quests.quests.Count == 0)
         {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("진행중인 퀘스트가 없습니다.");
+            Console.ResetColor();
         }
         else
         {
@@ -287,7 +289,7 @@ public class Player
                 q.Print();
             }
         }
-        Console.WriteLine("-------------\n");
+        Console.WriteLine("-------------------------------------\n");
     }
 
     public int getmaxExp()
