@@ -14,10 +14,12 @@ public class DungeonManager
 
         while (true)
         {
-            Console.WriteLine("[던전 입장] --- (0. 나가기)");
+            Console.WriteLine("[던전 입장] \n");
             Console.WriteLine($"현재 체력: {player.hp}\n");
             Console.WriteLine(
-                "1. 던전에 입장한다."
+                "1. 던전 입장" +
+                "2. 나가기");
+            Console.WriteLine();
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
                 //"2. 난이도 2 (방어력 10 이상 권장) \n" +
                 "3. 난이도 3 (방어력 20 이상 권장) \n"*/
@@ -72,9 +74,8 @@ public class DungeonManager
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
 
                 player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
-                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"[{player.name}의 턴!]");
-                Console.ResetColor();
+                Console.WriteLine();
                 Console.WriteLine("0. 도주");
                 Console.WriteLine("1. 일반공격");
                 Console.WriteLine("2. " + player.SelectedClass.GetName1());
@@ -82,7 +83,7 @@ public class DungeonManager
                 Console.WriteLine("4. 아이템 사용");
                 Console.WriteLine();
 
-                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                Console.Write($"{player.name} >>>");
                 string userInput = Console.ReadLine();
 
                 if (userInput == "1")
@@ -93,8 +94,10 @@ public class DungeonManager
                 {
                     player.SelectedClass.turn = 3;
                     player.SelectedClass.Initialization(player);  //스텟 초기화
+                    Thread.Sleep(250);
                     Console.WriteLine("\n성공적으로 도망쳤다!");
-                    Console.WriteLine($"=====================================================\n");
+                    Thread.Sleep(500);
+                    Console.Clear();
                     break;
                 }
                 else if (userInput == "4")
