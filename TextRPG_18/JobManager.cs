@@ -29,6 +29,7 @@ namespace TextRPG_18
                 int input;
                 if (int.TryParse(Console.ReadLine(), out input))
                 {
+                    Console.WriteLine("");
                     switch (input)
                     {
                         case 1:
