@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Text.Json;
+using TextRPG;
 
 public class DataManager
 {
-	public static DataManager I = new DataManager();
+    public static DataManager I = new DataManager();
 
-	public void Save(Player player)
-	{
-        string fileName = $"SaveData_{player.name}.json";
+    string baseDirectory;
+    string saveDirectory;
+
+    DataManager()
+    {
+        baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        saveDirectory = Path.Combine(baseDirectory, "SaveData");
+    }
+
+    public void Save(Player player)
+    {
+        string fileName = $"{saveDirectory}\\SaveData_{player.name}.json";
         PlayerJsonModel sD = new PlayerJsonModel(player);
         string jsonStr = sD.SerializeToString();
 
@@ -18,7 +28,7 @@ public class DataManager
         if (File.Exists(fileName))
         {
             string fileContent = File.ReadAllText(fileName);
-            if(jsonStr == fileContent)
+            if (jsonStr == fileContent)
             {
                 Console.WriteLine("성공적으로 저장되었습니다.");
             }
@@ -33,15 +43,58 @@ public class DataManager
         }
     }
 
-    public Player Load(string playerName)
+    public string LoadAll()
+    {
+        if (!Directory.Exists(saveDirectory))
+        {
+            Directory.CreateDirectory(saveDirectory);
+        }
+        string[] matchedFiles = Directory.GetFiles(saveDirectory, "SaveData_*");
+
+        string filName; int n;
+        while (true)
+        {
+            Console.Clear();
+            n = 1;
+            foreach (string file in matchedFiles)
+            {
+                Console.Write($"{n++}. ");
+                filName = Path.GetFileName(file); // "SaveData_**.json" 을 잘라서 **부분만 나오게 수정할 예정
+                Console.WriteLine($"{filName}");
+            }
+            Console.WriteLine("0. 캐릭터 생성");
+
+            Console.WriteLine("불러올 파일을 선택하세요.");
+            Console.WriteLine();
+            Console.Write("YOU : ");
+            string str = Console.ReadLine();
+            int input;
+            int.TryParse(str, out input);
+
+            if (0 < input && input < matchedFiles.Length + 1)
+            {
+                return Path.GetFileName(matchedFiles[--input]);
+            }
+            else if (input == 0)
+            {
+                return null;
+            }
+            else
+            {
+                GameManager.printError(str);
+            }
+        }
+    }
+
+    public Player Load(string saveData)
     {
         // 추후 세이브 데이터 선택 기능 추가 예정
-        string fileName = $"SaveData_{playerName}.json";
+        string fileName = $"SaveData\\" + saveData;
 
         Player playerData;
         if (File.Exists(fileName))
         {
-            string jsonStr = File.ReadAllText($"SaveData_{playerName}.json");
+            string jsonStr = File.ReadAllText(fileName);
 
             PlayerJsonModel sD = PlayerJsonModel.Deserialize(jsonStr);
             playerData = PlayerJsonModel.ModelToPlayer(sD);

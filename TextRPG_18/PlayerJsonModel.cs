@@ -67,7 +67,7 @@ public class PlayerJsonModel
         name = player.name;
         //job = player.getJob();
         hp = player.hp;
-        maxHp = player.maxHp;
+        //maxHp = player.maxHp;
         gold = player.gold;
         atk = player.atk;
         def = player.def;

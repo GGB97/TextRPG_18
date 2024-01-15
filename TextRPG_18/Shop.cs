@@ -68,8 +68,7 @@ public class Shop
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다.");
-                Console.WriteLine();
+                GameManager.printError(str);
             }
         }
     }
@@ -112,8 +111,7 @@ public class Shop
                 }
                 else
                 {
-                    Console.WriteLine($"'{str}'은(는) 잘못된 입력입니다.");
-                    Console.WriteLine();
+                    GameManager.printError(str);
                 }
             
         }

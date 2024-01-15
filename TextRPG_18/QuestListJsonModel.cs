@@ -3,7 +3,7 @@ using System;
 
 public class QuestListJsonModel
 {
-    public List<QuestJsonModel> quests;
+    public List<QuestJsonModel> quests = new List<QuestJsonModel>();
 
     public QuestListJsonModel()
 	{
@@ -13,7 +13,8 @@ public class QuestListJsonModel
     {
         foreach (var q in pq.quests)
         {
-            this.quests.Add(new QuestJsonModel(q));
+            if(q != null)
+                this.quests.Add(new QuestJsonModel(q));
         }
     }
 

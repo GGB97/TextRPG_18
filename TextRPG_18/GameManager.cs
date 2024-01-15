@@ -11,7 +11,6 @@ namespace TextRPG
         Shop shop;
         DungeonManager dungeonManager;
         QuestManager qusetManager;
-        JobManager job;
 
         public GameManager(Player player)
         {
@@ -46,8 +45,8 @@ namespace TextRPG
 
                     while (true)
                     {
-                        Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 레벨업");
+                        Console.WriteLine("0. 나가기");
                         Console.WriteLine();
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
@@ -76,8 +75,8 @@ namespace TextRPG
                     {
                         Console.Clear();
                         player.inventory.print();
-                        Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 장비 관리 / 아이템 사용");
+                        Console.WriteLine("0. 나가기");
                         Console.WriteLine();
 
                         Console.Write($"{player.name} : ");
@@ -232,11 +231,15 @@ namespace TextRPG
         static void Main(string[] args)
         {
             Player player;
-            string playerName = "asd";
-            player = DataManager.I.Load(playerName);
-            if (player == null)
+            string playerName = DataManager.I.LoadAll();
+            Console.WriteLine(playerName);
+            if (playerName == null)
             {
                 player = CreateCharacter();
+            }
+            else
+            {
+                player = DataManager.I.Load(playerName);
             }
             GameManager gm = new GameManager(player);
             

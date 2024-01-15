@@ -10,9 +10,12 @@ public class QuestList
 
     public QuestList(QuestListJsonModel data)
     {
-        foreach (var item in data.quests) 
+        if (data.quests != null)
         {
-            this.quests.Add(new Quest(item));
+            foreach (var item in data.quests)
+            {
+                this.quests.Add(new Quest(item));
+            }
         }
     }
 

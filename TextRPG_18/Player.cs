@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Numerics;
+using TextRPG;
 using TextRPG_18;
 
 public class Player
@@ -157,7 +158,7 @@ public class Player
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다.");
+                GameManager.printError(str);
             }
 
         }
@@ -221,11 +222,11 @@ public class Player
             exp -= maxExp;
             level++;
             maxExp = level * 100;
-            maxHp += 10 ;
+            playermax.maxHp += 10 ;
             atk += 2f;
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
-            hp = maxHp;
+            hp = playermax.maxHp;
             printStatus();
         }
         else
@@ -236,7 +237,7 @@ public class Player
 
     public void Rest()
     {
-        if (hp == maxHp)
+        if (hp == playermax.maxHp)
         {
             Console.WriteLine($"이미 체력이 최대치입니다.");
             Console.WriteLine($"=====================================================\n");
@@ -245,10 +246,10 @@ public class Player
         gold -= 500;
         Console.Write($"체력을 ");
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"{maxHp - hp}");
+        Console.Write($"{playermax.maxHp - hp}");
         Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine($" 회복했습니다.");
-        hp = maxHp;
+        hp = playermax.maxHp;
         Console.Write($"현재 HP : ");
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"{hp}\n");

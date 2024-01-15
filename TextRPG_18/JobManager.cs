@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TextRPG;
 
 namespace TextRPG_18
 {
@@ -58,13 +59,13 @@ namespace TextRPG_18
                             Out = true;
                             break;
                         default:
-                            Console.WriteLine("잘못된 선택입니다.");
+                            GameManager.printError(input.ToString());
                             break;
                     }
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 선택입니다.");
+                    GameManager.printError(input.ToString());
                 }
             }
         }
