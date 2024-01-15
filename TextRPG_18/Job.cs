@@ -548,7 +548,7 @@ namespace TextRPG_18
             this.def = 10;
             this.criticalChance = 0;
             this.criticalDamage = 250;
-            this.Avoidance = 5;
+            this.Avoidance = 15;
             this.MP_Recovery = 25;
         }
 

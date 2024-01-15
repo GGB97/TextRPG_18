@@ -80,13 +80,13 @@ public class Monster
                         Thread.Sleep(250);
                         if (call_colleague == 0)
                         {
-                            monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 30, 30, 100, 50, false, 10));
+                            monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 50, 30, 100, 50, false, 10));
                             Console.WriteLine($"고블린이(가) 전투에 참전했다!\n");
                             Thread.Sleep(250);
                         }
                         else
                         {
-                            monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 45, 25, 120, 70, true, 5));
+                            monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 65, 25, 120, 70, true, 5));
                             Console.WriteLine($"고블린 사제이(가) 전투에 참전했다!\n");
                             Thread.Sleep(250);
                         }

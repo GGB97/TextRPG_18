@@ -38,7 +38,7 @@ namespace TextRPG_18
                             warrior = (Warrior)player.SelectedClass;
                             warrior.Pick(player);
                             Console.WriteLine($"{player.name} 님의 직업은 {warrior.name} 입니다");
-                            Thread.Sleep(1000);
+                            Thread.Sleep(750);
                             Out = true;
                             break;
                         case 2:
@@ -46,7 +46,7 @@ namespace TextRPG_18
                             kingth = (Kinght)player.SelectedClass;
                             kingth.Pick(player);
                             Console.WriteLine($"{player.name} 님의 직업은 {kingth.name} 입니다");
-                            Thread.Sleep(1000);
+                            Thread.Sleep(750);
                             Out = true;
                             break;
 
@@ -55,7 +55,7 @@ namespace TextRPG_18
                             mage = (Mage)player.SelectedClass;
                             mage.Pick(player);
                             Console.WriteLine($"{player.name} 님의 직업은 {mage.name} 입니다");
-                            Thread.Sleep(1000);
+                            Thread.Sleep(750);
                             Out = true;
                             break;
                         default:

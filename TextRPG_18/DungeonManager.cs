@@ -18,7 +18,7 @@ public class DungeonManager
             Console.WriteLine("[던전 입장] \n");
             Console.WriteLine($"현재 체력 : {player.hp}");
             Console.WriteLine(
-                "1. 던전 입장 \n" +
+                "1. 던전 입장 \n" + "2. 무한 던전 입장 \n" +
                 "0. 나가기");
             Console.WriteLine();
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
@@ -40,6 +40,11 @@ public class DungeonManager
             {
                 break;
             }
+            else if (str == "2")
+            {
+                Console.Clear();
+                Console.WriteLine("[준비 중입니다.]\n");
+            }
             else
             {
                 GameManager.printError(str);
@@ -59,12 +64,12 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 30, 30, 100, 50,false, 10)); //이름, 타입, 레벨, 체력, 공격력, 골드, 경험치, 포션 드랍여부, 회피치
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 17, 60, 40, 150, 75,false,5));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 50, 200, 100, false,13));
-        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 45, 25, 120, 70, true, 5));
-        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 15, 20, 30, 50, 60, true, 15));
-        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 75, 150, 150, true, 1));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 50, 30, 100, 50, false, 10)); //이름, 타입, 레벨, 체력, 공격력, 골드, 경험치, 포션 드랍여부, 회피치
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 17, 65, 35, 150, 75,false,5));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 45, 200, 100, false,13));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 65, 25, 120, 70, true, 5));
+        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 15, 40, 30, 50, 60, true, 15));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 60, 150, 150, true, 1));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -116,7 +121,14 @@ public class DungeonManager
                     if (allMonstersDead == false)
                     {
                         EnemyTurn(monstersInBattle, player, ref turn);
-                        MonsterList(monstersInBattle);
+                        if (turn != "battle_defeat" && turn != "battle_win")
+                        {
+                            MonsterList(monstersInBattle);
+                        }
+                        else if (turn == "battle_defeat" || turn == "battle_win")
+                        {
+                            battle_result(player, monstersInBattle, ref turn);
+                        }
                     }
                 }
                 else if (str == "3")
@@ -127,7 +139,14 @@ public class DungeonManager
                     if (allMonstersDead == false)
                     {
                         EnemyTurn(monstersInBattle, player, ref turn);
-                        MonsterList(monstersInBattle);
+                        if (turn != "battle_defeat" && turn != "battle_win")
+                        {
+                            MonsterList(monstersInBattle);
+                        }
+                        else if (turn == "battle_defeat" || turn == "battle_win")
+                        {
+                            battle_result(player, monstersInBattle, ref turn);
+                        }
                     }
                 }
                 else
@@ -148,7 +167,7 @@ public class DungeonManager
     {
         Console.Clear();
         Random random = new Random();
-        int numberOfMonsters = random.Next(2, 6); // 랜덤 숫자 생성
+        int numberOfMonsters = random.Next(2, (5 + player.level)); //플레이어 레벨 비례 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
         Console.WriteLine($"{numberOfMonsters}마리의 몬스터가 출현했다!\n");
 
@@ -158,9 +177,10 @@ public class DungeonManager
         {
             // 리스트 중에서 랜덤 몬스터 선택
             Monster randomMonster = monsters[random.Next(monsters.Count)];
+            int random_difficulty = random.Next(0, player.level+3);
 
             // 인스턴스 생성
-            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level, randomMonster.hp, randomMonster.atk, randomMonster.gold, randomMonster.exp, randomMonster.drop_potion ,randomMonster.Avoidance);
+            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level + random_difficulty, randomMonster.hp + random_difficulty*5, randomMonster.atk + random_difficulty*2, randomMonster.gold + random_difficulty*15, randomMonster.exp + random_difficulty*15, randomMonster.drop_potion ,randomMonster.Avoidance + random_difficulty*1/2);
 
             // 리스트에 인스턴스 등록
             monstersInBattle.Add(monsterInstance);

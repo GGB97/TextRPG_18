@@ -208,7 +208,7 @@ namespace TextRPG
             JobManager.I.choice(cPlayer);
 
             Console.WriteLine($"환영합니다. {cPlayer.name} 님의 캐릭터가 생성 되었습니다.");
-            Thread.Sleep(1000);
+            Thread.Sleep(750);
             return cPlayer;
         }
         public static void printError(string str)
