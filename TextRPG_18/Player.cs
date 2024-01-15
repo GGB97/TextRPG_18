@@ -13,7 +13,7 @@ public class Player
     public string name { get; set; }
     
     public int hp { get; set; }
-    public int maxHp { get; set; }
+    //public int maxHp { get; set; }
     public int gold { get; set; }
     public float atk { get; set; }
     public int def { get; set; }
@@ -41,7 +41,7 @@ public class Player
         atk = 5;
         def = 5;
         hp = 10;
-        maxHp = 150;
+        playermax.maxHp = 150;
         atk = 0;
         def = 0;
         mp = 0;
@@ -70,7 +70,7 @@ public class Player
         name = playerData.name;
         
         hp = playerData.hp;
-        maxHp = playerData.maxHp;
+        playermax.maxHp = playerData.maxHp;
         gold = playerData.gold;
         atk = playerData.atk;
         def = playerData.def;
@@ -127,7 +127,7 @@ public class Player
 
                 if (checkType == (int)ItemType.Consumables) 
                 {
-                    if (hp == maxHp)
+                    if (hp == playermax.maxHp)
                     {
                         Console.WriteLine($"이미 체력이 최대치입니다.");
                         Console.WriteLine($"=====================================================\n");
@@ -173,7 +173,7 @@ public class Player
             $"{name}   {SelectedClass.name} \n" +
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
-            $"생명력 : {hp} / {maxHp} \n" +
+            $"생명력 : {hp} / {playermax.maxHp} \n" +
             $"마나 : {mp} \n"+
             $"치명타 확률 : { criticalChance } \n" +
             $"치명타 피해 : { criticalDamage } \n" +
@@ -200,7 +200,7 @@ public class Player
     {
         Console.WriteLine($"\n[내 정보]");
         Console.WriteLine($"Lv.{level}  {name} ({SelectedClass.name}) ");
-        Console.WriteLine($"HP {hp} / {maxHp}");
+        Console.WriteLine($"HP {hp} / {playermax.maxHp}");
         Console.WriteLine($"MP {mp}");
         Console.WriteLine($"ATK {atk}");
         Console.WriteLine($"DEF {def}");

@@ -92,7 +92,7 @@ namespace TextRPG_18
         {
             this.type = JobType.Berserker;
             this.name = "광전사";
-            this.hp = 100;
+            this.hp = 130;
             this.mp = 30;
             this.atk = 12;
             this.def = 10;

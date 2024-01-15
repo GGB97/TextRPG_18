@@ -34,6 +34,8 @@ public class Shop
             GameManager.printGold(player);
             print();
             Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            Console.WriteLine();
             Console.Write($"{player.name} : ");
             str = Console.ReadLine();
 
@@ -78,41 +80,43 @@ public class Shop
         string str; int num;
         while (true)
         {
-                Console.WriteLine("[아이템 판매] --- (0. 나가기)");
-                Console.Write($"소지 골드 :");
-                GameManager.printGold(player);
-                player.inventory.printGold();
-                Console.Write($"{player.name} : ");
-                str = Console.ReadLine();
+            Console.WriteLine("[아이템 판매]");
+            Console.Write($"소지 골드 :");
+            GameManager.printGold(player);
+            player.inventory.printGold();
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            Console.Write($"{player.name} : ");
+            str = Console.ReadLine();
 
-                if (int.TryParse(str, out num))
+            if (int.TryParse(str, out num))
+            {
+                num -= 1;
+                if (0 <= num && num < player.inventory.items.Count)
                 {
-                    num -= 1;
-                    if (0 <= num && num < player.inventory.items.Count)
-                    {
-                        if (player.inventory.items[num].getEquip()) // 판매하려는 아이템이 장착되어 있다면.
-                            player.inventory.items[num].unEquip(player);
+                    if (player.inventory.items[num].getEquip()) // 판매하려는 아이템이 장착되어 있다면.
+                        player.inventory.items[num].unEquip(player);
 
-                        player.gold += (int)(player.inventory.items[num].cost * 0.85f);
-                        Console.WriteLine($"{player.inventory.items[num].getName()} 이(가) 판매 되었습니다.");
-                        Console.Write($"골드 획득 :");
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"+{(int)(player.inventory.items[num].cost * 0.85f)}");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.Write($"소지 골드 :");
-                        GameManager.printGold(player);
-                        player.inventory.items.RemoveAt(num);
-                        Console.WriteLine() ;
-                    }
-                    else if (num == -1)
-                    {
-                        break;
-                    }
+                    player.gold += (int)(player.inventory.items[num].cost * 0.85f);
+                    Console.WriteLine($"{player.inventory.items[num].getName()} 이(가) 판매 되었습니다.");
+                    Console.Write($"골드 획득 :");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"+{(int)(player.inventory.items[num].cost * 0.85f)}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($"소지 골드 :");
+                    GameManager.printGold(player);
+                    player.inventory.items.RemoveAt(num);
+                    Console.WriteLine() ;
                 }
-                else
+                else if (num == -1)
                 {
-                    GameManager.printError(str);
+                    break;
                 }
+            }
+            else
+            {
+                GameManager.printError(str);
+            }
             
         }
     }
