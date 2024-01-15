@@ -15,14 +15,15 @@ public class DungeonManager
         while (true)
         {
             Console.WriteLine("[던전 입장] \n");
-            Console.WriteLine($"현재 체력: {player.hp}\n");
+            Console.WriteLine($"현재 체력: {player.hp}");
             Console.WriteLine(
-                "1. 던전 입장" +
+                "1. 던전 입장 \n" +
                 "2. 나가기");
             Console.WriteLine();
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
                 //"2. 난이도 2 (방어력 10 이상 권장) \n" +
                 "3. 난이도 3 (방어력 20 이상 권장) \n"*/
+
                 
             Console.Write($"{player.name} : ");
             str = Console.ReadLine();
@@ -82,7 +83,7 @@ public class DungeonManager
                 Console.WriteLine("4. 아이템 사용");
                 Console.WriteLine();
 
-                Console.Write($"{player.name} >>>");
+                Console.Write($"{player.name} :");
                 string userInput = Console.ReadLine();
 
                 if (userInput == "1")
@@ -176,10 +177,11 @@ public class DungeonManager
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp}  ATK: {monstersInBattle[i].atk}");
         }
-        Console.WriteLine("대기하기");
+        Console.WriteLine("0. 대기하기");
         Console.WriteLine();
         Console.WriteLine("\n공격할 몬스터 선택해 주세요)");
-        Console.Write("선택을 입력하세요:");
+        Console.WriteLine();
+        Console.Write($"{player.name} :");
         int selectedMonsterIndex;
 
         while (true)
