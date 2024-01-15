@@ -9,7 +9,7 @@ public class WeaponJsonModel : ItemJsonModel
     public WeaponJsonModel()
     {
         is_Equip = false;
-        type = 0;
+        type = (int)ItemType.Weapon;
         name = null;
         description = null;
         cost = 0;

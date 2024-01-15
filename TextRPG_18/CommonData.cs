@@ -1,6 +1,23 @@
 ﻿using System;
 
+public enum JobType
+{
+    Berserker,
+    DragonKnight,
+    Mage
+}
+enum MenuType
+{
+    EXIT,
+    STATUS,
+    INVEN,
+    STORE,
+    DUNGUEON,
+    REST,
+    QUEST,
+    SAVE = 9
 
+}
 enum MonsterType
 {
     Monster,
