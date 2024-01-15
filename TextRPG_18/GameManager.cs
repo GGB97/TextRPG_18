@@ -31,6 +31,7 @@ namespace TextRPG
             {
                 Console.Clear();
                 Console.WriteLine("원하는 행동을 입력해 주세요.");
+                Console.WriteLine();
                 Console.WriteLine("1. 상태 보기");
                 Console.WriteLine("2. 인벤토리");
                 Console.WriteLine("3. 상점");
@@ -141,12 +142,12 @@ namespace TextRPG
                 else if (str == "4")
                 {
                     // 던전
-                    Console.WriteLine();
+                    Console.Clear();
                     dungeonManager.Select(player);
                 }
                 else if (str == "5")
                 {
-                    Console.WriteLine();
+                    Console.Clear();
                     Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
                     Console.Write($"소지 골드 : ");
                     printGold(player);

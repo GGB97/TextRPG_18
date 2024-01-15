@@ -30,6 +30,7 @@ public class DungeonManager
 
             if (str == "1") /* || str == "2" || str == "3") */
             {
+                
                 Enter_battle(player);
 
             }
@@ -39,6 +40,7 @@ public class DungeonManager
             }
             else
             {
+                
                 Console.Write($"{str} 은(는) 잘못된 입력입니다.");
             }
         }
@@ -135,6 +137,7 @@ public class DungeonManager
 
     public static List<Monster> battle_start(Player player, List<Monster> monsters)  //전투 시작시 몬스터 인스턴스 생성
     {
+        Console.Clear();
         Random random = new Random();
         int numberOfMonsters = random.Next(2, 5); // 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
@@ -283,6 +286,7 @@ public class DungeonManager
 
     public static void battle_result(Player player, List<Monster> monstersInBattle, ref string turn)
     {
+        
         Console.WriteLine($"\n=====================================================");
         Console.WriteLine("\n[Battle Result]");
 
@@ -301,6 +305,7 @@ public class DungeonManager
 
                 if (userInput == "0")
                 {
+                    Console.Clear();
                     player.hp = 1;
                     Console.WriteLine($"\n=====================================================\n");
                     break;
@@ -391,7 +396,7 @@ public class DungeonManager
             Console.WriteLine($"이름: {player.name}");
             Console.WriteLine($"직업: {player.SelectedClass.name}");
             Console.WriteLine($"체력: {player.hp}");
-            Console.WriteLine($"Gold: ");
+            Console.Write($"Gold: ");
             TextRPG.GameManager.printGold(player);
 
             // 경험치 확인 후 레벨업
@@ -413,7 +418,7 @@ public class DungeonManager
 
                 if (userInput == "0")
                 {
-
+                    Console.Clear();
                     break;
                 }
                 else
