@@ -50,12 +50,12 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 6, 12, 100, 50,false));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 4, 6, 12, 100, 50,false));
         monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 15, 15, 150, 75,false));
         monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 8, 7, 20, 200, 100, false));
-        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 6, 5, 10, 120, 70, true));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 5, 5, 10, 120, 70, true));
         monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 4, 4, 10, 50, 60, false));
-        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 7, 12, 30, 150, 150, true));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 6, 12, 30, 150, 150, true));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다

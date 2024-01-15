@@ -211,8 +211,9 @@ public class Player
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine($"500");
         Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine($"소지 골드 :");
+        Console.Write($"소지 골드 :");
         GameManager.printGold(this);
+        Console.Write($"\n");
         hp = maxHp;
     }
 
