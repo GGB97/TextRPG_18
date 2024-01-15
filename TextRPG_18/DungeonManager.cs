@@ -26,8 +26,9 @@ public class DungeonManager
 
                 
             Console.Write($"{player.name} : ");
+      
             str = Console.ReadLine();
-
+            Console.WriteLine();
             if (str == "1") /* || str == "2" || str == "3") */
             {
                 
@@ -40,7 +41,7 @@ public class DungeonManager
             }
             else
             {
-                Console.Write($"잘못된 입력입니다.");
+                Console.WriteLine($"잘못된 입력입니다.");
 
             }
         }
@@ -96,7 +97,7 @@ public class DungeonManager
                 {
                     player.SelectedClass.turn = 3;
                     player.SelectedClass.Initialization(player);  //스텟 초기화
-                    Thread.Sleep(250);
+                    Thread.Sleep(500);
                     Console.WriteLine("\n성공적으로 도망습니다!");
                     Thread.Sleep(500);
                     Console.Clear();
@@ -180,9 +181,9 @@ public class DungeonManager
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp}  ATK: {monstersInBattle[i].atk}");
         }
-        Console.WriteLine("0. 대기하기");
+        Console.WriteLine("0 대기하기");
         Console.WriteLine();
-        Console.WriteLine("\n공격할 몬스터 선택해 주세요)");
+        Console.WriteLine("\n공격할 몬스터 선택해 주세요");
         Console.WriteLine();
         Console.Write($"{player.name} :");
         int selectedMonsterIndex;
@@ -432,6 +433,7 @@ public class DungeonManager
     public void MonsterList(List<Monster> monstersInBattle)
     {
         Console.WriteLine("\n[전투 중인 몬스터 목록]");
+        Console.WriteLine();
 
         for (int i = 0; i < monstersInBattle.Count; i++)
         {
@@ -492,6 +494,7 @@ public class DungeonManager
             {
                 battle_result(player, monstersInBattle, ref turn);
             }
+            Console.WriteLine($"=====================================================");
         }
     }
 
