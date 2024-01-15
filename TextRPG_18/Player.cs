@@ -109,9 +109,11 @@ public class Player
         {
             Console.Clear();
             inventory.printNumbering();
-            Console.WriteLine("[나가려면 0을 입력하세요.]");
             Console.WriteLine("장비 아이템을 선택하면 장착/해제, 소비 아이템을 선택하면 사용합니다.");
-            Console.Write("아이템을 선택하세요 : ");
+            Console.WriteLine();
+            Console.WriteLine("0. 나가기");
+            Console.WriteLine();
+            Console.Write($"{name} : ");
             str = Console.ReadLine();
 
             int.TryParse(str, out num);
@@ -274,13 +276,16 @@ public class Player
     public void PrintQuests()
     {
         Console.WriteLine("[진행중인 퀘스트 목록]");
-        Console.WriteLine("-------------------------------------\n");
-        Console.WriteLine();
+        Console.WriteLine("-------------------------------------");
         if (quests.quests.Count == 0)
         {
+            Console.WriteLine();
+            Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine("진행중인 퀘스트가 없습니다.");
             Console.ResetColor();
+            Console.WriteLine();
+            Console.WriteLine();
         }
         else
         {
@@ -291,8 +296,6 @@ public class Player
                 q.Print();
             }
         }
-        Console.WriteLine();
-        Console.WriteLine();
         Console.WriteLine("-------------------------------------\n");
     }
 
@@ -343,6 +346,7 @@ public class Player
 
     public void Recovery()
     {
+        Console.WriteLine();
         Console.Write($"{name} (이)의 마나가 회복되었습니다. : ");
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write($"{mp}");
