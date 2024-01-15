@@ -1,5 +1,6 @@
 
 using System;
+using System.Xml.Linq;
 using TextRPG_18;
 
 namespace TextRPG
@@ -18,15 +19,10 @@ namespace TextRPG
             shop = new Shop();
             dungeonManager = new DungeonManager();
             qusetManager = new QuestManager();
-            job = new JobManager();
         }
 
         public void GameStart()
         {
-            player.CreateCharacter(); // !!!!-----캐릭터 생성---------!!!!!
-
-            job.choice(player);
-
             while (true)
             {
                 Console.Clear();
@@ -113,9 +109,10 @@ namespace TextRPG
                         shop.print();
                         Console.Write($"소지 골드 : ");
                         printGold(player);
-                        Console.WriteLine("0. 나가기");
+                        Console.WriteLine();
                         Console.WriteLine("1. 아이템 구매");
                         Console.WriteLine("2. 아이템 판매");
+                        Console.WriteLine("0. 나가기");
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
                         if (str == "1")
@@ -198,6 +195,18 @@ namespace TextRPG
             }
         }
 
+        public static Player CreateCharacter() //!!!!!!!!!!캐릭터 생성!!!!!!!!!!!!
+        {
+            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+            Console.WriteLine("원하시는 이름을 설정해주세요.");
+
+            string input = Console.ReadLine();
+            Player cPlayer = new Player(input);
+            JobManager.I.choice(cPlayer);
+
+            Console.WriteLine($"환영합니다. {cPlayer.name}님의 캐릭터가 생성 되었습니다.");
+            return cPlayer;
+        }
         public static void printError(string str)
         {
             Console.WriteLine($"{str} 은(는) 올바른 입력이 아닙니다.");
@@ -226,7 +235,7 @@ namespace TextRPG
             player = DataManager.I.Load(playerName);
             if (player == null)
             {
-                player = new Player("asd");
+                player = CreateCharacter();
             }
             GameManager gm = new GameManager(player);
             
