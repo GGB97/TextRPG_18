@@ -11,7 +11,6 @@ namespace TextRPG
         Shop shop;
         DungeonManager dungeonManager;
         QuestManager qusetManager;
-        JobManager job;
 
         public GameManager(Player player)
         {
