@@ -9,7 +9,7 @@ public class DataManager
     string baseDirectory;
     string saveDirectory;
 
-    DataManager() 
+    DataManager()
     {
         baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         saveDirectory = Path.Combine(baseDirectory, "SaveData");
@@ -45,7 +45,12 @@ public class DataManager
 
     public string LoadAll()
     {
+        if (!Directory.Exists(saveDirectory))
+        {
+            Directory.CreateDirectory(saveDirectory);
+        }
         string[] matchedFiles = Directory.GetFiles(saveDirectory, "SaveData_*");
+
         string filName; int n;
         while (true)
         {
