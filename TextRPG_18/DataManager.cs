@@ -62,11 +62,12 @@ public class DataManager
                 filName = Path.GetFileName(file); // "SaveData_**.json" 을 잘라서 **부분만 나오게 수정할 예정
                 Console.WriteLine($"{filName}");
             }
-            Console.WriteLine("0. 캐릭터 생성");
+
 
             Console.WriteLine("불러올 파일을 선택하세요.");
+            Console.WriteLine("0. 신규 캐릭터 생성");
             Console.WriteLine();
-            Console.Write("YOU : ");
+            Console.Write("입력 : ");
             string str = Console.ReadLine();
             int input;
             int.TryParse(str, out input);

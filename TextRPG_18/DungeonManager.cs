@@ -59,12 +59,12 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 4, 6, 12, 100, 50,false, 10));
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 15, 15, 150, 75,false,5));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 8, 7, 20, 200, 100, false,13));
-        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 5, 5, 10, 120, 70, true,5));
-        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 4, 4, 10, 50, 60, false,15));
-        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 6, 12, 30, 150, 150, true, 1));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 30, 30, 100, 50,false, 10)); //이름, 타입, 레벨, 체력, 공격력, 골드, 경험치, 포션 드랍여부, 회피치
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 17, 60, 40, 150, 75,false,5));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 50, 200, 100, false,13));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 45, 25, 120, 70, true, 5));
+        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 15, 20, 30, 50, 60, true, 15));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 75, 150, 150, true, 1));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -75,12 +75,14 @@ public class DungeonManager
         {
             if (turn == "player_choice")
             {
+   
+
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
                 player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
                 Console.WriteLine($"[{player.name}의 턴!]");
                 Console.WriteLine("1. 일반공격");
-                Console.WriteLine("2. " + player.SelectedClass.GetName1());
-                Console.WriteLine("3. " + player.SelectedClass.GetName2());
+                Console.WriteLine($"2. " + player.SelectedClass.GetName1());
+                Console.WriteLine($"3. " + player.SelectedClass.GetName2());
                 Console.WriteLine("4. 아이템 사용");
                 Console.WriteLine("0. 도주");
                 Console.WriteLine();
@@ -139,9 +141,9 @@ public class DungeonManager
     {
         Console.Clear();
         Random random = new Random();
-        int numberOfMonsters = random.Next(2, 5); // 랜덤 숫자 생성
+        int numberOfMonsters = random.Next(2, 6); // 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
-        Console.WriteLine($"{numberOfMonsters}마리의 몬스터가 출현했습니다\n");
+        Console.WriteLine($"{numberOfMonsters}마리의 몬스터가 출현했다!\n");
 
         List<Monster> monstersInBattle = new List<Monster>();
 
@@ -193,7 +195,7 @@ public class DungeonManager
             {
                 if (selectedMonsterIndex == 0)
                 {
-                    Console.WriteLine($"{player.name}이(가) 대기합니다.\n");
+                    Console.WriteLine($"{player.name}은(는) 대기했다!\n");
                     break;
                 }
 

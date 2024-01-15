@@ -80,13 +80,13 @@ public class Monster
                         Thread.Sleep(250);
                         if (call_colleague == 0)
                         {
-                            monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 6, 12, 100, 50, false, 10));
+                            monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 30, 30, 100, 50, false, 10));
                             Console.WriteLine($"고블린이(가) 전투에 참전했다!\n");
                             Thread.Sleep(250);
                         }
                         else
                         {
-                            monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 6, 5, 10, 120, 70, true, 5));
+                            monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 45, 25, 120, 70, true, 5));
                             Console.WriteLine($"고블린 사제이(가) 전투에 참전했다!\n");
                             Thread.Sleep(250);
                         }
@@ -99,6 +99,10 @@ public class Monster
                     {
                         damage = (int)(damage * 2); // 2배 데미지
                         player.hp -= damage;
+                        if (player.hp <= 0)
+                        {
+                            player.hp = 0;
+                        }
                         double self_damage = (atk * 0.5); // 오크 본인은 본인 Atk의 절반 만큼 피해를 입는다.
                         self_damage = Math.Truncate(self_damage); //소수점 아래 버림
 
@@ -144,6 +148,7 @@ public class Monster
                     {
                         damage = (int)(damage * 0.7); // 1회째 타격은 0.7배
                         player.hp -= damage;
+
                         Console.WriteLine($"{name}의 트윈 블레이드!");
                         Thread.Sleep(250);
                         Console.WriteLine($"{name}은(는) 발톱을 빠르게 두번 휘둘러 {player.name}을(를) 공격!");
@@ -159,6 +164,10 @@ public class Monster
                         Console.Write($"그리고 ");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write($"-{damage}");
+                        if (player.hp <= 0)
+                        {
+                            player.hp = 0;
+                        }
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write($" 의 데미지를 입었다! / 남은 HP: ");
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -180,7 +189,7 @@ public class Monster
                     {
                         Skill_Use_Check = true;
                         int randomIndex = random.Next(0, monsters.Count);
-                        int healing = random.Next(2, 10);
+                        int healing = random.Next(25, 51);
                         if (monsters[randomIndex].live == "live")
                         {
                             Console.WriteLine($"{name}은(는) 힐을(를) 주창했다!");
@@ -239,7 +248,7 @@ public class Monster
                 {
                     if (Skill_Chance <= 7)
                     {
-                        int hp_up = random.Next(1,4);
+                        int hp_up = random.Next(10,21);
                         Skill_Use_Check = true;
                         Console.WriteLine($"{name}은(는) 먹다남은 음식을 먹었다!");
                         Thread.Sleep(250);
@@ -257,9 +266,14 @@ public class Monster
                 {
                     if (Skill_Chance <= 5)
                     {
+                        int drain_grow = random.Next(5,16);
                         Skill_Use_Check = true;
                         Console.WriteLine($"{name}은 흡혈을 시전했다!");
                         player.hp -= damage;
+                        if (player.hp <= 0)
+                        {
+                            player.hp = 0;
+                        }
                         Thread.Sleep(250);
                         Console.Write($"{player.name}은(는) {name}에게 ");
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -281,8 +295,8 @@ public class Monster
                         {
                             Console.Write($"{name}은(는) 피를 가득 마셔 최대 체력이 ");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write($"1");
-                            maxHp += 1;
+                            Console.Write($"{drain_grow}");
+                            maxHp += drain_grow;
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.Write($" 상승했다!\n");
                             Thread.Sleep(250);
@@ -303,11 +317,15 @@ public class Monster
                     Thread.Sleep(500);
                     if(player.Avoidance_percentage(player.Avoidance))  //회피 성공시
                     {
-                        Console.WriteLine($"{player.name}은(는) 공격을 회피했다!\n");
+                        Console.WriteLine($"{player.name}은(는) 공격을 피했다!\n");
                     }
                     else
                     {
                         damage = (atk - player.def);
+                        if (damage < 0)  // 플레이어 방어력이 몬스터 공격력에 비해 너무 높을 경우 
+                        {
+                            damage = random.Next(0, 2); //랜덤으로 0 또는 1 의 데미지
+                        }
                         player.hp -= damage;
                         if (player.hp <= 0)
                         {
