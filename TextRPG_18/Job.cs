@@ -163,6 +163,9 @@ namespace TextRPG_18
             {
                 if (turn >= 3)
                 {
+                    Console.ForegroundColor= ConsoleColor.Blue;
+                    Console.WriteLine($"굶주림이 사그라듭니다  | 공격력: {player.atk} -> {playermax.atk}");
+                    Console.ResetColor();
                     turnfalse = false;
                     turn = 0;
                     player.atk = playermax.atk; //다시 돌려놓기
@@ -242,6 +245,9 @@ namespace TextRPG_18
             {
                 if (turn >= 3)
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"용기가 사그라듭니다  | 방어력 : {player.def} -> {playermax.dfs}");
+                    Console.ResetColor();
                     turnfalse = false;
                     turn = 0;
                     player.def = playermax.dfs; //다시 돌려놓기
@@ -322,6 +328,9 @@ namespace TextRPG_18
             {
                 if (turn >= 3)
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"의지가 사그라듭니다   |  치명타 : ({player.criticalChance}/{player.criticalDamage}) -> ({playermax.CRP}/{playermax.CRD})");
+                    Console.ResetColor();
                     turnfalse = false;
                     turn = 0;
                     player.criticalChance = playermax.CRP; //다시 돌려놓기
