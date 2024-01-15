@@ -80,13 +80,13 @@ public class Monster
                         Thread.Sleep(250);
                         if (call_colleague == 0)
                         {
-                            monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 6, 12, 100, 50, false));
+                            monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 2, 6, 12, 100, 50, false, 10));
                             Console.WriteLine($"고블린이(가) 전투에 참전했다!\n");
                             Thread.Sleep(250);
                         }
                         else
                         {
-                            monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 6, 5, 10, 120, 70, true));
+                            monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 6, 5, 10, 120, 70, true, 5));
                             Console.WriteLine($"고블린 사제이(가) 전투에 참전했다!\n");
                             Thread.Sleep(250);
                         }
@@ -303,11 +303,11 @@ public class Monster
                     Thread.Sleep(500);
                     if(player.Avoidance_percentage(player.Avoidance))  //회피 성공시
                     {
-                        Console.WriteLine($"{player.name}은 공격을 회피했다!\n");
+                        Console.WriteLine($"{player.name}은(는) 공격을 회피했다!\n");
                     }
                     else
                     {
-                        int damage = (atk - player.def);
+                        damage = (atk - player.def);
                         player.hp -= damage;
                         if (player.hp <= 0)
                         {

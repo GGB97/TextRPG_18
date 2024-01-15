@@ -53,12 +53,12 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 4, 6, 12, 100, 50,false));
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 15, 15, 150, 75,false));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 8, 7, 20, 200, 100, false));
-        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 5, 5, 10, 120, 70, true));
-        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 4, 4, 10, 50, 60, false));
-        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 6, 12, 30, 150, 150, true));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 4, 6, 12, 100, 50,false, 10));
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 15, 15, 150, 75,false,5));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 8, 7, 20, 200, 100, false,13));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 5, 5, 10, 120, 70, true,5));
+        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 4, 4, 10, 50, 60, false,15));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 6, 12, 30, 150, 150, true, 1));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -213,12 +213,17 @@ public class DungeonManager
                 Thread.Sleep(500);
                 if (Avoidance_percentage(monstersInBattle[selectedMonsterIndex - 1].Avoidance)) //회피 성공시
                 {
-                    Console.WriteLine($"{selectedMonster.name}을(를) 공격했으나 아무일도 일어나지 않았다!\n");
+                    Console.WriteLine($"{selectedMonster.name}은(는) 공격을 피했다!\n");
                 }
                 else //회피 실패시
                 {
                     int CRatk = player.PlayerDamage();
-                    Console.WriteLine($"{selectedMonster.name}은(는) -{CRatk}의 데미지를 입었다!\n");
+                    Console.Write($"{selectedMonster.name}은(는) ");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"-{CRatk}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($" 의 데미지를 입었다!\n");
+
                     Thread.Sleep(500);
 
                     // 몬스터 체력 감소
@@ -244,42 +249,9 @@ public class DungeonManager
 
 
         MonsterAllDie(monstersInBattle, player, ref turn);  //모든 몬스터가 죽었는지 확인
-
         EnemyTurn(monstersInBattle, player, ref turn); //몬스터 턴
 
         player.Recovery(); //마나 회복
-
-        if (turn == "enemy_turn")
-        {
-            Console.WriteLine($"=====================================================");
-            Console.WriteLine("[적의 턴!]");
-            for (int i = 0; i < monstersInBattle.Count; i++)
-            {
-                monstersInBattle[i].attack(player, ref turn, monstersInBattle);
-                if (monstersInBattle[i].live == "live")
-                {
-                    Console.WriteLine("");
-                }
-            }
-            allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
-
-            if (allMonstersDead)    //마지막 남은 오크가 자해해서 죽을 경우를 체크 
-            {
-                turn = "battle_win";
-                battle_result(player, monstersInBattle, ref turn);
-                return;
-            }
-
-
-            if (turn == "enemy_turn")
-            {
-                turn = "player_choice";
-            }
-            else if (turn == "battle_defeat")
-            {
-                battle_result(player, monstersInBattle, ref turn);
-            }
-        }
 
         if (turn == "player_choice")
         {
@@ -414,7 +386,7 @@ public class DungeonManager
             Console.WriteLine($"직업: {player.job}");
             Console.WriteLine($"체력: {player.hp}");
             Console.WriteLine($"Gold: ");
-            GameManager.printGold(player);
+            TextRPG.GameManager.printGold(player);
 
             // 경험치 확인 후 레벨업
             if (player.exp >= player.maxExp)
@@ -489,9 +461,11 @@ public class DungeonManager
             Console.WriteLine("[적의 턴!]");
             for (int i = 0; i < monstersInBattle.Count; i++)
             {
-                monstersInBattle[i].attack(player, ref turn);
-                Console.WriteLine("");
-
+                monstersInBattle[i].attack(player, ref turn, monstersInBattle);
+                if (monstersInBattle[i].live == "live")
+                {
+                    Console.WriteLine("");
+                }
             }
 
             if (player.hp <= 0)

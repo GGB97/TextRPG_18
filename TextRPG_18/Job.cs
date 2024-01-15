@@ -48,7 +48,7 @@ namespace TextRPG_18
         public void Pick(Player player) // 직업선택시 스택 적용
         {
             playermax.maxHp = hp;
-            playermax.maxmp = mp;
+            playermax.maxMp = mp;
             playermax.atk = atk;
             playermax.dfs = def;
             playermax.CRD = criticalDamage;

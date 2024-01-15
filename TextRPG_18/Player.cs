@@ -40,7 +40,7 @@ public class Player
         job = "용병";
         atk = 5;
         def = 5;
-        hp = 100;
+        hp = 10;
         maxHp = 150;
         atk = 0;
         def = 0;
@@ -50,6 +50,7 @@ public class Player
         criticalDamage = 0;
         gold = 1500;
         maxExp = level * 100;
+
         inventory = new Inventory();
 
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 2, 50));
@@ -237,24 +238,22 @@ public class Player
         Console.WriteLine($" 회복했습니다.");
         hp = maxHp;
         Console.Write($"현재 HP : ");
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.Write($"{hp}\n");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"마력을 ");
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{playermax.maxmp - mp}");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine($" 회복했습니다.");
-        mp = playermax.maxmp;
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"{hp}\n");
         Console.ForegroundColor = ConsoleColor.White;
+        Console.Write($"마력을 ");
+        Console.ForegroundColor = ConsoleColor.Blue;
+        Console.Write($"{playermax.maxMp - mp}");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine($" 회복했습니다.");
+        mp = playermax.maxMp;
+
         Console.Write($"골드 지불 :");
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine($"500");
         Console.ForegroundColor = ConsoleColor.White;
         Console.Write($"소지 골드 :");
-        GameManager.printGold(this);
+        TextRPG.GameManager.printGold(this);
         Console.Write($"\n");
     }
 
