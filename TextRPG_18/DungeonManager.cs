@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using TextRPG;
 using TextRPG_18;
 
 public class DungeonManager
@@ -41,8 +42,7 @@ public class DungeonManager
             }
             else
             {
-                Console.WriteLine($"잘못된 입력입니다.");
-
+                GameManager.printError(str);
             }
         }
     }
@@ -78,21 +78,21 @@ public class DungeonManager
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
                 player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
                 Console.WriteLine($"[{player.name}의 턴!]");
-                Console.WriteLine("0. 도주");
                 Console.WriteLine("1. 일반공격");
                 Console.WriteLine("2. " + player.SelectedClass.GetName1());
                 Console.WriteLine("3. " + player.SelectedClass.GetName2());
                 Console.WriteLine("4. 아이템 사용");
+                Console.WriteLine("0. 도주");
                 Console.WriteLine();
 
                 Console.Write($"{player.name} :");
-                string userInput = Console.ReadLine();
+                string str = Console.ReadLine();
 
-                if (userInput == "1")
+                if (str == "1")
                 {
                     choice_attack_target(player, monstersInBattle, ref turn);
                 }
-                else if (userInput == "0")
+                else if (str == "0")
                 {
                     player.SelectedClass.turn = 3;
                     player.SelectedClass.Initialization(player);  //스텟 초기화
@@ -102,11 +102,11 @@ public class DungeonManager
                     Console.Clear();
                     break;
                 }
-                else if (userInput == "4")
+                else if (str == "4")
                 {
                     player.Use_Item_Manager();
                 }
-                else if (userInput == "2")
+                else if (str == "2")
                 {
                     MonsterList(monstersInBattle);
                     player.SelectedClass.skill_1(monstersInBattle, player);
@@ -114,7 +114,7 @@ public class DungeonManager
                     MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
                     EnemyTurn(monstersInBattle, player, ref turn);
                 }
-                else if (userInput == "3")
+                else if (str == "3")
                 {
                     MonsterList(monstersInBattle);
                     player.SelectedClass.Skill_2(player);
@@ -123,7 +123,7 @@ public class DungeonManager
                 }
                 else
                 {
-                    Console.Write($" 잘못된 입력입니다.");
+                    GameManager.printError(str);
                 }
             }
             else
@@ -180,7 +180,7 @@ public class DungeonManager
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp}  ATK: {monstersInBattle[i].atk}");
         }
-        Console.WriteLine("0 대기하기");
+        Console.WriteLine("0. 대기하기");
         Console.WriteLine();
         Console.WriteLine("\n공격할 몬스터 선택해 주세요.");
         Console.WriteLine();
@@ -206,7 +206,7 @@ public class DungeonManager
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다.");
+                GameManager.printError(selectedMonsterIndex.ToString());
             }
         }
 
@@ -312,7 +312,7 @@ public class DungeonManager
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다.");
+                    GameManager.printError(userInput);
                 }
             }
         }
@@ -423,7 +423,7 @@ public class DungeonManager
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다.");
+                    GameManager.printError(userInput);
                 }
             }
         }

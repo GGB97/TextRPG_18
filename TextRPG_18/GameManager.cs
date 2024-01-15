@@ -46,8 +46,8 @@ namespace TextRPG
 
                     while (true)
                     {
-                        Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 레벨업");
+                        Console.WriteLine("0. 나가기");
                         Console.WriteLine();
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
@@ -76,8 +76,8 @@ namespace TextRPG
                     {
                         Console.Clear();
                         player.inventory.print();
-                        Console.WriteLine("0. 나가기");
                         Console.WriteLine("1. 장비 관리 / 아이템 사용");
+                        Console.WriteLine("0. 나가기");
                         Console.WriteLine();
 
                         Console.Write($"{player.name} : ");

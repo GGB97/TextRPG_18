@@ -16,7 +16,6 @@ enum MenuType
     REST,
     QUEST,
     SAVE = 9
-
 }
 enum MonsterType
 {

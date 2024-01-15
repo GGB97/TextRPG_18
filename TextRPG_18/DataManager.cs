@@ -76,7 +76,7 @@ public class DataManager
             }
             else
             {
-                GameManager.printError("str");
+                GameManager.printError(str);
             }
         }
     }

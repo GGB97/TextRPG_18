@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Numerics;
+using TextRPG;
 using TextRPG_18;
 
 public class Player
@@ -157,7 +158,7 @@ public class Player
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다.");
+                GameManager.printError(str);
             }
 
         }
