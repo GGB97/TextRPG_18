@@ -15,7 +15,7 @@ public class DungeonManager
         while (true)
         {
             Console.WriteLine("[던전 입장] \n");
-            Console.WriteLine($"현재 체력: {player.hp}");
+            Console.WriteLine($"현재 체력 : {player.hp}");
             Console.WriteLine(
                 "1. 던전 입장 \n" +
                 "2. 나가기");
@@ -39,7 +39,7 @@ public class DungeonManager
             }
             else
             {
-                Console.Write($"{str} 은(는) 잘못된 입력입니다.");
+                Console.Write($"잘못된 입력입니다.");
             }
         }
     }
@@ -95,7 +95,7 @@ public class DungeonManager
                     player.SelectedClass.turn = 3;
                     player.SelectedClass.Initialization(player);  //스텟 초기화
                     Thread.Sleep(250);
-                    Console.WriteLine("\n성공적으로 도망쳤다!");
+                    Console.WriteLine("\n성공적으로 도망습니다!");
                     Thread.Sleep(500);
                     Console.Clear();
                     break;
@@ -121,7 +121,7 @@ public class DungeonManager
                 }
                 else
                 {
-                    Console.Write($"{userInput} 은(는) 잘못된 입력입니다.");
+                    Console.Write($" 잘못된 입력입니다.");
                 }
             }
             else
@@ -138,7 +138,7 @@ public class DungeonManager
         Random random = new Random();
         int numberOfMonsters = random.Next(2, 5); // 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
-        Console.WriteLine($"앗! {numberOfMonsters}마리의 야생 몬스터가 출현했다!\n");
+        Console.WriteLine($"앗! {numberOfMonsters}마리의 야생 몬스터가 출현했습니다!!\n");
 
         List<Monster> monstersInBattle = new List<Monster>();
 
@@ -219,7 +219,7 @@ public class DungeonManager
                 Thread.Sleep(500);
                 if (Avoidance_percentage(monstersInBattle[selectedMonsterIndex - 1].Avoidance)) //회피 성공시
                 {
-                    Console.WriteLine($"{selectedMonster.name}은(는) 공격을 피했다!\n");
+                    Console.WriteLine($"{selectedMonster.name}은(는) 공격을 피했습니다!\n");
                 }
                 else //회피 실패시
                 {
@@ -228,7 +228,7 @@ public class DungeonManager
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"-{CRatk}");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($" 의 데미지를 입었다!\n");
+                    Console.Write($" 의 데미지를 입었습니다!\n");
 
                     Thread.Sleep(500);
 
@@ -240,7 +240,7 @@ public class DungeonManager
                 // 몬스터 체력이 0이면 사망판정
                 if (selectedMonster.hp <= 0)
                 {
-                    Console.WriteLine($"{selectedMonster.name}은(는) 쓰러졌다!\n");
+                    Console.WriteLine($"{selectedMonster.name}은(는) 쓰러졌습니다!\n");
                     selectedMonster.hp = 0;
                     selectedMonster.live = "dead";
 
@@ -307,7 +307,7 @@ public class DungeonManager
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                    Console.WriteLine("잘못된 입력입니다.");
                 }
             }
         }
@@ -315,7 +315,7 @@ public class DungeonManager
         {
             player.SelectedClass.turn = 3;
             player.SelectedClass.Initialization(player);  //스텟 초기화
-            Console.WriteLine("승리!\n");
+            Console.WriteLine("승리하셨습니다!\n");
 
             //몬스터의 골드와 경험치 총합 계산 후 랜덤 보정
 
@@ -418,7 +418,7 @@ public class DungeonManager
                 }
                 else
                 {
-                    Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
+                    Console.WriteLine("잘못된 입력입니다.");
                 }
             }
         }
@@ -465,6 +465,7 @@ public class DungeonManager
         {
             Console.WriteLine($"=====================================================");
             Console.WriteLine("[적의 턴!]");
+            Console.WriteLine();
             for (int i = 0; i < monstersInBattle.Count; i++)
             {
                 monstersInBattle[i].attack(player, ref turn, monstersInBattle);
