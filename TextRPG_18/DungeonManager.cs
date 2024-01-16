@@ -14,7 +14,7 @@ public class DungeonManager
 
         while (true)
         {
-            Console.WriteLine("[던전 입장] \n");
+            Console.WriteLine("[던전 입장]");
             Console.WriteLine("[플레이어 레벨에 비례해 출현 몬스터가 강해집니다.] \n");
             Console.WriteLine($"현재 체력 : {player.hp}");
             Console.WriteLine(
