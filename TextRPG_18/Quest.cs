@@ -89,6 +89,8 @@ public class Quest
             player.gold += rGold;
             Console.WriteLine($"{player.gold} (+{rGold})");
 
+            player.quests.quests.Remove(this);
+
             GameManager.PressEnter();
         }
         else

@@ -28,6 +28,7 @@ public class Shop
         string str; int num;
         while (true)
         {
+            Console.Clear();
             Console.WriteLine("[아이템 구매]");
             Console.WriteLine();
             Console.Write($"소지 골드 :");
@@ -56,6 +57,8 @@ public class Shop
                         Console.Write($"소지 골드 :");
                         GameManager.printGold(player);
                         Console.WriteLine();
+
+                        GameManager.PressEnter();
                     }
                     else
                     {
@@ -80,6 +83,7 @@ public class Shop
         string str; int num;
         while (true)
         {
+            Console.Clear();
             Console.WriteLine("[아이템 판매]");
             Console.Write($"소지 골드 :");
             GameManager.printGold(player);
@@ -107,6 +111,8 @@ public class Shop
                     GameManager.printGold(player);
                     player.inventory.items.RemoveAt(num);
                     Console.WriteLine() ;
+
+                    GameManager.PressEnter();
                 }
                 else if (num == -1)
                 {
