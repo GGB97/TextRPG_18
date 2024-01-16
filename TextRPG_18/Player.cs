@@ -172,6 +172,7 @@ public class Player
 
     public void printStatus()
     {
+        Console.WriteLine("[상태창]\n");
         Console.WriteLine("---------------------");
         Console.WriteLine(
             $"LV : {level} ({exp}/{maxExp})\n" +
