@@ -154,8 +154,8 @@ namespace TextRPG
                     {
                         Console.Clear();
                         Console.WriteLine("[휴식하기]");
-                        Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
-                        Console.WriteLine("체력이 최대일 경우 250G를 내고 마나를 회복할 수 있습니다.");
+                        Console.WriteLine("300G를 내면 휴식을 할 수 있습니다.");
+                        Console.WriteLine("체력이 최대일 경우 150G를 내고 마나를 회복할 수 있습니다.");
                         Console.Write($"현재 체력: ");
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write($"[");
