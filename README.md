@@ -49,6 +49,7 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   
   #### 치명타
   <img src = "https://github.com/GGB97/TextRPG_18/assets/128718414/4fafb192-59b2-40c5-bb22-a6939afcdac5">   
+  <img src = "(https://github.com/GGB97/TextRPG_18/assets/128718414/79d4594e-df37-42ef-9341-4b9bac5b699d"> 
     
   #### 회피
   <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
