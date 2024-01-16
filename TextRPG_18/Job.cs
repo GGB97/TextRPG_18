@@ -87,9 +87,6 @@ namespace TextRPG_18
     {
         int turn_reset = 0;
 
-        public string Skill_name1 = "피의 광란 : 마나 15와 최대 체력의 45%를 소비해 광란의 참격을 가한다.\n   [무작위 적에게 ATK*2의 피해. 대상을 처치했을 경우 체력을 10% 회복하고 1회 더 반복. 체력이 10% 이하라면 시전 불가.]"; 
-        public string Skill_name2 = "갈망 : 최대 체력의 25%를 소비해 기본 공격력을 50% 증가 시킨다. (3턴 지속)\n   [이 스킬은 체력이 부족해도 시전할 수 있다.]";
-
         public Warrior()
         {
             this.type = JobType.Berserker;
@@ -103,6 +100,9 @@ namespace TextRPG_18
             this.criticalDamage = 150;
             this.Avoidance = 25;
             this.MP_Recovery = 5;
+
+            Skill_name1 = "피의 광란 : 마나 15와 최대 체력의 45%를 소비해 광란의 참격을 가한다.\n   [무작위 적에게 ATK*2의 피해. 대상을 처치했을 경우 체력을 10% 회복하고 1회 더 반복. 체력이 10% 이하라면 시전 불가.]";
+            Skill_name2 = "갈망 : 최대 체력의 25%를 소비해 기본 공격력을 50% 증가 시킨다. (3턴 지속)\n   [이 스킬은 체력이 부족해도 시전할 수 있다.]";
         }
 
 
@@ -327,9 +327,7 @@ namespace TextRPG_18
     public class Kinght : Job
     {
         int turn_reset = 0;
-
-        public string Skill_name1 = "드래곤 스트라이크 : 마나 30을 소비해 드래곤의 힘을 실은 창을 들고 돌진한다. \n   [모든 적에게 ATK*0.7 피해. 그리고 무작위 적 하나에게 ATK*1.5로 공격.]";
-        public string Skill_name2 = "용혈의 계약 : 마나 25를 소비해 체력을 즉시 10% 회복하고, 자신의 방어력을 50% 증가시킨다. (3턴 지속)";
+        
         public Kinght()
         {
             this.type = JobType.DragonKnight;
@@ -342,6 +340,9 @@ namespace TextRPG_18
             this.criticalDamage = 130;
             this.Avoidance = 10;
             this.MP_Recovery = 10;
+
+            Skill_name1 = "드래곤 스트라이크 : 마나 30을 소비해 드래곤의 힘을 실은 창을 들고 돌진한다. \n   [모든 적에게 ATK*0.7 피해. 그리고 무작위 적 하나에게 ATK*1.5로 공격.]";
+            Skill_name2 = "용혈의 계약 : 마나 25를 소비해 체력을 즉시 10% 회복하고, 자신의 방어력을 50% 증가시킨다. (3턴 지속)";
         }
 
         public override void skill_1(List<Monster> mon, Player player)
@@ -535,9 +536,7 @@ namespace TextRPG_18
     public class Mage : Job
     {
         public int magic_cast = 0;
-
-        public string Skill_name1 = "대마법:메테오 : 마나 500을 소비해 유성우를 소환한다.\n   [모든 적에게 ATK*1000의 피해.]";
-        public string Skill_name2 = "주문 영창 : 마나 75을 소비해 자신의 치명타 확률을 50%, 치명타 피해를 2배 증가시킨다. (3턴 지속) \n   [또한, 자신이 다음에 시전하는 마법의 마나 소모량이 250 감소한다. (중첩 및 지속 시간 연장 가능)]";
+        
         public Mage()
         {
             this.type = JobType.Mage;
@@ -550,6 +549,9 @@ namespace TextRPG_18
             this.criticalDamage = 250;
             this.Avoidance = 15;
             this.MP_Recovery = 25;
+
+            Skill_name1 = "대마법:메테오 : 마나 500을 소비해 유성우를 소환한다.\n   [모든 적에게 ATK*1000의 피해.]";
+            Skill_name2 = "주문 영창 : 마나 75을 소비해 자신의 치명타 확률을 50%, 치명타 피해를 2배 증가시킨다. (3턴 지속) \n   [또한, 자신이 다음에 시전하는 마법의 마나 소모량이 250 감소한다. (중첩 및 지속 시간 연장 가능)]";
         }
 
         public override void skill_1(List<Monster> mon, Player player)
