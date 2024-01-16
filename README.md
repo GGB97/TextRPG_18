@@ -3,7 +3,8 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 
 # 구현 기능
 상태 보기, 레벨업,
-<details>
+
+<details>  제목인가?
 <summary>Click to expand</summary>
 
 내용
