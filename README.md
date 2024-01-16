@@ -23,9 +23,10 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/02df108d-f46a-4237-8b74-de765e3166a9">
 
   #### 스탯 분배
+    ----- 스탯 포인트 사용시 (+원하는 스탯),(-스탯포인트 차감) -----
   <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/83f43f00-4b38-4b08-9465-1ca7aea8a275">   
 
-  ----- 스탯 포인트 사용시 (+원하는 스탯),(-스탯포인트 차감) -----
+  
 </details>
 
 
