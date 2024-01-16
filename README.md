@@ -23,7 +23,9 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/02df108d-f46a-4237-8b74-de765e3166a9">
 
   #### 스탯 분배
-  <img src = "">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/83f43f00-4b38-4b08-9465-1ca7aea8a275">   
+
+  ----- 스탯 포인트 사용시 (+원하는 스탯),(-스탯포인트 차감) -----
 </details>
 
 
@@ -41,10 +43,13 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <summary>전투, 스킬, 치명타, 회피, 몬스터 추가, 몬스터 레벨 스케일링</summary>
 
   #### 전투
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/c3303dd9-204f-4af6-bea3-52f379b41c64" width="800" height="250">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/3f6f25b1-5a7a-40fe-a922-ab694c644f2a" width="800" height="500">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/5016e821-978e-4f9c-8b11-7c0716a9b3a1" width="800" height="500">
   
   #### 스킬
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/92f19b11-ded6-4f02-85bd-d7347b820941" width="800" height="250">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/65c2f070-11e2-4986-87f4-ec0f9e4c54f7" width="800" height="500">
   
   #### 치명타
   <img src = "https://github.com/GGB97/TextRPG_18/assets/128718414/921e7f15-e0de-4f74-8b76-26438019d3a1">   
