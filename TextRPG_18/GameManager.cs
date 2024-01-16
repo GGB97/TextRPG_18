@@ -54,6 +54,7 @@ namespace TextRPG
 
                         if (str == "1")
                         {
+                            Console.Clear() ;
                             player.Levelup();
                         }
                         else if (str == "2")

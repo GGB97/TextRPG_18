@@ -16,7 +16,7 @@ public class DungeonManager
         {
             Console.WriteLine("[던전 입장]");
             Console.WriteLine("[플레이어 레벨에 비례해 출현 몬스터가 강해집니다.] \n");
-            Console.WriteLine($"현재 체력 : {player.hp}");
+            Console.WriteLine($"현재 체력 : {player.hp} / {player.maxHp}");
             Console.WriteLine(
                 "1. 던전 입장 \n" + //"2. 무한 던전 입장 \n" +
                 "0. 나가기");
@@ -180,7 +180,7 @@ public class DungeonManager
             int random_difficulty = random.Next(0, player.level+3);
 
             // 인스턴스 생성
-            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level + random_difficulty, randomMonster.hp + random_difficulty*5, randomMonster.atk + random_difficulty*2, randomMonster.gold + random_difficulty*15, randomMonster.exp + random_difficulty*15, randomMonster.drop_potion ,randomMonster.Avoidance + random_difficulty*1/2);
+            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level + random_difficulty, randomMonster.hp + random_difficulty*5, randomMonster.atk + random_difficulty*3, randomMonster.gold + random_difficulty*25, randomMonster.exp + random_difficulty*15, randomMonster.drop_potion ,randomMonster.Avoidance + random_difficulty*1/2);
 
             // 리스트에 인스턴스 등록
             monstersInBattle.Add(monsterInstance);

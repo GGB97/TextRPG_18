@@ -7,12 +7,12 @@ public class Shop
 
     public Shop()
     {
-        items.Add(new Armor("수련자 갑옷", "수련에 도움을 주는 갑옷", 15, 1000));
-        items.Add(new Armor("스파르타의 갑옷", "스파르타의 전사들이 사용하던 갑옷", 30, 3000));
-        items.Add(new Armor("아다만틴 갑옷", "언더다크의 대장간에서 만들어진 갑옷", 60, 10000));
+        items.Add(new Armor("수련자 갑옷", "수련에 도움을 주는 갑옷", 10, 1000));
+        items.Add(new Armor("스파르타의 갑옷", "스파르타의 전사들이 사용하던 갑옷", 25, 4500));
+        items.Add(new Armor("아다만틴 갑옷", "언더다크의 대장간에서 만들어진 갑옷", 50, 10000));
         Console.WriteLine();
-        items.Add(new Weapon("청동 메이스", "어디선가 사용됐던거 같은 메이스", 20, 1500));
-        items.Add(new Weapon("스파르타의 창", "스파르타의 전사들이 사용하던 창", 45, 5000));
+        items.Add(new Weapon("청동 메이스", "어디선가 사용됐던거 같은 메이스", 10, 1500));
+        items.Add(new Weapon("스파르타의 창", "스파르타의 전사들이 사용하던 창", 35, 5500));
         items.Add(new Weapon("영혼 포획의 장갑", "발더스 게이트에서 주워왔습니다", 100, 12000));
         items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 30, 500));
         items.Add(new Consumption("중급 회복 포션", "체력을 적당히 회복할 수 있는 포션", 75, 700));

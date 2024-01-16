@@ -184,7 +184,7 @@ public class Player
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
             $"생명력 : {hp} / {maxHp} \n" +
-            $"마나 : {mp} \n" +
+            $"마나 : {mp} / {maxMp} \n" +
             $"치명타 확률 : {criticalChance} \n" +
             $"치명타 피해 : {criticalDamage} \n" +
             $"SP : {statPoint}" + 
