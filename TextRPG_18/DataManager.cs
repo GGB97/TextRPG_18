@@ -62,6 +62,8 @@ public class DataManager
             {
                 Console.Write($"{n++}. ");
                 fileName = Path.GetFileName(file); // "SaveData_**.json" 을 잘라서 **부분만 나오게 수정할 예정
+
+                playerName.Clear();
                 playerName.Append(fileName);
                 playerName.Replace("SaveData_", "");
                 playerName.Replace(".json", "");

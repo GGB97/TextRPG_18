@@ -26,8 +26,8 @@ public class Item
         if (type == (int)ItemType.Weapon || type == (int)ItemType.Armor)
         {
             is_Equip = false;
-            Console.WriteLine($"{name} 이(가) 해제 되었습니다.");
-
+            if(name != null)
+                Console.WriteLine($"{name} 이(가) 해제 되었습니다.");
         }
     }
 

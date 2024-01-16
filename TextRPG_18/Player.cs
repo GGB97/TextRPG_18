@@ -115,6 +115,7 @@ public class Player
         string str; int num;
         while (true)
         {
+            Console.Clear();
             inventory.printNumbering();
             Console.WriteLine("장비 아이템을 선택하면 장착/해제, 소비 아이템을 선택하면 사용합니다.");
             Console.WriteLine();
@@ -153,23 +154,18 @@ public class Player
                     if (inventory.items[num].getEquip()) // 아이템이 착용되어 있는지 확인
                     {
                         inventory.items[num].unEquip(this); // 장비 해제
-                        Console.Write($"{inventory.items[num].getName()}을 장착 해제했습니다.");
-                        Console.WriteLine($"=====================================================\n");
                     }
                     else
                     {
                         inventory.items[num].Equip(this);   // 장비 장착
-                        Console.Write($"{inventory.items[num].getName()}을 장착했습니다.");
-                        Console.WriteLine($"=====================================================\n");
                     }
                 }
-
+                GameManager.PressEnter();
             }
             else
             {
                 GameManager.printError(str);
             }
-
         }
     }
 
