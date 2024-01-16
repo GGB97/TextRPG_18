@@ -10,7 +10,7 @@ public class Kinght : Job
         this.name = "용기사";
         this.hp = 200;
         this.mp = 75;
-        this.atk = 30;
+        this.atk = 25;
         this.def = 30;
         this.criticalChance = 30;
         this.criticalDamage = 125;
