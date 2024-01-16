@@ -3,7 +3,12 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 
 # 구현 기능
 상태 보기, 레벨업,
+<details>
+<summary>Click to expand</summary>
 
+내용
+
+</details>
 캐릭터 생성, 직업 선택, 
 
 전투, 스킬, 치명타, 회피, 몬스터 레벨 스케일링, 몬스터 추가
