@@ -31,7 +31,7 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <summary>캐릭터 생성, 직업 선택</summary>
   
   #### 캐릭터 생성
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/36e2993c-8e3f-4fb6-93b3-309d79c20984">
   
   #### 직업 선택
   <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/cc1a042a-24dc-4e3e-adbf-c09e1b1c17f1">
