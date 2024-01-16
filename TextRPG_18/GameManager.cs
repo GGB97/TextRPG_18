@@ -56,6 +56,7 @@ namespace TextRPG
                         {
                             Console.Clear() ;
                             player.Levelup();
+                            Thread.Sleep(750);
                         }
                         else if (str == "2")
                         {
@@ -149,16 +150,37 @@ namespace TextRPG
                 }
                 else if (str == $"{(int)MenuType.REST}")
                 {
-                    Console.Clear();
-                    Console.WriteLine("[휴식하기]");
-                    Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
-                    Console.WriteLine("체력이 최대일 경우 250G를 내고 마나를 회복할 수 있습니다.");
-                    Console.WriteLine();
-                    Console.Write($"소지 골드 : ");
-                    printGold(player);
-
                     while (true)
                     {
+                        Console.Clear();
+                        Console.WriteLine("[휴식하기]");
+                        Console.WriteLine("500G를 내면 휴식을 할 수 있습니다.");
+                        Console.WriteLine("체력이 최대일 경우 250G를 내고 마나를 회복할 수 있습니다.");
+                        Console.Write($"현재 체력: ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($"[");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"{player.hp}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($"/");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write($"{player.maxHp}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($"] ");
+                        Console.Write($"현재 마나: ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($"[");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write($"{player.mp}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($"/");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write($"{player.maxMp}");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Write($"]\n\n");
+                        Console.WriteLine();
+                        Console.Write($"소지 골드 : ");
+                        printGold(player);
                         Console.WriteLine("1. 휴식하기");
                         Console.WriteLine("0. 나가기");
                         Console.WriteLine();
@@ -168,6 +190,13 @@ namespace TextRPG
                         if (str == "1")
                         {
                             player.Rest();
+                            Console.WriteLine("0. 나가기");
+                            str = Console.ReadLine();
+                            if (str == "0")
+                            {
+                                break;
+                            }
+
                         }
                         else if(str == "0")
                         {

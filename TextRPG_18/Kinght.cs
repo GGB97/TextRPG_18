@@ -12,12 +12,12 @@ public class Kinght : Job
         this.mp = 75;
         this.atk = 20;
         this.def = 30;
-        this.criticalChance = 30;
-        this.criticalDamage = 130;
+        this.criticalChance = 35;
+        this.criticalDamage = 125;
         this.Avoidance = 10;
-        this.MP_Recovery = 10;
+        this.MP_Recovery = 15;
 
-        Skill_name1 = "드래곤 스트라이크 : 마나 30을 소비해 드래곤의 힘을 실은 창을 들고 돌진한다. \n   [모든 적에게 ATK*0.7 피해. 그리고 무작위 적 하나에게 ATK*1.5로 공격.]";
+        Skill_name1 = "드래곤 스트라이크 : 마나 30을 소비해 드래곤의 힘을 실은 창을 들고 돌진한다. \n   [모든 적에게 ATK*0.75 피해. 그리고 무작위 적 하나에게 ATK*1.5로 공격.]";
         Skill_name2 = "용혈의 계약 : 마나 25를 소비해 체력을 즉시 10% 회복하고, 자신의 방어력을 50% 증가시킨다. (3턴 지속)";
     }
 
@@ -47,11 +47,11 @@ public class Kinght : Job
             int minushp = player.PlayerDamage(); //치명타 계산
             Console.Write($"{item.name}은(는) ");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{minushp * 70 / 100}");
+            Console.Write($"{minushp * 75 / 100}");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($" 의 데미지를 입었다!\n");
             Thread.Sleep(250);
-            item.hp -= minushp * 70 / 100;
+            item.hp -= minushp * 75 / 100;
 
             if (item.hp <= 0)
             {
@@ -74,10 +74,11 @@ public class Kinght : Job
                 int random_target = random.Next(0, mon.Count);
                 if (mon[random_target].live == "live")
                 {
-                    int minushp = player.PlayerDamage();
+                    
                     Console.WriteLine($"\n그리고 추가 공격!");
                     Console.WriteLine($"{player.name} 이(가) 드래곤의 진노를 담아 {mon[random_target].name}을(를) 꿰뚫는다!");
                     Thread.Sleep(600);
+                    int minushp = player.PlayerDamage();
                     Console.Write($"{mon[random_target].name}은(는) ");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"{minushp * 15 / 10}");
