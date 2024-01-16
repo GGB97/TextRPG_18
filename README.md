@@ -46,8 +46,8 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/5016e821-978e-4f9c-8b11-7c0716a9b3a1" width="800" height="500">
   
   #### 스킬
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/92f19b11-ded6-4f02-85bd-d7347b820941">
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/65c2f070-11e2-4986-87f4-ec0f9e4c54f7">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/92f19b11-ded6-4f02-85bd-d7347b820941" width="800" height="250">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/65c2f070-11e2-4986-87f4-ec0f9e4c54f7" width="800" height="500">
   
   #### 치명타
   <img src = "https://github.com/GGB97/TextRPG_18/assets/128718414/921e7f15-e0de-4f74-8b76-26438019d3a1">   
