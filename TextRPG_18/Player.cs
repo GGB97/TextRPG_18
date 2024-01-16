@@ -232,7 +232,7 @@ public class Player
         {
             exp -= maxExp;
             level++;
-            maxExp = level * 100;
+            maxExp = level * 150;
             maxHp += 5;
             atk += 2f;
             def += 1;

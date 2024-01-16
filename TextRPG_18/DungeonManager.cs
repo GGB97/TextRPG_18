@@ -66,10 +66,10 @@ public class DungeonManager
         monsters = new List<Monster>();
         monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 50, 30, 100, 50, false, 10)); //이름, 타입, 레벨, 체력, 공격력, 골드, 경험치, 포션 드랍여부, 회피치
         monsters.Add(new Monster("오크", (int)MonsterType.Orc, 17, 65, 35, 150, 75,false,5));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 45, 200, 100, false,13));
-        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 65, 25, 120, 70, true, 5));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 45, 200, 80, false,13));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 65, 25, 120, 65, true, 5));
         monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 15, 40, 30, 50, 60, true, 15));
-        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 60, 150, 150, true, 1));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 60, 150, 75, true, 1));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -180,7 +180,7 @@ public class DungeonManager
             int random_difficulty = random.Next(0, player.level+3);
 
             // 인스턴스 생성
-            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level + random_difficulty, randomMonster.hp + random_difficulty*5, randomMonster.atk + random_difficulty*3, randomMonster.gold + random_difficulty*25, randomMonster.exp + random_difficulty*15, randomMonster.drop_potion ,randomMonster.Avoidance + random_difficulty*1/2);
+            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level + random_difficulty, randomMonster.hp + random_difficulty*7, randomMonster.atk + random_difficulty*4, randomMonster.gold + random_difficulty*25, randomMonster.exp + random_difficulty*15, randomMonster.drop_potion ,randomMonster.Avoidance + random_difficulty*1/2);
 
             // 리스트에 인스턴스 등록
             monstersInBattle.Add(monsterInstance);
