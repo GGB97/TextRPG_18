@@ -71,7 +71,7 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 </details>
 
 <details> 
-<summary>아이템/상점</summary>
+<summary>아이템/상점, 휴식</summary>
   
   #### 장비 장착/해체
   <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
@@ -80,6 +80,9 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
 
   #### 아이템 구매/판매
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+
+  #### 휴식
   <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
 </details>
 
