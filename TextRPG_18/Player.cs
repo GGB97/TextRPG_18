@@ -23,6 +23,8 @@ public class Player
     public int criticalChance { get; set; }
     public int criticalDamage { get; set; }
 
+    public int statPoint { get; private set; }
+
     public int Avoidance { get; set; } //회피율
     public int MP_Recovery { get; set; } //마나 회복율
     public Job SelectedClass { get; set; } //자식 클래스에 접근하기 위한 변수
@@ -48,9 +50,9 @@ public class Player
         criticalDamage = 0;
         gold = 1500;
         maxExp = level * 100;
+        statPoint = 0;
 
         inventory = new Inventory();
-
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 10, 50));
         inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 5, 100));
         inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 30, 500));
@@ -74,6 +76,8 @@ public class Player
         gold = playerData.gold;
         atk = playerData.atk;
         def = playerData.def;
+
+        statPoint = playerData.statPoint;
 
         switch (playerData.job)
         {
@@ -233,6 +237,7 @@ public class Player
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
             hp = maxHp;
+            statPoint += 1;
             printStatus();
         }
         else
