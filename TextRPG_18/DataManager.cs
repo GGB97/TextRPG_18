@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Text.Json;
 using TextRPG;
 
@@ -52,7 +53,7 @@ public class DataManager
         }
         string[] matchedFiles = Directory.GetFiles(saveDirectory, "SaveData_*");
 
-        string filName; int n;
+        string fileName; int n; StringBuilder playerName = new();
         while (true)
         {
             Console.Clear();
@@ -60,8 +61,12 @@ public class DataManager
             foreach (string file in matchedFiles)
             {
                 Console.Write($"{n++}. ");
-                filName = Path.GetFileName(file); // "SaveData_**.json" 을 잘라서 **부분만 나오게 수정할 예정
-                Console.WriteLine($"{filName}");
+                fileName = Path.GetFileName(file); // "SaveData_**.json" 을 잘라서 **부분만 나오게 수정할 예정
+                playerName.Append(fileName);
+                playerName.Replace("SaveData_", "");
+                playerName.Replace(".json", "");
+
+                Console.WriteLine($"{playerName.ToString()}");
             }
 
 
