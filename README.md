@@ -91,14 +91,20 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <details> 
 <summary>퀘스트</summary>
   
+  ### 기본 상태
+  ![Quest_Default](https://github.com/GGB97/TextRPG_18/assets/99232361/00aee39b-2b33-4fa2-bcbd-dd76d6164a06)
+  
   #### 퀘스트 수락
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Quest_Accept](https://github.com/GGB97/TextRPG_18/assets/99232361/41297573-bce4-4550-a613-13ab71a0acdf)
     
   #### 퀘스트 포기
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Quest_Abandon](https://github.com/GGB97/TextRPG_18/assets/99232361/4a772edd-e7d8-4813-80d4-587335f17c27)
 
   #### 퀘스트 완료
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Quest_Clear1](https://github.com/GGB97/TextRPG_18/assets/99232361/89a1ab16-aeb1-4721-9e24-e9aae514a7d6)
+  ![Quest_Clear2](https://github.com/GGB97/TextRPG_18/assets/99232361/ff7a53fc-a091-410a-af69-fbb5b0bfe15c)
+
+  
 </details>
 
 <details> 
