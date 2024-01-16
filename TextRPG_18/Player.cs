@@ -238,7 +238,7 @@ public class Player
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
             hp = maxHp;
-            statPoint += 1;
+            statPoint += 1; // Test 용으로 기본값 1
             printStatus();
         }
         else
