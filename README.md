@@ -141,10 +141,10 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <summary>저장</summary>
   
   #### 저장
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Save](https://github.com/GGB97/TextRPG_18/assets/99232361/50220f64-7e4b-4e95-9745-c1e95b930ded)
   
   #### 불러오기
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Load](https://github.com/GGB97/TextRPG_18/assets/99232361/b98066fa-721d-4a88-940b-c92d2bfd5573)  
 </details>
 
 
