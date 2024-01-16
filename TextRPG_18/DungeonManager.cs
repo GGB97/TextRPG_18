@@ -15,9 +15,10 @@ public class DungeonManager
         while (true)
         {
             Console.WriteLine("[던전 입장] \n");
+            Console.WriteLine("[플레이어 레벨에 비례해 출현 몬스터가 강해집니다.] \n");
             Console.WriteLine($"현재 체력 : {player.hp}");
             Console.WriteLine(
-                "1. 던전 입장 \n" + "2. 무한 던전 입장 \n" +
+                "1. 던전 입장 \n" + //"2. 무한 던전 입장 \n" +
                 "0. 나가기");
             Console.WriteLine();
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
@@ -39,11 +40,11 @@ public class DungeonManager
             {
                 break;
             }
-            else if (str == "2")
+           /* else if (str == "2")
             {
                 Console.Clear();
                 Console.WriteLine("[준비 중입니다.]\n");
-            }
+            } */
             else
             {
                 GameManager.printError(str);
