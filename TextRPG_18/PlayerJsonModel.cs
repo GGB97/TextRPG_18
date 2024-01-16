@@ -19,6 +19,7 @@ public class PlayerJsonModel
     public int criticalDamage { get; set; }
     public int Avoidance { get; set; } //회피율
     public int MP_Recovery { get; set; } //마나 회복율
+    public int statPoint { get; set; }
     public JobType job { get; set; }
 
     public string invenStr { get; set; }
@@ -46,6 +47,7 @@ public class PlayerJsonModel
         gold = 0;
         atk = 0;
         def = 0;
+        statPoint = 0;
 
         job = JobType.Berserker;
         criticalChance = 0;
@@ -82,6 +84,8 @@ public class PlayerJsonModel
         criticalDamage = player.criticalDamage;
         Avoidance = player.Avoidance;
         MP_Recovery = player.MP_Recovery;
+
+        statPoint = player.statPoint;
 
         inventory = new(player.inventory);
         eWeapon = new(player.eWeapon);

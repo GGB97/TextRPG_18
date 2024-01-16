@@ -138,8 +138,6 @@ public class Shop
 
     public void print2()
     {
-        int num = 1;
-
         Console.WriteLine("[상품 목록]");
         Console.WriteLine();
         Console.WriteLine("------------------------------------------");

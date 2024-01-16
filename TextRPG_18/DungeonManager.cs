@@ -8,7 +8,6 @@ using TextRPG_18;
 
 public class DungeonManager
 {
-    List<Monster> monsters;
     public void Select(Player player)
     {
         string str;

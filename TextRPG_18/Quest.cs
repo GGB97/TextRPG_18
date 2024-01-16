@@ -40,7 +40,7 @@ public class Quest
     }
     public Quest(QuestJsonModel q)
     {
-        if(q != null)
+        if (q != null)
         {
             this.name = q.name;
             this.description = q.description;
@@ -79,9 +79,16 @@ public class Quest
     {
         if (isCompleted)
         {
-            player.exp += rExp;
-            player.gold += rGold;
             Console.WriteLine($"\n퀘스트 '{name}'이(가) 완료되었습니다.\n");
+
+            Console.Write($"EXP : {player.exp} -> ");
+            player.exp += rExp;
+            Console.WriteLine($"{player.exp} (+{rExp})");
+
+            Console.Write($"GOLD : {player.gold} -> ");
+            player.gold += rGold;
+            Console.WriteLine($"{player.gold} (+{rGold})");
+
             GameManager.PressEnter();
         }
         else
