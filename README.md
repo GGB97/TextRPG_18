@@ -20,7 +20,7 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/f09dd9c3-93c1-48f4-880d-e91035ea1716">
   
   #### 레벨업
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/cc53c07d-edc2-4ba4-aa2e-f7c9eccca213">
 
   #### 스탯 분배
   <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
