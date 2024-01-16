@@ -315,25 +315,33 @@ public class Player
         {
             if (mp < maxMp)
             {
-                gold -= 250;
-                Console.Write($"마나를 ");
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write($"{maxMp - mp}");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine($" 회복했습니다.");
-                mp = maxMp;
-                Console.Write($"현재 MP : ");
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine($"{mp} / {maxMp}\n");
-                Console.ForegroundColor = ConsoleColor.White;
+                if (gold >= 250)
+                {
+                    gold -= 250;
+                    Console.Write($"마나를 ");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write($"{maxMp - mp}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($" 회복했습니다.");
+                    mp = maxMp;
+                    Console.Write($"현재 MP : ");
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"{mp} / {maxMp}\n");
+                    Console.ForegroundColor = ConsoleColor.White;
 
-                Console.Write($"골드 지불 :");
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine($"250");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write($"소지 골드 :");
-                TextRPG.GameManager.printGold(this);
-                Console.Write($"\n");
+                    Console.Write($"골드 지불 :");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"250");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($"소지 골드 :");
+                    TextRPG.GameManager.printGold(this);
+                    Console.Write($"\n");
+                }
+                else
+                {
+                    Console.WriteLine($"골드가 부족합니다.");
+                    Console.WriteLine($"=====================================================\n");
+                }
             }
             else
             {
@@ -342,50 +350,58 @@ public class Player
             }
             return;
         }
-        gold -= 500;
-        Console.Write($"체력을 ");
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"{maxHp - hp}");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine($" 회복했습니다.");
-        hp = maxHp;
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"마력을 ");
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{maxMp - mp}");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine($" 회복했습니다.");
-        mp = maxMp;
-        Console.Write($"현재 체력: ");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"[");
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"{hp}");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"/");
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write($"{maxHp}");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"] ");
-        Console.Write($"현재 마나: ");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"[");
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{mp}");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"/");
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write($"{maxMp}");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"]\n\n");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"골드 지불 :");
-        Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.WriteLine($"-500");
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"소지 골드 :");
-        TextRPG.GameManager.printGold(this);
-        Console.Write($"\n");
+        if (gold >= 250)
+        {
+            gold -= 500;
+            Console.Write($"체력을 ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{maxHp - hp}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($" 회복했습니다.");
+            hp = maxHp;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"마력을 ");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{maxMp - mp}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($" 회복했습니다.");
+            mp = maxMp;
+            Console.Write($"현재 체력: ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"[");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{hp}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"/");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write($"{maxHp}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"] ");
+            Console.Write($"현재 마나: ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"[");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{mp}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"/");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write($"{maxMp}");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"]\n\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"골드 지불 :");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"-500");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"소지 골드 :");
+            TextRPG.GameManager.printGold(this);
+            Console.Write($"\n");
+        }
+        else
+        {
+            Console.WriteLine($"골드가 부족합니다.");
+            Console.WriteLine($"=====================================================\n");
+        }
     }
 
     public void PrintQuests()
