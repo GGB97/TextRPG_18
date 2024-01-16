@@ -237,7 +237,9 @@ public class Player
             atk += 2f;
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
+            Console.WriteLine($"마나와 체력이 전부 회복되었다!");
             hp = maxHp;
+            mp = maxMp;
             statPoint += 1; // Test 용으로 기본값 1
             printStatus();
         }
