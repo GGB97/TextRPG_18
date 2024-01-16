@@ -41,9 +41,9 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <summary>전투, 스킬, 치명타, 회피, 몬스터 추가, 몬스터 레벨 스케일링</summary>
 
   #### 전투
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/c3303dd9-204f-4af6-bea3-52f379b41c64">
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/3f6f25b1-5a7a-40fe-a922-ab694c644f2a">
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/5016e821-978e-4f9c-8b11-7c0716a9b3a1">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/c3303dd9-204f-4af6-bea3-52f379b41c64" width="800" height="250">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/3f6f25b1-5a7a-40fe-a922-ab694c644f2a" width="800" height="500">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/5016e821-978e-4f9c-8b11-7c0716a9b3a1" width="800" height="500">
   
   #### 스킬
   <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/92f19b11-ded6-4f02-85bd-d7347b820941">
