@@ -7,7 +7,7 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <details> 
 <summary>제목</summary>
 
-내용
+<img src = "https://github.com/GGB97/TextRPG_18/issues/4#issue-2083086979">
 
 </details>
 캐릭터 생성, 직업 선택, 
