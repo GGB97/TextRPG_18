@@ -10,15 +10,15 @@ public class Kinght : Job
         this.name = "용기사";
         this.hp = 200;
         this.mp = 75;
-        this.atk = 20;
+        this.atk = 30;
         this.def = 30;
-        this.criticalChance = 35;
+        this.criticalChance = 30;
         this.criticalDamage = 125;
         this.Avoidance = 10;
         this.MP_Recovery = 15;
 
         Skill_name1 = "드래곤 스트라이크 : 마나 30을 소비해 드래곤의 힘을 실은 창을 들고 돌진한다. \n   [모든 적에게 ATK*0.75 피해. 그리고 무작위 적 하나에게 ATK*1.5로 공격.]";
-        Skill_name2 = "용혈의 계약 : 마나 25를 소비해 체력을 즉시 10% 회복하고, 자신의 방어력을 50% 증가시킨다. (3턴 지속)";
+        Skill_name2 = "용혈의 계약 : 마나 15를 소비해 체력을 즉시 15% 회복하고, 자신의 방어력을 30% 증가시킨다. (3턴 지속)";
     }
 
     public override void skill_1(List<Monster> mon, Player player)
@@ -28,6 +28,7 @@ public class Kinght : Job
             Console.WriteLine("\n마나가 부족합니다.");
             Console.WriteLine("시전 실패.");
             Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+            player.Recovery();
             return;
         }
         player.mp -= 30;
@@ -42,22 +43,25 @@ public class Kinght : Job
         Console.WriteLine($"=====================================================");
         foreach (var item in mon)
         {
-            Console.WriteLine($"\n{player.name}은(는) 드래곤의 힘을 실은 창으로 {item.name}을(를) 공격!");
-            Thread.Sleep(250);
-            int minushp = player.PlayerDamage(); //치명타 계산
-            Console.Write($"{item.name}은(는) ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write($"{minushp * 75 / 100}");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write($" 의 데미지를 입었다!\n");
-            Thread.Sleep(250);
-            item.hp -= minushp * 75 / 100;
-
-            if (item.hp <= 0)
+            if (item.live == "live")
             {
-                item.hp = 0;
-                item.live = "dead";
-                Console.Write($"{item.name}은(는) 쓰러졌다!\n");
+                Console.WriteLine($"\n{player.name}은(는) 드래곤의 힘을 실은 창으로 {item.name}을(를) 공격!");
+                Thread.Sleep(250);
+                int minushp = player.PlayerDamage(); //치명타 계산
+                Console.Write($"{item.name}은(는) ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write($"{minushp * 75 / 100}");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($" 의 데미지를 입었다!\n");
+                Thread.Sleep(250);
+                item.hp -= minushp * 75 / 100;
+
+                if (item.hp <= 0)
+                {
+                    item.hp = 0;
+                    item.live = "dead";
+                    Console.Write($"{item.name}은(는) 쓰러졌다!\n");
+                }
             }
         }
         Thread.Sleep(300);
@@ -78,7 +82,9 @@ public class Kinght : Job
                     Console.WriteLine($"\n그리고 추가 공격!");
                     Console.WriteLine($"{player.name} 이(가) 드래곤의 진노를 담아 {mon[random_target].name}을(를) 꿰뚫는다!");
                     Thread.Sleep(600);
+                    player.criticalChance += 35; //히든: 치명타율 70%
                     int minushp = player.PlayerDamage();
+                    player.criticalChance -= 35;
                     Console.Write($"{mon[random_target].name}은(는) ");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"{minushp * 15 / 10}");
@@ -104,16 +110,17 @@ public class Kinght : Job
 
     public override void Skill_2(Player player)
     {
-        if (player.mp < 25)
+        if (player.mp < 15)
         {
             Console.WriteLine("\n마나가 부족합니다.");
             Console.WriteLine("시전 실패.");
             Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+            player.Recovery();
             return;
         }
-        int b = (int)(player.def * 0.5);
+        int b = (int)(player.def * 0.3);
         int save_hp = player.hp;
-        player.hp += player.hp * 10 / 100;
+        player.hp += player.hp * 15 / 100;
         if (player.hp >= player.maxHp)
         {
             player.hp = player.maxHp;
@@ -122,7 +129,7 @@ public class Kinght : Job
         Console.WriteLine($"=====================================================");
         Console.Write("\n마나 ");
         Console.ForegroundColor = ConsoleColor.Blue;
-        Console.Write("25");
+        Console.Write("15");
         Console.ForegroundColor = ConsoleColor.White;
         Console.Write($" 를 소비했다!");
         Console.Write("\n최대 체력의 ");
@@ -169,7 +176,7 @@ public class Kinght : Job
         Thread.Sleep(300);
 
         turnfalse = true;
-        player.mp -= 25;
+        player.mp -= 15;
         player.def += b; //50% 증가
     }
     public override string GetName1()

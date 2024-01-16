@@ -30,6 +30,7 @@ public class Warrior : Job
             Console.WriteLine("\n마나가 부족합니다.");
             Console.WriteLine("시전 실패.");
             Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+            player.Recovery();
             return;
         }
         if (player.hp < player.maxHp * 10 / 100)
@@ -37,6 +38,7 @@ public class Warrior : Job
             Console.WriteLine("\n체력이 부족합니다.");
             Console.WriteLine("시전 실패.");
             Console.WriteLine($"{player.name}은(는) 대기했다!\n");
+            player.Recovery();
             return;
         }
         int save_hp = player.hp;

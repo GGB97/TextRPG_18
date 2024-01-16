@@ -103,22 +103,25 @@ public class Mage : Job
         Console.WriteLine($"=====================================================");
         foreach (var item in mon)
         {
-            Console.WriteLine($"\n{player.name}의 유성우가 {item.name}을(를) 강타!!!!");
-            Thread.Sleep(350);
-            int minushp = player.PlayerDamage(); //치명타 계산
-            Console.Write($"{item.name}은(는) ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write($"{minushp * 1000}");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write($" 의 엄청난 데미지를 입었다!!!!!\n");
-            Thread.Sleep(400);
-            item.hp -= minushp * 1000;
-
-            if (item.hp <= 0)
+            if (item.live == "live")
             {
-                item.hp = 0;
-                item.live = "dead";
-                Console.Write($"{item.name}은(는) 쓰러졌다!\n");
+                Console.WriteLine($"\n{player.name}의 유성우가 {item.name}을(를) 강타!!!!");
+                Thread.Sleep(350);
+                int minushp = player.PlayerDamage(); //치명타 계산
+                Console.Write($"{item.name}은(는) ");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.Write($"{minushp * 1000}");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($" 의 엄청난 데미지를 입었다!!!!!\n");
+                Thread.Sleep(400);
+                item.hp -= minushp * 1000;
+
+                if (item.hp <= 0)
+                {
+                    item.hp = 0;
+                    item.live = "dead";
+                    Console.Write($"{item.name}은(는) 쓰러졌다!\n");
+                }
             }
         }
         Console.WriteLine($"=====================================================");

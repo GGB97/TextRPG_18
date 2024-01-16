@@ -288,12 +288,11 @@ public class DungeonManager
 
         MonsterAllDie(monstersInBattle, player, ref turn);  //모든 몬스터가 죽었는지 확인
         EnemyTurn(monstersInBattle, player, ref turn); //몬스터 턴
-
-        player.Recovery(); //마나 회복
-        Thread.Sleep(500);
+        Thread.Sleep(350);
 
         if (turn == "player_choice")
         {
+            player.Recovery(); //마나 회복
 
             // 몬스터 목록표시
             Console.WriteLine($"\n=====================================================");
