@@ -42,3 +42,11 @@ struct playermax
     public static int CRP;
     public static int CRD;
 }
+
+public struct playerConst
+{
+    public const int pointHp = 10;
+    public const int pointMp = 5;
+    public const float pointAtk = 1;
+    public const int pointDef = 2;
+}

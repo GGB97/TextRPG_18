@@ -40,21 +40,25 @@ namespace TextRPG
                 string str = Console.ReadLine();
                 if (str == $"{(int)MenuType.STATUS}")
                 {
-                    Console.Clear();
-                    player.printStatus();
-
                     while (true)
                     {
+                        Console.Clear();
+                        player.printStatus();
+
                         Console.WriteLine("1. 레벨업");
-                        Console.WriteLine("0. 나가기");
+                        Console.WriteLine("2. 포인트 분배");
+                        Console.WriteLine("0. 나가기\n");
                         Console.WriteLine();
                         Console.Write($"{player.name} : ");
                         str = Console.ReadLine();
 
                         if (str == "1")
                         {
-                            Console.Clear();
                             player.Levelup();
+                        }
+                        else if (str == "2")
+                        {
+                            player.AllocateStats();
                         }
                         else if (str == "0")
                         {

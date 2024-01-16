@@ -44,13 +44,13 @@ public class Player
         atk = 0;
         def = 0;
         mp = 0;
-        maxMp = 
+        maxMp =
         hp = 100;
         criticalChance = 0;
         criticalDamage = 0;
         gold = 1500;
         maxExp = level * 100;
-        statPoint = 0;
+        statPoint = 1;
 
         inventory = new Inventory();
         inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 10, 50));
@@ -176,6 +176,7 @@ public class Player
 
     public void printStatus()
     {
+        Console.Clear();
         Console.WriteLine("[상태창]\n");
         Console.WriteLine("---------------------");
         Console.WriteLine(
@@ -184,10 +185,11 @@ public class Player
             $"공격력 : {atk} \n" +
             $"방어력 : {def} \n" +
             $"생명력 : {hp} / {maxHp} \n" +
-            $"마나 : {mp} \n"+
-            $"치명타 확률 : { criticalChance } \n" +
-            $"치명타 피해 : { criticalDamage } \n" +
-            "\n"+
+            $"마나 : {mp} \n" +
+            $"치명타 확률 : {criticalChance} \n" +
+            $"치명타 피해 : {criticalDamage} \n" +
+            $"SP : {statPoint}" + 
+            "\n" +
             $"소지금 : {gold} G \n"
             );
 
@@ -227,6 +229,7 @@ public class Player
 
     public void Levelup()
     {
+        Console.Clear();
         if (exp >= maxExp)
         {
             exp -= maxExp;
@@ -244,6 +247,66 @@ public class Player
         {
             Console.WriteLine("경험치가 부족합니다.");
         }
+    }
+
+    public void AllocateStats()
+    {
+        while (true)
+        {
+            printStatus();
+            Console.WriteLine($"1. HP (+ {playerConst.pointHp})");
+            Console.WriteLine($"2. MP (+ {playerConst.pointMp})");
+            Console.WriteLine($"3. ATK (+ {playerConst.pointAtk})");
+            Console.WriteLine($"4. DEF (+ {playerConst.pointDef})");
+            Console.WriteLine("0. 나가기\n");
+
+            Console.Write($"{name} : ");
+            string str = Console.ReadLine();
+
+            if (str == "1" || str == "2" || str == "3" || str == "4")
+            {
+                UsePoint(str);
+                break;
+            }
+            else if (str == "0")
+            {
+                break;
+            }
+            else
+            {
+                GameManager.printError(str);
+            }
+        }
+    }
+
+    void UsePoint(string str)
+    {
+        if (statPoint > 0)
+        {
+            Console.WriteLine("\n능력치가 증가 되었습니다.");
+            switch (str)
+            {
+                case "1":
+                    maxHp += playerConst.pointHp;
+                    break;
+                case "2":
+                    maxMp += playerConst.pointMp;
+                    break;
+                case "3":
+                    atk += playerConst.pointAtk;
+                    break;
+                case "4":
+                    def += playerConst.pointDef;
+                    break;
+            }
+            statPoint--;
+        }
+        else
+        {
+            Console.WriteLine("스탯 포인트가 부족합니다.");
+        }
+        GameManager.PressEnter();
+        
     }
 
     public void Rest()
