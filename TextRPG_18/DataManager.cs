@@ -41,6 +41,7 @@ public class DataManager
         {
             Console.WriteLine("저장에 실패하였습니다.");
         }
+        GameManager.PressEnter();
     }
 
     public string LoadAll()
