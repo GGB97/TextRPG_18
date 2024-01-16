@@ -176,7 +176,6 @@ public class Player
 
     public void printStatus()
     {
-        Console.Clear();
         Console.WriteLine("[상태창]\n");
         Console.WriteLine("---------------------");
         Console.WriteLine(
@@ -229,7 +228,6 @@ public class Player
 
     public void Levelup()
     {
-        Console.Clear();
         if (exp >= maxExp)
         {
             exp -= maxExp;

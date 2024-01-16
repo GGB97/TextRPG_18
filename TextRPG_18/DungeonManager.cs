@@ -324,6 +324,7 @@ public class DungeonManager
         {
             player.SelectedClass.turn = 999;
             player.SelectedClass.Initialization(player);  //스텟 초기화
+            player.SelectedClass.turn = 0;
             Console.WriteLine("패배.\n");
             Console.WriteLine($"{player.name} 레벨 {player.level}");
             Console.WriteLine($"체력: {player.hp}");
@@ -350,6 +351,7 @@ public class DungeonManager
         {
             player.SelectedClass.turn = 999;
             player.SelectedClass.Initialization(player);  //스텟 초기화
+            player.SelectedClass.turn = 0;
             Console.WriteLine("승리!\n");
 
             //몬스터의 골드와 경험치 총합 계산 후 랜덤 보정
