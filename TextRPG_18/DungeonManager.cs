@@ -18,7 +18,7 @@ public class DungeonManager
             Console.WriteLine("[던전 입장] \n");
             Console.WriteLine($"현재 체력 : {player.hp}");
             Console.WriteLine(
-                "1. 던전 입장 \n" +
+                "1. 던전 입장 \n" + "2. 무한 던전 입장 \n" +
                 "0. 나가기");
             Console.WriteLine();
                 /*"1. 난이도 1 (방어력 8 이상 권장) \n" +
@@ -40,6 +40,11 @@ public class DungeonManager
             {
                 break;
             }
+            else if (str == "2")
+            {
+                Console.Clear();
+                Console.WriteLine("[준비 중입니다.]\n");
+            }
             else
             {
                 GameManager.printError(str);
@@ -59,12 +64,12 @@ public class DungeonManager
 
         List<Monster> monsters;
         monsters = new List<Monster>();
-        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 4, 6, 12, 100, 50,false, 10));
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 5, 15, 15, 150, 75,false,5));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 8, 7, 20, 200, 100, false,13));
-        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 5, 5, 10, 120, 70, true,5));
-        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 4, 4, 10, 50, 60, false,15));
-        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 6, 12, 30, 150, 150, true, 1));
+        monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 50, 30, 100, 50, false, 10)); //이름, 타입, 레벨, 체력, 공격력, 골드, 경험치, 포션 드랍여부, 회피치
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 17, 65, 35, 150, 75,false,5));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 45, 200, 100, false,13));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 65, 25, 120, 70, true, 5));
+        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 15, 40, 30, 50, 60, true, 15));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 60, 150, 150, true, 1));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -75,12 +80,14 @@ public class DungeonManager
         {
             if (turn == "player_choice")
             {
+   
+
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
                 player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
                 Console.WriteLine($"[{player.name}의 턴!]");
                 Console.WriteLine("1. 일반공격");
-                Console.WriteLine("2. " + player.SelectedClass.GetName1());
-                Console.WriteLine("3. " + player.SelectedClass.GetName2());
+                Console.WriteLine($"2. " + player.SelectedClass.GetName1());
+                Console.WriteLine($"3. " + player.SelectedClass.GetName2());
                 Console.WriteLine("4. 아이템 사용");
                 Console.WriteLine("0. 도주");
                 Console.WriteLine();
@@ -108,18 +115,39 @@ public class DungeonManager
                 }
                 else if (str == "2")
                 {
-                    MonsterList(monstersInBattle);
                     player.SelectedClass.skill_1(monstersInBattle, player);
-                    MonsterList(monstersInBattle);
                     MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
-                    EnemyTurn(monstersInBattle, player, ref turn);
+                    bool allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
+                    if (allMonstersDead == false)
+                    {
+                        EnemyTurn(monstersInBattle, player, ref turn);
+                        if (turn != "battle_defeat" && turn != "battle_win")
+                        {
+                            MonsterList(monstersInBattle);
+                        }
+                        else if (turn == "battle_defeat" || turn == "battle_win")
+                        {
+                            battle_result(player, monstersInBattle, ref turn);
+                        }
+                    }
                 }
                 else if (str == "3")
                 {
-                    MonsterList(monstersInBattle);
                     player.SelectedClass.Skill_2(player);
                     MonsterAllDie(monstersInBattle, player, ref turn); //몬스터가 전부 죽었는지 확인
-                    EnemyTurn(monstersInBattle, player, ref turn);
+                    bool allMonstersDead = monstersInBattle.All(monster => monster.live == "dead");
+                    if (allMonstersDead == false)
+                    {
+                        EnemyTurn(monstersInBattle, player, ref turn);
+                        if (turn != "battle_defeat" && turn != "battle_win")
+                        {
+                            MonsterList(monstersInBattle);
+                        }
+                        else if (turn == "battle_defeat" || turn == "battle_win")
+                        {
+                            battle_result(player, monstersInBattle, ref turn);
+                        }
+                    }
                 }
                 else
                 {
@@ -139,9 +167,9 @@ public class DungeonManager
     {
         Console.Clear();
         Random random = new Random();
-        int numberOfMonsters = random.Next(2, 5); // 랜덤 숫자 생성
+        int numberOfMonsters = random.Next(2, (5 + player.level)); //플레이어 레벨 비례 랜덤 숫자 생성
         Console.WriteLine($"\n=====================================================");
-        Console.WriteLine($"{numberOfMonsters}마리의 몬스터가 출현했습니다\n");
+        Console.WriteLine($"{numberOfMonsters}마리의 몬스터가 출현했다!\n");
 
         List<Monster> monstersInBattle = new List<Monster>();
 
@@ -149,9 +177,10 @@ public class DungeonManager
         {
             // 리스트 중에서 랜덤 몬스터 선택
             Monster randomMonster = monsters[random.Next(monsters.Count)];
+            int random_difficulty = random.Next(0, player.level+3);
 
             // 인스턴스 생성
-            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level, randomMonster.hp, randomMonster.atk, randomMonster.gold, randomMonster.exp, randomMonster.drop_potion ,randomMonster.Avoidance);
+            Monster monsterInstance = new Monster(randomMonster.name, randomMonster.type, randomMonster.level + random_difficulty, randomMonster.hp + random_difficulty*5, randomMonster.atk + random_difficulty*2, randomMonster.gold + random_difficulty*15, randomMonster.exp + random_difficulty*15, randomMonster.drop_potion ,randomMonster.Avoidance + random_difficulty*1/2);
 
             // 리스트에 인스턴스 등록
             monstersInBattle.Add(monsterInstance);
@@ -193,7 +222,7 @@ public class DungeonManager
             {
                 if (selectedMonsterIndex == 0)
                 {
-                    Console.WriteLine($"{player.name}이(가) 대기합니다.\n");
+                    Console.WriteLine($"{player.name}은(는) 대기했다!\n");
                     break;
                 }
 
@@ -261,6 +290,7 @@ public class DungeonManager
         EnemyTurn(monstersInBattle, player, ref turn); //몬스터 턴
 
         player.Recovery(); //마나 회복
+        Thread.Sleep(500);
 
         if (turn == "player_choice")
         {
@@ -292,7 +322,7 @@ public class DungeonManager
 
         if (turn == "battle_defeat")
         {
-            player.SelectedClass.turn = 3;
+            player.SelectedClass.turn = 999;
             player.SelectedClass.Initialization(player);  //스텟 초기화
             Console.WriteLine("패배.\n");
             Console.WriteLine($"{player.name} 레벨 {player.level}");
@@ -305,8 +335,8 @@ public class DungeonManager
 
                 if (userInput == "0")
                 {
-                    Console.Clear();
                     player.hp = 1;
+                    Console.Clear();
                     Console.WriteLine($"\n=====================================================\n");
                     break;
                 }
@@ -318,7 +348,7 @@ public class DungeonManager
         }
         else if (turn == "battle_win")
         {
-            player.SelectedClass.turn = 3;
+            player.SelectedClass.turn = 999;
             player.SelectedClass.Initialization(player);  //스텟 초기화
             Console.WriteLine("승리!\n");
 
@@ -361,7 +391,7 @@ public class DungeonManager
                 }
                 else if (potion_luck <= 5) // 50%확률로 하급포션
                 {
-                    player.inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
+                    player.inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 30, 500));
                     Console.Write($"전리품으로 ");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write($"하급 회복 포션");
@@ -370,7 +400,7 @@ public class DungeonManager
                 }
                 else if (potion_luck <= 8) // 30%확률로 중급 회복포션
                 {
-                    player.inventory.items.Add(new Consumption("중급 회복 포션", "체력을 적당히 회복할 수 있는 포션", 75, 500));
+                    player.inventory.items.Add(new Consumption("중급 회복 포션", "체력을 적당히 회복할 수 있는 포션", 75, 700));
                     Console.Write($"전리품으로 ");
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write($"중급 회복 포션");
@@ -379,7 +409,7 @@ public class DungeonManager
                 }
                 else if (potion_luck <= 9) // 10%확률로 고급 회복포션
                 {
-                    player.inventory.items.Add(new Consumption("고급 회복 포션", "체력을 대폭 회복할 수 있는 포션", 120, 1500));
+                    player.inventory.items.Add(new Consumption("고급 회복 포션", "체력을 대폭 회복할 수 있는 포션", 120, 1000));
                     Console.Write($"전리품으로 ");
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write($"고급 회복 포션");
@@ -444,7 +474,7 @@ public class DungeonManager
                 continue;
             }
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp} ATK: {monstersInBattle[i].atk}");
+            Console.WriteLine($"{i + 1} Lv.{monstersInBattle[i].level} {monstersInBattle[i].name} HP: {monstersInBattle[i].hp}/{monstersInBattle[i].maxHp} ATK: {monstersInBattle[i].atk}");
         }
 
     }

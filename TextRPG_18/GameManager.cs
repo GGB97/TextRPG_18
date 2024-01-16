@@ -201,12 +201,14 @@ namespace TextRPG
         {
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("원하시는 이름을 설정해주세요.");
+            Console.Write("이름 입력 : ");
 
             string input = Console.ReadLine();
             Player cPlayer = new Player(input);
             JobManager.I.choice(cPlayer);
 
-            Console.WriteLine($"환영합니다. {cPlayer.name}님의 캐릭터가 생성 되었습니다.");
+            Console.WriteLine($"환영합니다. {cPlayer.name} 님의 캐릭터가 생성 되었습니다.");
+            Thread.Sleep(750);
             return cPlayer;
         }
         public static void printError(string str)

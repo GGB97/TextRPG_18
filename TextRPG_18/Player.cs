@@ -51,11 +51,11 @@ public class Player
 
         inventory = new Inventory();
 
-        inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 2, 50));
-        inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 4, 100));
-        inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
-        inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
-        inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 50, 250));
+        inventory.items.Add(new Weapon("녹슨 검", "오래된 검", 10, 50));
+        inventory.items.Add(new Armor("녹슨 갑옷", "오래된 갑옷", 5, 100));
+        inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 30, 500));
+        inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 30, 500));
+        inventory.items.Add(new Consumption("하급 회복 포션", "체력을 약간 회복할 수 있는 포션", 30, 500));
 
         quests = new QuestList();
     }
@@ -111,7 +111,6 @@ public class Player
         string str; int num;
         while (true)
         {
-            Console.Clear();
             inventory.printNumbering();
             Console.WriteLine("장비 아이템을 선택하면 장착/해제, 소비 아이템을 선택하면 사용합니다.");
             Console.WriteLine();
@@ -355,8 +354,6 @@ public class Player
         {
             mp = maxMp;
         }
-        Console.Write($"{name} (이)의 마나가 ");
-        Console.WriteLine();
         Console.Write($"{name} (이)의 마나가 회복되었습니다. : ");
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write($"{mp - save_mp}");
