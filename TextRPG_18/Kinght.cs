@@ -83,8 +83,10 @@ public class Kinght : Job
                     Console.WriteLine($"{player.name} 이(가) 드래곤의 진노를 담아 {mon[random_target].name}을(를) 꿰뚫는다!");
                     Thread.Sleep(600);
                     player.criticalChance += 35; //히든: 치명타율 70%
+                    player.criticalDamage += 10;
                     int minushp = player.PlayerDamage();
                     player.criticalChance -= 35;
+                    player.criticalDamage -= 10;
                     Console.Write($"{mon[random_target].name}은(는) ");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write($"{minushp * 15 / 10}");
@@ -134,7 +136,7 @@ public class Kinght : Job
         Console.Write($" 를 소비했다!");
         Console.Write("\n최대 체력의 ");
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.Write("10%");
+        Console.Write("15%");
         Console.ForegroundColor = ConsoleColor.White;
         Console.Write($" 를 회복했다! :");
         Console.ForegroundColor = ConsoleColor.Green;
