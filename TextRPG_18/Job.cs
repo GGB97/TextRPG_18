@@ -54,3 +54,22 @@ public class Job
         player.Avoidance = Avoidance;
         player.MP_Recovery = MP_Recovery;
     }
+    public virtual void skill_1(List<Monster> mon, Player player) //범위계
+    { }
+
+    public virtual void Skill_2(Player player) //서포터
+    {
+
+    }
+
+    public virtual string GetName1()
+    {
+        return "DefaultName1";
+    }
+    public virtual string GetName2()
+    {
+        return "DefaultName1";
+    }
+    public virtual bool Initialization(Player player)//초기화
+    { return false; }
+}
