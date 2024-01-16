@@ -6,9 +6,9 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 
 <details> 
 <summary>제목</summary>
-<img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837)](https://github.com/GGB97/TextRPG_18/issues/4#issue-2083086979">
+<img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
 </details>
-캐릭터 생성, 직업 선택, 
+캐릭터 생성, 직업 선택,
 
 전투, 스킬, 치명타, 회피, 몬스터 레벨 스케일링, 몬스터 추가
 
