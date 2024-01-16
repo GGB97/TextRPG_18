@@ -23,8 +23,7 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/02df108d-f46a-4237-8b74-de765e3166a9">
 
   #### 스탯 분배
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/c8f6f14b-7883-4b34-acbd-02730ab60352">
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/2c9693fc-4346-4d58-b2fa-4d3075b17c64">
+  <img src = "">
 </details>
 
 
