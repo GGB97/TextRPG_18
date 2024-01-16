@@ -315,9 +315,9 @@ public class Player
         {
             if (mp < maxMp)
             {
-                if (gold >= 250)
+                if (gold >= 150)
                 {
-                    gold -= 250;
+                    gold -= 150;
                     Console.Write($"마나를 ");
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write($"{maxMp - mp}");
@@ -331,7 +331,7 @@ public class Player
 
                     Console.Write($"골드 지불 :");
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine($"250");
+                    Console.WriteLine($"150");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"소지 골드 :");
                     TextRPG.GameManager.printGold(this);
@@ -350,9 +350,9 @@ public class Player
             }
             return;
         }
-        if (gold >= 250)
+        if (gold >= 300)
         {
-            gold -= 500;
+            gold -= 300;
             Console.Write($"체력을 ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write($"{maxHp - hp}");
@@ -391,7 +391,7 @@ public class Player
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"골드 지불 :");
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine($"-500");
+            Console.WriteLine($"-300");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"소지 골드 :");
             TextRPG.GameManager.printGold(this);
