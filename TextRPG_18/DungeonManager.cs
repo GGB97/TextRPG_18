@@ -65,11 +65,11 @@ public class DungeonManager
         List<Monster> monsters;
         monsters = new List<Monster>();
         monsters.Add(new Monster("고블린", (int)MonsterType.Goblin, 12, 50, 30, 100, 50, false, 10)); //이름, 타입, 레벨, 체력, 공격력, 골드, 경험치, 포션 드랍여부, 회피치
-        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 17, 65, 35, 150, 75,false,5));
-        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 45, 200, 80, false,13));
-        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 65, 25, 120, 65, true, 5));
-        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 15, 40, 30, 50, 60, true, 15));
-        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 60, 150, 75, true, 1));
+        monsters.Add(new Monster("오크", (int)MonsterType.Orc, 17, 65, 35, 150, 70,false,5));
+        monsters.Add(new Monster("리자드맨", (int)MonsterType.LizardMan, 20, 45, 45, 200, 75, false,13));
+        monsters.Add(new Monster("고블린 사제", (int)MonsterType.Goblin_Frist, 16, 65, 25, 120, 60, true, 5));
+        monsters.Add(new Monster("흡혈 박쥐", (int)MonsterType.Vampire_bat, 15, 40, 30, 50, 55, true, 15));
+        monsters.Add(new Monster("트롤", (int)MonsterType.Troll, 25, 70, 60, 150, 70, true, 1));
 
         List<Monster> monstersInBattle = battle_start(player, monsters);
         //전투에 진입해서 생성한 랜덤 몬스터 데이터를 표시 및 리턴한다
@@ -125,7 +125,7 @@ public class DungeonManager
                         {
                             MonsterList(monstersInBattle);
                         }
-                        else if (turn == "battle_defeat" || turn == "battle_win")
+                        else
                         {
                             battle_result(player, monstersInBattle, ref turn);
                         }
@@ -143,7 +143,7 @@ public class DungeonManager
                         {
                             MonsterList(monstersInBattle);
                         }
-                        else if (turn == "battle_defeat" || turn == "battle_win")
+                        else
                         {
                             battle_result(player, monstersInBattle, ref turn);
                         }
