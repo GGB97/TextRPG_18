@@ -537,7 +537,7 @@ namespace TextRPG_18
         public int magic_cast = 0;
 
         public string Skill_name1 = "대마법:메테오 : 마나 500을 소비해 유성우를 소환한다.\n   [모든 적에게 ATK*1000의 피해.]";
-        public string Skill_name2 = "주문 영창 : 마나 75을 소비해 자신의 치명타 확률을 50%, 치명타 피해를 2배 증가시킨다. (3턴 지속) \n   [또한, 자신이 다음에 시전하는 마법의 마나 소모량이 250 감소한다. (중첩 및 지속 시간 연장 가능)]";
+        public string Skill_name2 = "주문 영창 : 마나 75를 소비해 자신의 치명타 확률을 50%, 치명타 피해를 2배 증가시킨다. (3턴 지속) \n   [또한, 자신이 다음에 시전하는 마법의 마나 소모량이 250 감소한다. (중첩 및 지속 시간 연장 가능)]";
         public Mage()
         {
             this.type = JobType.Mage;
