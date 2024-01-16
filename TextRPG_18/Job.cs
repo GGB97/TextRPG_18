@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -54,11 +54,8 @@ public class Job
         player.Avoidance = Avoidance;
         player.MP_Recovery = MP_Recovery;
     }
-
     public virtual void skill_1(List<Monster> mon, Player player) //범위계
-    {
-
-    }
+    { }
 
     public virtual void Skill_2(Player player) //서포터
     {
@@ -73,11 +70,6 @@ public class Job
     {
         return "DefaultName1";
     }
-
     public virtual bool Initialization(Player player)//초기화
-    {
-        return false;
-
-    }
-
+    { return false; }
 }

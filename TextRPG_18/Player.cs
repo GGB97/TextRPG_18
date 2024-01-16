@@ -240,7 +240,7 @@ public class Player
             def += 1;
             Console.WriteLine($"{name} Level Up! {level}레벨 달성!");
             hp = maxHp;
-            statPoint += 1;
+            statPoint += 1; // Test 용으로 기본값 1
             printStatus();
         }
         else
@@ -313,8 +313,33 @@ public class Player
     {
         if (hp == maxHp)
         {
-            Console.WriteLine($"이미 체력이 최대치입니다.");
-            Console.WriteLine($"=====================================================\n");
+            if (mp < maxMp)
+            {
+                gold -= 250;
+                Console.Write($"마나를 ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write($"{maxMp - mp}");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($" 회복했습니다.");
+                mp = maxMp;
+                Console.Write($"현재 MP : ");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"{mp} / {maxMp}\n");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.Write($"골드 지불 :");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"250");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write($"소지 골드 :");
+                TextRPG.GameManager.printGold(this);
+                Console.Write($"\n");
+            }
+            else
+            {
+                Console.WriteLine($"이미 체력과 마나가 최대치입니다.");
+                Console.WriteLine($"=====================================================\n");
+            }
             return;
         }
         gold -= 500;
