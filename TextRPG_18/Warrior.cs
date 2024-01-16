@@ -217,7 +217,7 @@ public class Warrior : Job
         {
             if (turn >= turn_reset * 3)
             {
-                Console.WriteLine($"갈망이 사그라들었다.. 공격력 :");
+                Console.Write($"갈망이 사그라들었다.. 공격력 :");
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write($" {player.atk} ");
                 Console.ForegroundColor = ConsoleColor.White;

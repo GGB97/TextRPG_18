@@ -83,7 +83,7 @@ public class DungeonManager
    
 
                 player.battel_DisplayPlayerInfo();  //몬스터 랜덤 등장
-                player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
+                //player.SelectedClass.Initialization(player);  //스킬 턴 횟수 초기화
                 Console.WriteLine($"[{player.name}의 턴!]");
                 Console.WriteLine("1. 일반공격");
                 Console.WriteLine($"2. " + player.SelectedClass.GetName1());
