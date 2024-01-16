@@ -17,13 +17,14 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <summary>상태 보기, 레벨업, 스탯 분배</summary>
   
   #### 상태 보기
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/f09dd9c3-93c1-48f4-880d-e91035ea1716">
   
   #### 레벨업
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/02df108d-f46a-4237-8b74-de765e3166a9">
 
   #### 스탯 분배
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/c8f6f14b-7883-4b34-acbd-02730ab60352">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/78461967/2c9693fc-4346-4d58-b2fa-4d3075b17c64">
 </details>
 
 
@@ -31,7 +32,7 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 <summary>캐릭터 생성, 직업 선택</summary>
   
   #### 캐릭터 생성
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/36e2993c-8e3f-4fb6-93b3-309d79c20984">
   
   #### 직업 선택
   <img src = "https://github.com/GGB97/TextRPG_18/assets/154600776/cc1a042a-24dc-4e3e-adbf-c09e1b1c17f1">
@@ -39,16 +40,20 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
 
 <details> 
 <summary>전투, 스킬, 치명타, 회피, 몬스터 추가, 몬스터 레벨 스케일링</summary>
+
+  #### 전투
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
   
   #### 스킬
   <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
   
   #### 치명타
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
-    
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/128718414/921e7f15-e0de-4f74-8b76-26438019d3a1">   
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/128718414/79d4594e-df37-42ef-9341-4b9bac5b699d"> 
     
   #### 회피
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/128718414/93158f17-1065-484b-9a28-3b77730805dc">
+  <img src = "https://github.com/GGB97/TextRPG_18/assets/128718414/b1daf177-f864-4848-ae0c-e8f109a7938c">
     
   #### 몬스터 추가
     몬스터 종류는 ~~~~~~~ 가있다
