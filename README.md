@@ -104,24 +104,37 @@ C#/.NET8.0 기반 콘솔 텍스트 게임
   #### 퀘스트 완료
   ![Quest_Clear1](https://github.com/GGB97/TextRPG_18/assets/99232361/89a1ab16-aeb1-4721-9e24-e9aae514a7d6)
   ![Quest_Clear2](https://github.com/GGB97/TextRPG_18/assets/99232361/ff7a53fc-a091-410a-af69-fbb5b0bfe15c)
-
-  
 </details>
 
 <details> 
 <summary>아이템/상점, 휴식</summary>
+
+  #### 인벤토리 기본 상태
+  ![item_Default](https://github.com/GGB97/TextRPG_18/assets/99232361/3b2445be-b339-4bca-9d2b-08fbf4527e18)
+
   
   #### 장비 장착/해체
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Equip](https://github.com/GGB97/TextRPG_18/assets/99232361/9fcb5a93-f2b0-4a4f-9fcb-fe037c85a5ca)
+  ![unEquip](https://github.com/GGB97/TextRPG_18/assets/99232361/81156c8f-a57c-4363-b6d3-5ed16a0cd4d3)
+
   
   #### 소모품 사용
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![use_Item](https://github.com/GGB97/TextRPG_18/assets/99232361/1f8a9ce1-d9e0-47fa-9d82-9fb52e110a29)
+  ![use_full](https://github.com/GGB97/TextRPG_18/assets/99232361/9b09ba01-94a7-48d5-9db0-2789dda595a9)
 
+
+  #### 상점 기본
+  ![store_Default](https://github.com/GGB97/TextRPG_18/assets/99232361/b31dcf51-1512-4dbd-91d8-605a3e61b1ea)
+
+  
   #### 아이템 구매/판매
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Store_Buy](https://github.com/GGB97/TextRPG_18/assets/99232361/2a9386e3-97f5-461c-8cc4-2082b0ca9871)
+  ![Store_Sell](https://github.com/GGB97/TextRPG_18/assets/99232361/57aacd0f-1251-47a3-afff-ec5afdc3543c)
+
 
   #### 휴식
-  <img src = "https://github.com/GGB97/TextRPG_18/assets/99232361/42e6b0d5-6a50-4c43-bc06-d55025f0e837">
+  ![Rest](https://github.com/GGB97/TextRPG_18/assets/99232361/702331d5-52d1-4f01-8ea9-b20a3ed0908b)
+  ![Rest_full](https://github.com/GGB97/TextRPG_18/assets/99232361/b6c3111a-8c8b-4bb6-a400-acec66f0ed72)
 </details>
 
 <details> 
